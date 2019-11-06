@@ -47,7 +47,7 @@ def most_popular_characters(characters=characters, top=5):
         if character.appearances != "":
             character_dict[character.pid] = (character.name, int(character.appearances))
     
-    top_list = sorted(character_dict.values(), key=lambda m: m[1], reverse = True)[:5]
+    top_list = sorted(character_dict.values(), key=lambda m: m[1], reverse = True)[:top]
     return [entry[0] for entry in top_list]
     pass
 
