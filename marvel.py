@@ -60,6 +60,8 @@ def max_and_min_years_new_characters(characters=characters):
        characters, or the 'year' attribute of the namedtuple, return a tuple
        of (max_year, min_year)
     """
+    years = Counter(character.year for character in characters if character.year != "")
+    return (years.most_common()[0][0], years.most_common()[-1][0])
     pass
 
 
@@ -71,4 +73,9 @@ def get_percentage_female_characters(characters=characters):
        Agender and Genderfluid Characters.
        Return the result rounded to 2 digits
     """
+    gender_breakdown = {character.sex : 0 for character in characters if character.sex != ""}
+    for character in characters:
+        if character.appearances != "" and character.sex != "":
+            gender_breakdown[character.sex] += int(character.appearances)
+    return round((gender_breakdown['Female Characters'] / sum(gender_breakdown.values()))*100,2)
     pass
