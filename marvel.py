@@ -73,9 +73,6 @@ def get_percentage_female_characters(characters=characters):
        Agender and Genderfluid Characters.
        Return the result rounded to 2 digits
     """
-    gender_breakdown = {character.sex : 0 for character in characters if character.sex != ""}
-    for character in characters:
-        if character.appearances != "" and character.sex != "":
-            gender_breakdown[character.sex] += int(character.appearances)
+    gender_breakdown = Counter(character.sex for character in characters if character.sex != "")
     return round((gender_breakdown['Female Characters'] / sum(gender_breakdown.values()))*100,2)
     pass
