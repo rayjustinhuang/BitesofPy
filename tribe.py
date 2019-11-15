@@ -2,6 +2,7 @@ from collections import Counter
 
 from bs4 import BeautifulSoup
 import requests
+import re
 
 AMAZON = "amazon.com"
 # static copy
@@ -22,11 +23,10 @@ def get_top_books(content=None, limit=5):
     if content is None:
         content = load_page()
     # code here ...
-    limit_index = 4+limit
     soup = BeautifulSoup(content, 'html.parser')
-    top_books = []
     
-    for title in soup.find_all('i')[4:limit_index]:
-        top_books.append(title.text)
+    links = soup.find_all('a', href=re.compile(AMAZON))
     
-    return top_books
+    c = Counter([(title, title.text) for title in links])
+    
+    return [book[0][1] for book in c.most_common(limit)]
