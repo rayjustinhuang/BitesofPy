@@ -25,19 +25,8 @@ def get_top_books(content=None, limit=5):
     # code here ...
     soup = BeautifulSoup(content, 'html.parser')
     
-<<<<<<< HEAD
     links = soup.find_all('a', href=re.compile(AMAZON))
     
     c = Counter([(title, title.text) for title in links])
     
     return [book[0][1] for book in c.most_common(limit)]
-=======
-    c = Counter()
-    
-    links = soup.find_all('a', href=re.compile(AMAZON))
-    
-    for title in links:
-        c[title.text] += 1
-    
-    return [book[0] for book in c.most_common(limit)]
->>>>>>> a6ba49e3432ffade53d1a76f38b21949c00a9883
