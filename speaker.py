@@ -29,8 +29,12 @@ def get_pycon_speaker_first_names(soup=None):
     
     for name in soup.find_all('span', class_='speaker'):
         for i in name.text.strip().split(', '):
-            for j in i.split('/'):
-                first_names.append(j.split()[0])
+            for j in i.split('/ '):
+                full_name = j
+                if '.' in full_name.split()[0]:
+                    first_names.append(full_name.split()[1])
+                    continue
+                first_names.append(full_name.split()[0])
             
     return first_names
     pass
@@ -40,14 +44,13 @@ def get_percentage_of_female_speakers(first_names):
        of female speakers (female and mostly_female),
        rounded to 2 decimal places."""
        
-    denominator, females = 0, 0
+    denominator, females = len(first_names), 0
     
     d = gender.Detector()
     
     for name in first_names:
-        denominator += 1
         sex = d.get_gender(name)
-        if sex == 'female' or sex == 'mostly female':
+        if 'female' in sex:
             females += 1
             
     return round(females/denominator*100, 2)
