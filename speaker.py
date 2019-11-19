@@ -44,7 +44,7 @@ def get_percentage_of_female_speakers(first_names):
        of female speakers (female and mostly_female),
        rounded to 2 decimal places."""
        
-    denominator, females = len(first_names), 0
+    females = 0
     
     d = gender.Detector()
     
@@ -53,7 +53,7 @@ def get_percentage_of_female_speakers(first_names):
         if 'female' in sex:
             females += 1
             
-    return round(females/denominator*100, 2)
+    return round(females/len(first_names)*100, 2)
     pass
 
 if __name__ == '__main__':
