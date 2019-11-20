@@ -29,13 +29,19 @@ def get_top_titles(url, top=5):
     titles = soup.find_all('span', class_='title')
     points = soup.find_all('span', class_='controls')
     
-    for title in titles:
-        print(title.find('a').text)
+    title_list = []
     
-    for point in points:
-        print(point)
-
-homepage = ("https://bites-data.s3.us-east-2.amazonaws.com/"
-            "news.python.sc/index.html")
-            
-get_top_titles(homepage)
+    for title, point in zip(titles, points):
+        p = int(point.find('span', class_='smaller').text.strip().split()[0])
+        c = int(point.find('span', class_='smaller').text.strip().split()[-2])
+        
+        if title.find('span',class_='smaller') == None:
+            t = title.find('a').text
+            title_list.append(Entry(t, p, c))
+            continue
+        
+        t = title.find('a').text + " " + title.find('span', class_='smaller').text
+        
+        title_list.append(Entry(t, p, c))
+        
+    return sorted(title_list, key = lambda x: (x[1], x[2]), reverse=True)[:top]
