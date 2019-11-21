@@ -41,7 +41,7 @@ def get_feed_entries(feed=FEED):
     return entries_list
     pass
 
-print(get_feed_entries())
+#print(get_feed_entries())
 
 def filter_entries_by_tag(search, entry):
     """Check if search matches any tags as stored in the Entry namedtuple
@@ -68,7 +68,24 @@ def main():
        6. Secondly, print the number of matches: 'n entries matched'
           (use entry if only 1 match)
     """
-    #entries = get_feed_entries()
+    entries = get_feed_entries()
+    
+    while True:
+        
+        cmd = input('Enter a search term:')
+        
+        if cmd == '':
+            print('Please provide a search term')
+        
+        elif cmd == 'q':
+            print('Bye')
+            break
+    
+        else:
+            #Placeholder
+            print('Goodbye')
+            break
+    
     pass
 
 
