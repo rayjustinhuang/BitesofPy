@@ -56,18 +56,20 @@ def filter_entries_by_tag(search, entry):
     """
     Truth = []
     
+    search = search.lower()
+    
     if '&' in search:
         for term in search.split('&'):
-            Truth.append(term in entry.tags)
-            return all(Truth)
+            Truth.append(term.lower() in entry.tags)
+        return all(Truth)
         
     elif '|' in search:
         for term in search.split('|'):
-            Truth.append(term in entry.tags)
-            return any(Truth)
+            Truth.append(term.lower() in entry.tags)
+        return any(Truth)
             
     else:
-        return search in entry.tags
+        return search.lower() in entry.tags
     pass
 
 def main():
@@ -86,19 +88,32 @@ def main():
     
     while True:
         
-        cmd = input('Enter a search term:')
+        search = input('Enter a search term:')
         
-        if cmd == '':
+        if search == '':
             print('Please provide a search term')
         
-        elif cmd == 'q':
+        elif search == 'q':
             print('Bye')
             break
     
         else:
-            #Placeholder
-            print('Goodbye')
-            break
+            matching_entries = []
+            
+            for entry in entries:
+                if filter_entries_by_tag(search, entry) == True:
+                    matching_entries.append(entry)
+            
+            matching_entries = sorted(matching_entries, key=lambda x: x.date)
+            matches = len(matching_entries)
+            
+            for entry in matching_entries:
+                print(entry.title)
+            
+            if matches == 1:
+                print(f'{matches} entry matched')
+            else:
+                print(f'{matches} entries matched')
     
     pass
 
