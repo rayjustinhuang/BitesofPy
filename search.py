@@ -54,6 +54,20 @@ def filter_entries_by_tag(search, entry):
           e.g. flask|django should match entries with either tag
        3. Else: match if search is in tags
     """
+    Truth = []
+    
+    if '&' in search:
+        for term in search.split('&'):
+            Truth.append(term in entry.tags)
+            return all(Truth)
+        
+    elif '|' in search:
+        for term in search.split('|'):
+            Truth.append(term in entry.tags)
+            return any(Truth)
+            
+    else:
+        return search in entry.tags
     pass
 
 def main():
