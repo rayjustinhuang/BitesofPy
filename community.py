@@ -35,5 +35,5 @@ def create_user_bar_chart(content):
         str_to_return += '+'*row[1]
         str_to_return += '\n'
     
-    return str_to_return.splitlines()
+    print(str_to_return)
     pass
