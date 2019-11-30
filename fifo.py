@@ -1,5 +1,7 @@
+from collections import deque
+
 def my_queue(n=5):
-    queue = [i for i in range(n)][-5:]
+    return deque([],n)
     pass
 
 
