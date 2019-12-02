@@ -21,7 +21,7 @@ def _create_defeat_mapping():
     
     return defeat_mapping
     pass
-_create_defeat_mapping()
+
 
 def get_winner(player1, player2, defeat_mapping=None):
     """Given player1 and player2 determine game output returning the
@@ -35,3 +35,14 @@ def get_winner(player1, player2, defeat_mapping=None):
     """
     defeat_mapping = defeat_mapping or _create_defeat_mapping()
     # ...
+    if player1 not in defeat_mapping.keys() or player2 not in defeat_mapping.keys():
+        raise ValueError('Invalid player string/s passed')
+    
+    if player1 == player2:
+        return 'Tie'
+    elif player2 in defeat_mapping[player1] and player1 in defeat_mapping[player2]:
+        return 'Tie'
+    elif player2 in defeat_mapping[player1] and not player1 in defeat_mapping[player2]:
+        return player1
+    else:
+        return player2
