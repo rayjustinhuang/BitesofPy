@@ -23,11 +23,14 @@ class Enchantment:
         self.description = description
         self.items = items
     
-    def __str__(self):
+    def __repr__(self):
         name_to_use = self.name.title()
         reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
         num_level = reg_num_level_dict[self.max_level]
         return f'{name_to_use} ({num_level}): {self.description}'
+    
+    def items(self):
+        return self.items
     pass
 
 
@@ -37,7 +40,17 @@ class Item:
     Implements the following: 
         name, enchantments
     """
-
+    def __init__(self, name, enchantments):
+        self.name = name.replace("_", " ").title()
+        self.enchantments = enchantments
+        reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
+        
+    def __repr__(self):
+        final_string = f'{self.name}\n'
+        for e in self.enchantments:
+            name_to_use = e.name.replace(' ',"_").lower()
+            num_level = reg_num_level_dict[e.max_level]
+            final_string += f' [{num_level}] {name_to_use}\n'
     pass
 
 
