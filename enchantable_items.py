@@ -59,6 +59,16 @@ def generate_enchantments(soup):
     
     With the key being the id_name of the enchantment.
     """
+    enchantment_dict = defaultdict(Enchantment)
+    enchantment_table = soup.find('table', id='minecraft_items')
+    for row in enchantment_table:
+        name = row.find('a').text
+        id_name = row.find('em').text
+        max_level = row.find('td').text
+        description = row.find('td', class_='hidden-xs').text
+        items = row.find('img')['src'].split('/')[-1].split('.')[0].split("_")
+        entry = (id_name, name, max_level, description, items)
+        enchantment_dict[id_name].add(*entry)
     pass
 
 
@@ -67,6 +77,7 @@ def generate_items(data):
     
     With the key being the item name.
     """
+    
     pass
 
 
