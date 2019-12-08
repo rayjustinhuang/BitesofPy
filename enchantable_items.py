@@ -43,7 +43,7 @@ class Item:
     """
     def __init__(self, name, enchantments):
         self.name = name.replace("_", " ").title()
-        self.enchantments = enchantments
+        self.enchantments = list(enchantments)
         reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
         
     def __repr__(self):
@@ -87,9 +87,9 @@ def generate_enchantments(soup):
         items = extract_items(row.find('img', class_='img-rounded')['data-src'])
         #print(items)
         entry = (id_name, name, max_level, description, items)
-        enchantment_dict[id_name] = entry
+        enchantment_dict[id_name] = Enchantment(*entry)
         #print('-------------------------------')
-    print(enchantment_dict)
+    return enchantment_dict
     pass
 
 
@@ -98,7 +98,11 @@ def generate_items(data):
     
     With the key being the item name.
     """
+    item_dict = defaultdict(Item)
     
+    for enchantment in data:
+        for item in enchantment.items:
+            print(item)
     pass
 
 
@@ -116,6 +120,7 @@ def get_soup(file=HTML_FILE):
     return soup
 soup = get_soup()
 enchantment_data = generate_enchantments(soup)
+print(enchantment_data['mending'])
 
 def main():
     """This function is here to help you test your final code.
