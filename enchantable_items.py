@@ -24,7 +24,7 @@ class Enchantment:
         self.description = description
         self.items = items
     
-    def __repr__(self):
+    def __str__(self):
         name_to_use = self.name.title()
         reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
         num_level = reg_num_level_dict[self.max_level]
@@ -44,14 +44,15 @@ class Item:
     def __init__(self, name, enchantments):
         self.name = name.replace("_", " ").title()
         self.enchantments = list(enchantments)
-        reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
         
-    def __repr__(self):
-        final_string = f'{self.name}\n'
+    def __str__(self):
+        final_string = f'{self.name}:\n'
+        reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
         for e in self.enchantments:
-            name_to_use = e.name.replace(' ',"_").lower()
+            name_to_use = e.id_name.replace(' ',"_").lower()
             num_level = reg_num_level_dict[e.max_level]
             final_string += f' [{num_level}] {name_to_use}\n'
+        return final_string[:-2]
     pass
 
 def extract_items(string):
@@ -98,11 +99,17 @@ def generate_items(data):
     
     With the key being the item name.
     """
+    item_flat_dict = defaultdict(list)
     item_dict = defaultdict(Item)
     
     for enchantment in data:
-        for item in enchantment.items:
-            print(item)
+        for item in data[enchantment].items:
+            item_flat_dict[item].append(data[enchantment])
+    
+    for item in item_flat_dict:
+        item_dict[item] = Item(item, item_flat_dict[item])
+        
+    return item_dict
     pass
 
 
@@ -118,9 +125,11 @@ def get_soup(file=HTML_FILE):
         soup = Soup(file, "html.parser")
 
     return soup
-soup = get_soup()
-enchantment_data = generate_enchantments(soup)
-print(enchantment_data['mending'])
+#soup = get_soup()
+#enchantment_data = generate_enchantments(soup)
+#print(enchantment_data['mending'].max_level)
+#item_data = generate_items(enchantment_data)
+#print(item_data['fishing_rod'])
 
 def main():
     """This function is here to help you test your final code.
@@ -133,8 +142,8 @@ def main():
         print(minecraft_items[item], "\n")
 
 
-#if __name__ == "__main__":
-    #main()
+if __name__ == "__main__":
+    main()
 
 """
 Armor: 
