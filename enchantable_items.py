@@ -17,7 +17,7 @@ class Enchantment:
     Implements the following: 
         id_name, name, max_level, description, items
     """
-    def __init__(self, id_name, name, max_level, description, items):
+    def __init__(self, id_name, name, max_level, description, items=[]):
         self.id_name = id_name
         self.name = name
         self.max_level = max_level
@@ -26,8 +26,11 @@ class Enchantment:
     
     def __str__(self):
         name_to_use = self.name.title()
-        reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
-        num_level = reg_num_level_dict[self.max_level]
+        reg_num_level_dict = dict(zip('I II III IV V VI VII VIII IX X'.split(), [1,2,3,4,5,6,7,8,9,10]))
+        if type(self.max_level) == int:
+            num_level = self.max_level
+        else:
+            num_level = reg_num_level_dict[self.max_level]
         return f'{name_to_use} ({num_level}): {self.description}'
     
     def items(self):
@@ -41,37 +44,37 @@ class Item:
     Implements the following: 
         name, enchantments
     """
-    def __init__(self, name, enchantments):
-        self.name = name.replace("_", " ").title()
+    def __init__(self, name, enchantments=[]):
+        self.name = name.replace("_", " ")
         self.enchantments = list(enchantments)
         
     def __str__(self):
-        final_string = f'{self.name}:\n'
-        reg_num_level_dict = dict(zip('I II III IV V'.split(), [1,2,3,4,5]))
-        for e in self.enchantments:
+        final_string = f'{self.name.title()}:\n'
+        reg_num_level_dict = dict(zip('I II III IV V VI VII VIII IX X'.split(), [1,2,3,4,5,6,7,8,9,10]))
+        for e in sorted(self.enchantments, key=lambda x: x.id_name):
             name_to_use = e.id_name.replace(' ',"_").lower()
             num_level = reg_num_level_dict[e.max_level]
             final_string += f' [{num_level}] {name_to_use}\n'
-        return final_string[:-2]
+        return final_string[:-1]
     pass
-
-def extract_items(string):
-    new_string = string.split('/')[-1].split('.')[0]
-    replacements = (('enchanted',''), ('iron',''), ('sm',''), ('fishing_rod', 'fishing rod'))
-    
-    for r in replacements:
-        new_string = new_string.replace(*r)
-    
-    item_list = ['fishing_rod' if item == 'fishing rod' else item for item in new_string.split("_")]
-    item_list = list(filter(None,item_list))
-    
-    return item_list
 
 def generate_enchantments(soup):
     """Generates a dictionary of Enchantment objects
     
     With the key being the id_name of the enchantment.
     """
+    def extract_items(string):
+        new_string = string.split('/')[-1].split('.')[0]
+        replacements = (('enchanted',''), ('iron',''), ('sm',''), ('fishing_rod', 'fishing rod'))
+    
+        for r in replacements:
+            new_string = new_string.replace(*r)
+    
+        item_list = ['fishing_rod' if item == 'fishing rod' else item for item in new_string.split("_")]
+        item_list = list(filter(None,item_list))
+    
+        return item_list
+
     enchantment_dict = defaultdict(Enchantment)
     enchantment_table = soup.find('table', id='minecraft_items')
     enchantment_table_data = enchantment_table.find_all('tr')
@@ -106,7 +109,7 @@ def generate_items(data):
         for item in data[enchantment].items:
             item_flat_dict[item].append(data[enchantment])
     
-    for item in item_flat_dict:
+    for item in sorted(item_flat_dict.keys()):
         item_dict[item] = Item(item, item_flat_dict[item])
         
     return item_dict
