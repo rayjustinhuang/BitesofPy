@@ -29,8 +29,12 @@ class Color:
             self.rgb = None
         pass
 
-    def hex2rgb(self, hexcolor):
+    @staticmethod
+    def hex2rgb(hexcolor):
         """Class method that converts a hex value into an rgb one"""
+        if type(hexcolor) != str:
+            raise ValueError
+        
         def convert_to_dec(string):
             string = string[1:]
             dec_mapping = dict(zip('a b c d e f'.split(),[10,11,12,13,14,15]))
@@ -52,8 +56,12 @@ class Color:
         return convert_to_dec(hexcolor)
         pass
 
-    def rgb2hex(self, rgbcode):
+    @staticmethod
+    def rgb2hex(rgbcode):
         """Class method that converts an rgb value into a hex one"""
+        if type(rgbcode) != tuple:
+            raise ValueError
+        
         def convert_to_hex(number):
             first_digit = int(number/16)
             second_digit = number%16
