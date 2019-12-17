@@ -34,6 +34,16 @@ class Color:
         """Class method that converts a hex value into an rgb one"""
         if type(hexcolor) != str:
             raise ValueError
+            
+        if hexcolor[0] != "#":
+            raise ValueError
+            
+        if len(hexcolor) != 7:
+            raise ValueError
+            
+        allowable_chars = chars = set('0123456789abcdef')
+        if not any((c in allowable_chars) for c in hexcolor[1:]):
+            raise ValueError
         
         def convert_to_dec(string):
             string = string[1:]
@@ -60,6 +70,15 @@ class Color:
     def rgb2hex(rgbcode):
         """Class method that converts an rgb value into a hex one"""
         if type(rgbcode) != tuple:
+            raise ValueError
+            
+        if len(rgbcode) != 3:
+            raise ValueError
+         
+        if not all(type(i) == int for i in rgbcode):
+            raise ValueError
+            
+        if not all(0 <= i <= 255 for i in rgbcode):
             raise ValueError
         
         def convert_to_hex(number):
@@ -93,9 +112,3 @@ class Color:
         else:
             return 'Unknown'
         pass
-    
-#c = Color('white')
-#print(c.rgb)
-#print(c.rgb2hex((0, 0, 255)))
-#print(c.hex2rgb('#0000ff'))
-#print(repr(c))
