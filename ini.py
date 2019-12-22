@@ -1,22 +1,5 @@
 import configparser
 
-cookiecutter = """[tox]
-envlist = py27, py34, py35, py36, pypy, flake8
-
-[testenv]
-passenv = LC_ALL, LANG, HOME
-commands = pytest --cov=cookiecutter {posargs:tests}
-deps = -rtest_requirements.txt
-
-[testenv:flake8]
-deps =
-    flake8==3.5.0
-commands =
-    flake8 cookiecutter tests setup.py
-
-[testenv:cov-report]
-commands = pytest --cov=cookiecutter --cov-report=term --cov-report=html"""
-
 class ToxIniParser:
 
     def __init__(self, ini_file):
@@ -37,9 +20,17 @@ class ToxIniParser:
     def environments(self):
         """Return a list of environments
            (= "envlist" attribute of [tox] section)"""
-        envs = []
-        for sect in self.config.sections():
-            envs.append(sect[envlist])
+        raw_string = self.config['tox']['envlist']
+        if ',' in raw_string:
+            raw_list = raw_string.split(',')
+        elif '\n' in raw_string:
+            raw_list = raw_string.split("\n")
+        else:
+            raw_list = raw_string.split(" ")
+        raw_list = [word.replace(' ','').replace(',','').replace('\n','') for word in raw_list]
+        raw_list = list(filter(None,raw_list))
+
+        return raw_list
         pass
 
     @property
@@ -47,11 +38,8 @@ class ToxIniParser:
         """Return a list of all basepython across the ini file"""
         bases = []
         for sect in self.config.sections():
-            bases.append(sect[basepython])
+            for k,v in self.config.items(sect):
+                if k == 'basepython':
+                    bases.append(v)
+        return list(set(bases))
         pass
-    
-#reader = ToxIniParser(cookiecutter)
-#reader.number_of_sections
-
-#parser = configparser.ConfigParser().read_string(cookiecutter)
-#print(len(parser.sections()))
