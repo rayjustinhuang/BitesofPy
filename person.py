@@ -6,18 +6,18 @@ class Person:
     
     def __repr__(self, string=""):
         return "I am a person" + string
-        
+
+class Mother(Person):
+    
+    def __str__(self):
+        return self.__repr__(" and awesome mom")
+                
 class Father(Person):
     
     def __str__(self):
         return self.__repr__(" and cool daddy")
         
-class Mother(Father):
-    
-    def __str__(self):
-        return self.__repr__(" and awesome mom")
-        
-class Child(Mother):
+class Child(Father, Mother):
     
     def __str__(self):
         return 'I am the coolest kid'
