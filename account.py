@@ -35,12 +35,13 @@ class Account:
     def __add__(self, amt):
         self.balance = self.balance + amt
         
-    def __str__(self, account):
+    def __str__(self):
         return self.name + " account - balance: " + str(self.balance)
         
 a = Account('Checking')
 
 print(a.balance)
+print(str(a))
 
 a = a + 10
 
