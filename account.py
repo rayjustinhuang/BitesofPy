@@ -31,18 +31,15 @@ class Account:
     def __getitem__(self, position):
         return self._transactions[position]
     
-    @balance.setter    
     def __add__(self, amt):
-        self.balance = self.balance + amt
+        if type(amt) != int:
+            raise ValueError
+        return self._transactions.append(amt)
         
+    def __sub__(self, amt):
+        if type(amt) != int:
+            raise ValueError
+        return self._transactions.append(-amt)
+    
     def __str__(self):
         return self.name + " account - balance: " + str(self.balance)
-        
-a = Account('Checking')
-
-print(a.balance)
-print(str(a))
-
-a = a + 10
-
-print(a.balance)
