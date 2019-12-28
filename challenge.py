@@ -18,8 +18,16 @@ class Challenge(ABC):
 
 
 class BlogChallenge(Challenge):
+    
+    def __init__(self, merged_prs):
+        super().__init__(args)
+        self.merged_prs = merged_prs
     pass
 
 
 class BiteChallenge(Challenge):
+    
+    def __init__(self, result):
+        super().__init__(args)
+        self.result = result
     pass
