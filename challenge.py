@@ -9,7 +9,7 @@ class Challenge(ABC):
     pass
 
     @abstractmethod
-    def verify(self):
+    def verify(self, check):
         pass
     
     @property
@@ -24,9 +24,8 @@ class BlogChallenge(Challenge):
         super().__init__(number, title)
         self.merged_prs = merged_prs
 
-    @abstractmethod
     def verify(self, check):
-        return any(check in merged_prs)
+        return check in self.merged_prs
         pass        
 
     @property
@@ -42,7 +41,6 @@ class BiteChallenge(Challenge):
         super().__init__(number, title)
         self.result = result
         
-    @abstractmethod
     def verify(self, check):
         return check == self.result
         pass        
