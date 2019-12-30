@@ -14,7 +14,7 @@ class Challenge(ABC):
     
     @property
     def pretty_title(self):
-        return f'PCC{self.number} - {self.title.title()}'
+        return f'PCC{self.number} - {self.title}'
         pass
 
 
@@ -26,7 +26,7 @@ class BlogChallenge(Challenge):
 
     @abstractmethod
     def verify(self, check):
-        return check in merged_prs
+        return any(check in merged_prs)
         pass        
 
     @property
