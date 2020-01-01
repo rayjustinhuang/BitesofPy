@@ -7,10 +7,13 @@ class Matrix(object):
         return f'<Matrix values="{self.values}">'
         
     def __matmul__(self, other):
-        dot_product = []
-        for j in range(len(other.values)):
-            for i in range(len(self.values)):
-                dot_product[i][j] = self.values[i] * other.values[j]
+        dot_product = [[0,0],[0,0]]
+        for i in range(len(self.values)):
+            for j in range(len(other.values)):
+                print(self.values[i][j], other.values[j][i])
+                dot_product[i][j] += self.values[i][j] * other.values[j][i]
+                
+        return dot_product
         pass
     
     def __rmatmul__(self, other):
@@ -18,3 +21,9 @@ class Matrix(object):
     
     def __imatmul__(self, other):
         pass
+    
+mat1 = Matrix([[1, 2], [3, 4]])
+mat2 = Matrix([[11, 12], [13, 14]])
+mat3 = mat1 @ mat2
+"[[37, 40], [85, 92]]"
+print(mat3)
