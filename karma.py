@@ -11,9 +11,21 @@ class User:
     def __init__(self, name):
         self.name = name
         self.transactions = []
-        self.karma = 0
+
+    @property
+    def points(self):
+        return [transaction.points for transaction in self.transactions]
+    
+    @property    
+    def karma(self):
+        return sum(self.points)
+        
+    @property
+    def fans(self):
+        return [transaction.giver for transaction in self.transactions]
         
     def __add__(self, transaction):
+        return self.transactions.append(transaction)
         pass
     
     pass
