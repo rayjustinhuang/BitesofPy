@@ -28,4 +28,10 @@ class User:
         return self.transactions.append(transaction)
         pass
     
+    def __str__(self):
+        if len(self.fans) == 1:
+            return f'{self.name} has a karma of {self.karma} and {len(self.fans)} fan'
+        else:
+            return f'{self.name} has a karma of {self.karma} and {len(self.fans)} fans'
+    
     pass
