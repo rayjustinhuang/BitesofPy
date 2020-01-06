@@ -10,11 +10,11 @@ class User:
     
     def __init__(self, name):
         self.name = name
-        self.transactions = []
+        self._transactions = []
 
     @property
     def points(self):
-        return [transaction.points for transaction in self.transactions]
+        return [transaction.points for transaction in self._transactions]
     
     @property    
     def karma(self):
@@ -22,16 +22,16 @@ class User:
         
     @property
     def fans(self):
-        return [transaction.giver for transaction in self.transactions]
+        return len(set([transaction.giver for transaction in self._transactions]))
         
     def __add__(self, transaction):
-        return self.transactions.append(transaction)
+        return self._transactions.append(transaction)
         pass
     
     def __str__(self):
-        if len(self.fans) == 1:
-            return f'{self.name} has a karma of {self.karma} and {len(self.fans)} fan'
+        if self.fans == 1:
+            return f'{self.name} has a karma of {self.karma} and {self.fans} fan'
         else:
-            return f'{self.name} has a karma of {self.karma} and {len(self.fans)} fans'
+            return f'{self.name} has a karma of {self.karma} and {self.fans} fans'
     
     pass
