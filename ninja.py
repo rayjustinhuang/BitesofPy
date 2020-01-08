@@ -45,11 +45,9 @@ class NinjaBelt:
             if self._get_belt(new_score) == self._last_earned_belt:
                 print(f"Set new score to {new_score}")
             else:
-                print(f'Congrats, you earned {new_score} points obtaining the PyBites Ninja {self._get_belt(new_score)} Belt')
+                print(f'Congrats, you earned {new_score} points obtaining the PyBites Ninja {self._get_belt(new_score).title()} Belt')
             self._score = new_score
-            
+            return self._score
         pass
 
     score = property(_get_score, _set_score)
-    
-print(BELTS[49])
