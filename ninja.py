@@ -27,8 +27,10 @@ class NinjaBelt:
             return BELTS[600]
         elif 800 <= new_score < 1000:
             return BELTS[800]
-        else:
+        elif new_score >= 1000:
             return BELTS[1000]
+        else:
+            return None
             
         pass
 
@@ -40,8 +42,12 @@ class NinjaBelt:
         if new_score <= self._score:
             raise ValueError
         else:
-            self._last_earned_belt = map(BELTS, new_score)
+            if self._get_belt(new_score) == self._last_earned_belt:
+                print(f"Set new score to {new_score}")
+            else:
+                print(f'Congrats, you earned {new_score} points obtaining the PyBites Ninja {self._get_belt(new_score)} Belt')
             self._score = new_score
+            
         pass
 
     score = property(_get_score, _set_score)
