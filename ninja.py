@@ -39,7 +39,9 @@ class NinjaBelt:
         pass
 
     def _set_score(self, new_score):
-        if new_score <= self._score:
+        if type(new_score) != int:
+            raise ValueError
+        elif new_score <= self._score:
             raise ValueError
         else:
             if self._get_belt(new_score) == self._last_earned_belt:
