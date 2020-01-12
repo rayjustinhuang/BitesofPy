@@ -16,4 +16,16 @@ class IntList(list):
             return (self.ints[int(len(self.ints)/2)] + self.ints[int(len(self.ints)/2)-1]) / 2
         else:
             return self.ints[int(len(self.ints)/2)-1]
+            
+    def __iadd__(self, new):
+        if all([type(i) == int for i in new]):
+            return self.ints.append(new)
+        else:
+            raise TypeError
+            
+    def __add__(self, new):
+        if all([type(i) == int for i in new]):
+            return self.ints.append(new)
+        else:
+            raise TypeError
     pass
