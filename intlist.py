@@ -28,4 +28,10 @@ class IntList(list):
             return self.ints.append(new)
         else:
             raise TypeError
+            
+    def append(self, new):
+        if type(new) == int:
+            return self.ints.append(new)
+        else:
+            raise TypeError
     pass
