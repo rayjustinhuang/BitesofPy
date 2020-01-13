@@ -12,10 +12,11 @@ class IntList(list):
         
     @property
     def median(self):
+        center = int(len(self.ints)/2)
         if not len(self.ints) % 2:
-            return (self.ints[int(len(self.ints)/2)] + self.ints[int(len(self.ints)/2)-1]) / 2
+            return (self.ints[center] + self.ints[center-1]) / 2
         else:
-            return self.ints[int(len(self.ints)/2)-1]
+            return self.ints[center-1]
             
     def __iadd__(self, new):
         if all([type(i) == int for i in new]):
