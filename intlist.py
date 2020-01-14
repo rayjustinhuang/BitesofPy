@@ -31,8 +31,13 @@ class IntList(list):
             raise TypeError
             
     def append(self, new):
-        if type(new) == int:
-            return self.ints.append(new)
-        else:
+        try:
+            return self.ints.append(int(new))
+        except:
             raise TypeError
     pass
+
+test_list = [2, 3, 4, 5, 7]
+center = int(len(test_list)/2)
+print(test_list[center])
+print((test_list[center] + test_list[center-1]) / 2)
