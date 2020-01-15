@@ -20,7 +20,7 @@ class IntList(list):
             
     def __iadd__(self, new):
         if all([type(i) == int for i in new]):
-            return self.ints.append(new)
+            return self.ints + list(new)
         else:
             raise TypeError
             
