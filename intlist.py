@@ -14,7 +14,7 @@ class IntList(list):
     def median(self):
         center = int(len(self.ints)/2)
         if not len(self.ints) % 2:
-            return (self.ints[center] + self.ints[center-1]) / 2
+            return self.ints[center]
         else:
             return self.ints[center-1]
             
