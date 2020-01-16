@@ -14,9 +14,9 @@ class IntList(list):
     def median(self):
         center = int(len(self.ints)/2)
         if not len(self.ints) % 2:
-            return self.ints[center]
+            return (self.ints[center-1] + self.ints[center]) / 2
         else:
-            return self.ints[center-1]
+            return self.ints[center]
             
     def __iadd__(self, new):
         if all([type(i) == int for i in new]):
@@ -36,8 +36,3 @@ class IntList(list):
         except:
             raise TypeError
     pass
-
-test_list = [2, 3, 4, 5, 7]
-center = int(len(test_list)/2)
-print(test_list[center])
-print((test_list[center] + test_list[center-1]) / 2)
