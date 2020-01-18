@@ -30,6 +30,18 @@ class Ninja:
     def __init__(self,name,bites):
         self.name = name
         self.bites = bites
+        
+    def __eq__(self, other):
+        return self.bites == other.bites
+    
+    def __lt__(self, other):
+        return self.bites < other.bites
+        
+    def __gt__(self, other):
+        return self.bites > other.bites
+        
+    def __str__(self):
+        return f'[{self.bites}] {self.name}'
     pass
 
 
