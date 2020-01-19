@@ -61,4 +61,9 @@ class Rankings:
             parameter indicating how many Ninjas to pair up
     returns List containing tuples of the paired up Ninja objects
     """
+    def __init__(self):
+        self._ninja_list = []
+    
+    def add(self, ninja):
+        return self._ninja_list.append(ninja)
     pass
