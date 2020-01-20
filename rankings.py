@@ -66,4 +66,9 @@ class Rankings:
     
     def add(self, ninja):
         return self._ninja_list.append(ninja)
+        
+    def dump(self):
+        sorted_list = sorted(self._ninja_list, key=lambda x: x.bites, reverse=True)
+        dumped = sorted_list.pop(0)
+        return dumped
     pass
