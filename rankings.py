@@ -68,7 +68,15 @@ class Rankings:
         return self._ninja_list.append(ninja)
         
     def dump(self):
-        sorted_list = sorted(self._ninja_list, key=lambda x: x.bites, reverse=True)
+        sorted_list = sorted(self._ninja_list, key=lambda x: x.bites)
         dumped = sorted_list.pop(0)
         return dumped
+        
+    def highest(self, count=1):
+        sorted_list = sorted(self._ninja_list, key=lambda x: x.bites, reverse=True)
+        return sorted_list[:count]
+    
+    def lowest(self, count=1):
+        sorted_list = sorted(self._ninja_list, key=lambda x: x.bites)
+        return sorted_list[:count]
     pass
