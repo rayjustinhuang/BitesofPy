@@ -79,4 +79,7 @@ class Rankings:
     def lowest(self, count=1):
         sorted_list = sorted(self._ninja_list, key=lambda x: x.bites)
         return sorted_list[:count]
+        
+    def len(self):
+        return len(self._ninja_list)
     pass
