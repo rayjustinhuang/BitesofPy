@@ -84,5 +84,9 @@ class Rankings:
         return len(self._ninja_list)
         
     def pair_up(self, count=3):
-        pass
+        pairs_list = []
+        ninja_list = sorted(self._ninja_list, key=lambda x:x.bites)
+        for i in range(count):
+            pairs_list.append(tuple(ninja_list[i], ninja_list[len(ninja_list)-i]
+        return pairs_list
     pass
