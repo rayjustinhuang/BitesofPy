@@ -40,7 +40,7 @@ class Ninja:
     def __gt__(self, other):
         return self.bites > other.bites
         
-    def __str__(self):
+    def __repr__(self):
         return f'[{self.bites}] {self.name}'
     pass
 
@@ -87,6 +87,6 @@ class Rankings:
         pairs_list = []
         ninja_list = sorted(self._ninja_list, key=lambda x:x.bites)
         for i in range(count):
-            pairs_list.append(tuple(ninja_list[i], ninja_list[len(ninja_list)-i]
+            pairs_list.append((ninja_list[-(i+1)], ninja_list[i]))
         return pairs_list
     pass
