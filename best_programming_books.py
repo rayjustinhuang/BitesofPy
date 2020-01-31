@@ -61,12 +61,32 @@ def load_data():
     should be updated to indicate this new sorting order.The Book object
     with the highest rating should be first and go down from there.
     """
+    soup = _get_soup(html_file)
+    
+    book_blocks = soup.find_all('div', class_='book accepted normal')
+    
+    book_list = []
+    rank_setting = 1
+    for book in book_blocks:
+        try:
+            title = book.find('h2', class_='main').text
+            author = book.find('h3', class_='authors').find('a').text
+            year = book.find('span', class_='date').text[3:]
+            rank = f"{rank_setting:03}"
+            rank_setting += 1
+            rating = book.find('span', class_='rating').text
+            book_list.append(Book(title, author, year, rank, rating))
+        except:
+            continue
+    
+    for book in book_list:
+        print(book)
     pass
 
 
 def main():
     books = load_data()
-    display_books(books, limit=5, year=2017)
+    #display_books(books, limit=5, year=2017)
     """If done correctly, the previous function call should display the
     output below.
     """
