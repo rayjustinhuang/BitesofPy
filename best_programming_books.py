@@ -70,15 +70,23 @@ def load_data():
     for book in book_blocks:
         try:
             title = book.find('h2', class_='main').text
-            author = book.find('h3', class_='authors').find('a').text
+            author_name = book.find('h3', class_='authors').find('a').text
+            author = author_name.split()[1] + ", " + author_name.split()[0]
             year = book.find('span', class_='date').text[3:]
             rank = f"{rank_setting:03}"
             rank_setting += 1
-            rating = book.find('span', class_='rating').text
+            rating = float(book.find('span', class_='rating').text)
             book_list.append(Book(title, author, year, rank, rating))
         except:
             continue
     
+    sort_spec = ((lambda x: x.rating, True), (lambda x: x.year, False), (lambda x:x.title.lower(), False), (lambda x: x.author, False))
+    
+    for sort_func, reverse_value in sort_spec[::-1]:
+        book_list = sorted(book_list, key = sort_func, reverse=reverse_value)
+    
+    #book_list = sorted(book_list, key = lambda x: x.author, reverse = False)
+        
     for book in book_list:
         print(book)
     pass
@@ -86,7 +94,7 @@ def load_data():
 
 def main():
     books = load_data()
-    #display_books(books, limit=5, year=2017)
+    display_books(books, limit=5, year=2017)
     """If done correctly, the previous function call should display the
     output below.
     """
