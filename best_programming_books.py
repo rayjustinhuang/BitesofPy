@@ -68,10 +68,14 @@ def load_data():
     book_list = []
     rank_setting = 1
     for book in book_blocks:
+        if 'python' not in book.find('h2', class_='main').text.lower():
+            continue
+        
         try:
             title = book.find('h2', class_='main').text
-            author_name = book.find('h3', class_='authors').find('a').text
-            author = author_name.split()[1] + ", " + author_name.split()[0]
+            author_name = book.find('h3', class_='authors').find('a').text.split()
+            first_name, last_name = " ".join(author_name[:-1]), author_name[-1]
+            author = last_name + ", " + first_name
             year = book.find('span', class_='date').text[3:]
             rank = f"{rank_setting:03}"
             rank_setting += 1
@@ -83,10 +87,13 @@ def load_data():
     sort_spec = ((lambda x: x.rating, True), (lambda x: x.year, False), (lambda x:x.title.lower(), False), (lambda x: x.author, False))
     
     for sort_func, reverse_value in sort_spec[::-1]:
-        book_list = sorted(book_list, key = sort_func, reverse=reverse_value)
+        book_list.sort(key = sort_func, reverse=reverse_value)
+
+    updated_rank = 1
+    for book in book_list:
+        book.rank = f"{updated_rank:03}"
+        updated_rank += 1
     
-    #book_list = sorted(book_list, key = lambda x: x.author, reverse = False)
-        
     for book in book_list:
         print(book)
     pass
