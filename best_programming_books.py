@@ -46,6 +46,12 @@ def display_books(books, limit=10, year=None):
     :param year: integer indicating the oldest year to include
     :return: None
     """
+    if year == None:
+        print(books[:limit])
+    else:
+        to_print = filter(lambda x: int(x.year) >= year, books)
+        for _ in to_print:
+            print(_)
     pass
 
 
@@ -94,8 +100,7 @@ def load_data():
         book.rank = f"{updated_rank:03}"
         updated_rank += 1
     
-    for book in book_list:
-        print(book)
+    return book_list
     pass
 
 
