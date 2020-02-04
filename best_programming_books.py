@@ -25,11 +25,11 @@ class Book:
         self.title = title
         self.author = author
         self.year = year
-        self.rank = rank
-        self.rating = rating
+        self.rank = int(rank)
+        self.rating = float(rating)
         
     def __repr__(self):
-        return (f'[{self.rank}] {self.title} ({self.year})\n'
+        return (f'[{self.rank:03}] {self.title} ({self.year})\n'
                 f'      {self.author} {self.rating}')
     pass
 
@@ -46,12 +46,18 @@ def display_books(books, limit=10, year=None):
     :param year: integer indicating the oldest year to include
     :return: None
     """
+    if limit >= len(books):
+        limit = len(books)
+    
     if year == None:
         print(books[:limit])
     else:
-        to_print = filter(lambda x: int(x.year) >= year, books)
-        for _ in to_print:
-            print(_)
+        count = 0
+        while count < limit:
+            for book in books:
+                if int(book.year) >= year:
+                    print(book)
+                    count += 1
     pass
 
 
@@ -83,7 +89,7 @@ def load_data():
             first_name, last_name = " ".join(author_name[:-1]), author_name[-1]
             author = last_name + ", " + first_name
             year = book.find('span', class_='date').text[3:]
-            rank = f"{rank_setting:03}"
+            rank = rank_setting
             rank_setting += 1
             rating = float(book.find('span', class_='rating').text)
             book_list.append(Book(title, author, year, rank, rating))
@@ -97,7 +103,7 @@ def load_data():
 
     updated_rank = 1
     for book in book_list:
-        book.rank = f"{updated_rank:03}"
+        book.rank = updated_rank
         updated_rank += 1
     
     return book_list
