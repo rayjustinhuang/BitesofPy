@@ -52,12 +52,11 @@ def display_books(books, limit=10, year=None):
     if year == None:
         print(books[:limit])
     else:
-        count = 0
-        while count < limit:
-            for book in books:
-                if int(book.year) >= year:
-                    print(book)
-                    count += 1
+        books = filter(lambda x: int(x.year) >= year, books)
+        for _ in range(limit):
+            print(next(books))
+    
+    return None
     pass
 
 
