@@ -46,11 +46,11 @@ def display_books(books, limit=10, year=None):
     :param year: integer indicating the oldest year to include
     :return: None
     """
-    if limit >= len(books):
-        limit = len(books)
-    
     if year == None:
-        print(books[:limit])
+        max_len = len(books)
+        books = iter(books)
+        for _ in range(min(limit, max_len)):
+            print(next(books))        
     else:
         books = filter(lambda x: int(x.year) >= year, books)
         for _ in range(limit):
@@ -112,6 +112,7 @@ def load_data():
 def main():
     books = load_data()
     display_books(books, limit=5, year=2017)
+    #display_books(books, limit=40)
     """If done correctly, the previous function call should display the
     output below.
     """
