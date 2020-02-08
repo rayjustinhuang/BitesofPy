@@ -34,6 +34,12 @@ def get_all_hashtags_and_links(tweet=TWEET):
         '#APIs']
        Return this list.
     """
+    pattern = r'(#{1}[^\s]{2,})'
+    hashtags = re.findall(pattern, tweet)
+    pattern2 = r'(http:\/\/[a-z0-9]+\.[^\s]{2,})'
+    links = re.findall(pattern2, tweet)
+    hashtags_and_links = hashtags + links
+    return hashtags_and_links
     pass
 
 
@@ -46,3 +52,4 @@ def match_first_paragraph(html=HTML):
     pass
 
 print(extract_course_times())
+print(get_all_hashtags_and_links())
