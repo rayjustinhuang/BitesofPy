@@ -34,11 +34,15 @@ def get_all_hashtags_and_links(tweet=TWEET):
         '#APIs']
        Return this list.
     """
-    pattern = r'(#{1}[^\s]{2,})'
-    hashtags = re.findall(pattern, tweet)
-    pattern2 = r'(http:\/\/[a-z0-9]+\.[^\s]{2,})'
-    links = re.findall(pattern2, tweet)
-    hashtags_and_links = hashtags + links
+    #pattern = r'(#{1}[^\s]{2,})'
+    #hashtags = re.findall(pattern, tweet)
+    #pattern2 = r'(http:\/\/[a-z0-9]+\.[^\s]{2,})'
+    #links = re.findall(pattern2, tweet)
+    both = r'(#{1}[^\s]{2,})|(http:\/\/[a-z0-9]+\.[^\s]{2,})'
+    x = re.findall(both, tweet)
+    hashtags_and_links = []
+    for tup in x:
+        hashtags_and_links+=[i for i in tup if i != '']
     return hashtags_and_links
     pass
 
@@ -49,7 +53,7 @@ def match_first_paragraph(html=HTML):
        'pybites != greedy' (= content of first paragraph).
        Return this string.
     """
+    pattern = r'<p>?([^<]+)?<\/p>?'
+    paras = re.findall(pattern, html)[0]
+    return paras
     pass
-
-print(extract_course_times())
-print(get_all_hashtags_and_links())
