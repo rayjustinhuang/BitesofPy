@@ -12,6 +12,8 @@ def has_timestamp(text):
 
 def is_integer(number):
     """Return True if number is an integer"""
+    pattern = r'^[-+]?[\d]+$'
+    return re.search(pattern, number)
     pass
 
 
