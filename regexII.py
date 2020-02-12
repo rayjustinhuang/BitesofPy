@@ -19,6 +19,8 @@ def is_integer(number):
 
 def has_word_with_dashes(text):
     """Returns True if text has one or more words with dashes"""
+    pattern = r'[0-9a-zA-Z]+-[0-9a-zA-Z]+'
+    return re.search(pattern, text)
     pass
 
 
