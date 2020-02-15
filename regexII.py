@@ -44,6 +44,8 @@ def split_string_on_punctuation(text):
 
 def remove_duplicate_spacing(text):
     """Replace multiple spaces by one space"""
+    pattern = r'[\s]+'
+    return re.sub(pattern, " ", text)
     pass
 
 
