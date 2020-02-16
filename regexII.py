@@ -51,6 +51,8 @@ def remove_duplicate_spacing(text):
 
 def has_three_consecutive_vowels(word):
     """Returns True if word has at least 3 consecutive vowels"""
+    pattern = r'[aeiou]{3,}'
+    return re.search(pattern, word)
     pass
 
 
