@@ -13,7 +13,7 @@ def has_timestamp(text):
 def is_integer(number):
     """Return True if number is an integer"""
     pattern = r'^[-+]?[\d]+$'
-    return re.search(pattern, number)
+    return bool(re.search(pattern, number))
     pass
 
 
@@ -52,11 +52,14 @@ def remove_duplicate_spacing(text):
 def has_three_consecutive_vowels(word):
     """Returns True if word has at least 3 consecutive vowels"""
     pattern = r'[aeiou]{3,}'
-    return re.search(pattern, word)
+    return bool(re.search(pattern, word))
     pass
 
 
 def convert_emea_date_to_amer_date(date):
     """Convert dd/mm/yyyy (EMEA date format) to mm/dd/yyyy
        (AMER date format)"""
+    emea = r'([0-1][0-9])\\([0-1][0-9])\\([0-2][0-9]{2}[0-9])'
+    amer = r'\2\\\1\\\3'
+    return re.sub(emea, amer, date)
     pass
