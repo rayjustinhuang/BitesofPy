@@ -13,8 +13,9 @@ def has_timestamp(text):
 def is_integer(number):
     """Return True if number is an integer"""
     pattern = r'^[-+]?[\d]+$'
-    return bool(re.search(pattern, number))
+    return bool(re.search(pattern, str(number)))
     pass
+
 
 
 def has_word_with_dashes(text):
