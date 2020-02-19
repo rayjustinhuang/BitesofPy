@@ -29,7 +29,7 @@ def remove_all_parenthesis_words(text):
     """Return text but without any words or phrases in parenthesis:
        'Good morning (afternoon)' -> 'Good morning' (so don't forget
        leading spaces)"""
-    pattern = r'[\(][0-9a-zA-Z]+[\)]'
+    pattern = r'[\s][\(][0-9a-zA-Z.]+[\)]'
     return re.sub(pattern, "", text).strip()
     pass
 
