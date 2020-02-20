@@ -39,7 +39,7 @@ def split_string_on_punctuation(text):
        ['hi', 'how are you doing', 'blabla']
        (make sure you strip trailing spaces)"""
     pattern = r'[?!.,;][\s]*'
-    return re.sub(pattern, "|", text).split("|")
+    return [i for i in re.sub(pattern, "|", text).split("|") if i != ""]
     pass
 
 
