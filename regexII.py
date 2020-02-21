@@ -60,7 +60,10 @@ def has_three_consecutive_vowels(word):
 def convert_emea_date_to_amer_date(date):
     """Convert dd/mm/yyyy (EMEA date format) to mm/dd/yyyy
        (AMER date format)"""
-    emea = r'([0-1][0-9])\\([0-1][0-9])\\([0-2][0-9]{2}[0-9])'
-    amer = r'\2\\\1\\\3'
-    return re.sub(emea, amer, date)
+    emea = r'([0-3][0-9])\/([0-1][0-9])\/([0-2][0-9]{2}[0-9])'
+    try:
+        day, month, year = re.findall(emea, date)[0]
+        return month + '/' + day + '/' + year
+    except:
+        return date
     pass
