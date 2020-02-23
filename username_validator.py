@@ -31,9 +31,15 @@ def parse_social_platforms_string():
     number_to_split_on = platforms_raw_list.index("") + 1
     number_of_sublists = platforms_raw_list.count("") + 1
     length_to_split = [number_to_split_on]*number_of_sublists
-    print(length_to_split)
     split_string = [list(islice(raw_list_to_split, length)) for length in length_to_split]
-    print(split_string)
+
+    for string in split_string:
+        platform, min_range, max_range, regex, *_ = string
+        min_range = int(min_range.split()[-1])
+        max_range = int(max_range.split()[-1]) + 1
+        range_object = range(min_range, max_range)
+        regex = regex.split(":")[-1].split()
+        compile_string = ''
     pass
 
 parse_social_platforms_string()
