@@ -32,6 +32,8 @@ def parse_social_platforms_string():
     number_of_sublists = platforms_raw_list.count("") + 1
     length_to_split = [number_to_split_on]*number_of_sublists
     split_string = [list(islice(raw_list_to_split, length)) for length in length_to_split]
+    
+    platforms_dict = dict()
 
     for string in split_string:
         platform, min_range, max_range, regex, *_ = string
@@ -39,7 +41,17 @@ def parse_social_platforms_string():
         max_range = int(max_range.split()[-1]) + 1
         range_object = range(min_range, max_range)
         regex = regex.split(":")[-1].split()
-        compile_string = ''
+        compile_string = '['
+        for term in regex:
+            if term != '.':
+                compile_string += term
+            else:
+                compile_string += "\\"+term
+        compile_string +=']'
+        
+        print(compile_string)
+        
+        platforms_dict[platform] = Validator(range_object, re.compile(compile_string))
     pass
 
 parse_social_platforms_string()
