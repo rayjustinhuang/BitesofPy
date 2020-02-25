@@ -41,24 +41,31 @@ def parse_social_platforms_string():
         max_range = int(max_range.split()[-1]) + 1
         range_object = range(min_range, max_range)
         regex = regex.split(":")[-1].split()
-        compile_string = '['
+        compile_string = '^['
         for term in regex:
             if term != '.':
                 compile_string += term
             else:
                 compile_string += "\\"+term
-        compile_string +=']'
-        
-        print(compile_string)
+        compile_string +=']+$'
         
         platforms_dict[platform] = Validator(range_object, re.compile(compile_string))
+        
+    return platforms_dict
     pass
-
-parse_social_platforms_string()
 
 def validate_username(platform, username):
     """Receives platforms(Twitter, Facebook or Reddit) and username string,
        raise a ValueError if the wrong platform is passed in,
        return True/False if username is valid for entered platform"""
     all_validators = parse_social_platforms_string()
-    # ...
+    
+    if platform not in all_validators.keys():
+        raise ValueError
+    
+    user_platform = all_validators[platform]
+    
+    if len(username) in user_platform.range:
+        return bool(user_platform.regex.match(username))
+    else:
+        return False
