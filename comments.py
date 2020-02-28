@@ -2,11 +2,14 @@ import re
 
 def strip_comments(code):
     # see Bite description
-    triple_quotes = re.compile(r'""".+"""', re.DOTALL)
+    triple_quotes = re.compile(r'"""[\S\s]*?"""')
     single_comments = re.compile(r'#\s.+')
     # inline comments = re.compile(r'^\s{2}#\s\\n$')
     
-    print(re.sub(single_comments, "", code))
+    no_comments = re.sub(single_comments, "", code)
+    no_multiline_strings = re.sub(triple_quotes, "", no_comments)
+    
+    print(no_multiline_strings)
     pass
 
 code = '''
