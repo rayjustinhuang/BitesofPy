@@ -3,7 +3,7 @@ import re
 def strip_comments(code):
     # see Bite description
     triple_quotes = re.compile(r'"""[\S\s]*?"""\n')
-    single_comments = re.compile(r'[\s]{2,}#\s.+')
+    single_comments = re.compile(r"[\s]{1,4}#\s.+\n")
     # inline comments = re.compile(r'^\s{2}#\s\\n$')
     
     no_comments = re.sub(single_comments, "", code)
@@ -23,5 +23,5 @@ def hello_world():
     print("Hello World")
 '''
 
-#print(strip_comments(code))
-#assert strip_comments(code) == single_comment_after_strip
+print(strip_comments(code))
+assert strip_comments(code) == single_comment_after_strip
