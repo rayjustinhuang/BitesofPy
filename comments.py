@@ -2,7 +2,7 @@ import re
 
 def strip_comments(code):
     # see Bite description
-    triple_quotes = re.compile(r'"""[\S\s]*?"""\n')
+    triple_quotes = re.compile(r'[\s]{4}"""[\S\s]*?"""\n')
     single_comments = re.compile(r"[\s]{4}#\s.+\n")
     inline_comments = re.compile(r'^\s{2}#\s[\S\s]+')
     
@@ -14,15 +14,14 @@ def strip_comments(code):
     pass
 
 code = '''
-def hello_world():
-    # A simple comment preceding a simple print statement
-    print("Hello World")
+def say_hello(name):
+    """A simple function that says hello... Richie style"""
+    print(f"Hello {name}, is it me you're looking for?")
+'''
+single_docstring_after_strip = '''
+def say_hello(name):
+    print(f"Hello {name}, is it me you're looking for?")
 '''
 
-single_comment_after_strip = '''
-def hello_world():
-    print("Hello World")
-'''
-
-print(strip_comments(code))
-assert strip_comments(code) == single_comment_after_strip
+#print(strip_comments(code))
+#assert strip_comments(code) == single_docstring_after_strip
