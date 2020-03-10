@@ -29,4 +29,9 @@ def get_email_details(header: str) -> dict:
     to_regex = re.compile(r'To:\s([\S\s]+)\n')
     subject_regex = re.compile(r'Subject:\s([\S\s]+)\n')
     date_regex = re.compile(r'Date:\s([\S\s]+)\n')
+    
+    from_part = re.search(from_regex, header)
+    to_part = re.search(to_regex, header)
+    subject_part = re.search(subject_regex, header)
+    date_part = re.search(date_regex, header)
     pass
