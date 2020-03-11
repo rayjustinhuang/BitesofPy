@@ -34,4 +34,6 @@ def get_email_details(header: str) -> dict:
     to_part = re.search(to_regex, header)
     subject_part = re.search(subject_regex, header)
     date_part = re.search(date_regex, header)
+    
+    result = {'from': from_part, 'to': to_part, 'subject': subject_part, 'date': date_part}
     pass
