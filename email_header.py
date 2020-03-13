@@ -25,15 +25,21 @@ def get_email_details(header: str) -> dict:
        https://docs.python.org/3.7/library/re.html#re.Match.groupdict
        If not match, return None
     """
-    from_regex = re.compile(r'From:\s([\S\s]+)\n')
-    to_regex = re.compile(r'To:\s([\S\s]+)\n')
-    subject_regex = re.compile(r'Subject:\s([\S\s]+)\n')
-    date_regex = re.compile(r'Date:\s([\S\s]+)\n')
+    from_regex = re.compile(r'From:\s([^\n]+)\n*?')
+    to_regex = re.compile(r'To:\s([^\n]+)\n')
+    subject_regex = re.compile(r'Subject:\s([^\n]+)\n')
+    date_regex = re.compile(r'Date:\s([^\n]+)\n')
     
-    from_part = re.search(from_regex, header)
-    to_part = re.search(to_regex, header)
-    subject_part = re.search(subject_regex, header)
-    date_part = re.search(date_regex, header)
+    try:
+        from_part = re.search(from_regex, header).groups()[0]
+        to_part = re.search(to_regex, header).groups()[0]
+        subject_part = re.search(subject_regex, header).groups()[0]
+        date_part = re.search(date_regex, header).groups()[0][:-12]
+        
+        result = {'from': from_part, 'to': to_part, 'subject': subject_part, 'date': date_part}
+        
+        return result
     
-    result = {'from': from_part, 'to': to_part, 'subject': subject_part, 'date': date_part}
+    except:
+        return None
     pass
