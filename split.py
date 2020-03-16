@@ -7,7 +7,11 @@ def get_sentences(text):
     
     sentence_list = re.findall(sentence, text)
     
-    return sentence_list
+    final_list = []
+    for sentence in sentence_list:
+        final_list.append(re.sub('\n', ' ', sentence))
+    
+    return final_list
     pass
 
 text = """
