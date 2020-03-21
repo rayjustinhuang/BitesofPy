@@ -40,8 +40,8 @@ class File:
         
     @property
     def data(self):
-        if file:
-            return data
+        if self.file:
+            return self.file
         else: return None
     pass
 
