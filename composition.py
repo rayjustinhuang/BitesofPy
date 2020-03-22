@@ -71,20 +71,7 @@ class Web:
     def __init__(self, url, file):
         self.url = url
         self.file = file
-        
-    @property
-    def data(self):
-        try:
-            with open(file) as f:
-                return f.read()
-        except:
-            return requests.get(file).text # retrieve data from the web
-            
-    
-    @property
-    def soup(self):
-        return Soup(self.file, 'html.parser')
-    pass
+        pass
 
     @property
     def data(self) -> Optional[str]:
@@ -97,6 +84,11 @@ class Web:
         Returns:
             Optional[str] -- The string data from the File object.
         """
+        try:
+            with open(file) as f:
+                return f.read()
+        except:
+            return requests.get(file).text # retrieve data from the web
         pass
 
     @property
@@ -106,6 +98,7 @@ class Web:
         Returns:
             Soup -- BeautifulSoup object created from the File.
         """
+        return Soup(self.file, 'html.parser')
         pass
 
 
@@ -138,6 +131,8 @@ class Site(ABC):
         stats: -- Formats the results from polls into a more user friendly
             representation.
     """
+    def __init__(self, web):
+        self.web = web
     pass
 
     def find_table(self, loc: int = 0) -> str:
@@ -151,6 +146,9 @@ class Site(ABC):
         Returns:
             str -- The html table
         """
+        table = self.soup.find_all('table')
+        
+        return table[loc]
         pass
 
     def parse_rows(self, table: Soup) -> List[Any]:
