@@ -164,6 +164,20 @@ class Site(ABC):
             List[NamedTuple] -- List of NamedTuple that were created from the
                 table data.
         """
+        table_list = table.find_all('td')
+        
+        tuple_list = []
+        
+        for row in table_list:
+            candidate = row.find('span', class_='g-desktop').text
+            average = row.find('span', class_='g-coverage').text
+            delegates = row.find('span', class_='g-coverage').text
+            contributions = row.find('span', class_='g-coverage').text
+            coverage = row.find('span', class_='g-coverage').text
+            
+            tuple_list.append(LeaderBoard(candidate, average, delegates, contributions, coverage))
+        
+        return tuple_list
         pass
 
     def polls(self, table: int = 0) -> List[Any]:
