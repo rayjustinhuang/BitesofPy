@@ -197,6 +197,10 @@ class Site(ABC):
             List[NamedTuple] -- List of NamedTuple that were created from the
                 table data.
         """
+        table_to_use = self.find_table(table)
+        output_list = self.parse_rows(table_to_use)
+        
+        return output_list
         pass
 
     def stats(self, loc: int = 0):
