@@ -212,6 +212,7 @@ class Site(ABC):
             loc {int} -- Formats the results from polls into a more user friendly
             representation.
         """
+        
         pass
 
 
@@ -263,6 +264,23 @@ class RealClearPolitics(Site):
             List[Poll] -- List of Poll namedtuples that were created from the
                 table data.
         """
+        table_to_use = soup.find_all('table')
+        table_rows = table_to_use.find_all('td')
+        
+        list_of_tuples = []
+        
+        for row in table_rows:
+            poll = row.find()
+            date = row.find()
+            sample = row.find() 
+            Sanders = row.find()
+            Biden = row.find()
+            Gabbard = row.find()
+            spread = row.find()
+            
+            list_of_tuples.append(Poll(poll, date, sample, Sanders, Biden, Gabbard, spread))
+        
+        return list_of_tuples
         pass
 
     def polls(self, table: int = 0) -> List[Poll]:
