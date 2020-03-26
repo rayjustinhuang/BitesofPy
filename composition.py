@@ -250,7 +250,7 @@ class RealClearPolitics(Site):
               Gabbard: 6.0
 
     """
-
+    
     pass
 
     def parse_rows(self, table: Soup) -> List[Poll]:
@@ -298,6 +298,10 @@ class RealClearPolitics(Site):
             List[Poll] -- List of Poll namedtuples that were created from the
                 table data.
         """
+        table_for_parsing = self.find_table(0)
+        parsed_rows = self.parse_rows(table_for_parsing)
+        
+        return parsed_rows
         pass
 
     def stats(self, loc: int = 0):
@@ -363,6 +367,20 @@ class NYTimes(Site):
             List[LeaderBoard] -- List of LeaderBoard namedtuples that were created from
             the table data.
         """
+        table_list = table.find_all('td')
+        
+        tuple_list = []
+        
+        for row in table_list:
+            candidate = row.find('span', class_='g-desktop').text
+            average = row.find('span', class_='g-coverage').text
+            delegates = row.find('span', class_='g-coverage').text
+            contributions = row.find('span', class_='g-coverage').text
+            coverage = row.find('span', class_='g-coverage').text
+            
+            tuple_list.append(LeaderBoard(candidate, average, delegates, contributions, coverage))
+        
+        return tuple_list
         pass
 
     def polls(self, table: int = 0) -> List[LeaderBoard]:
