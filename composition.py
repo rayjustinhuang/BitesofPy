@@ -398,6 +398,10 @@ class NYTimes(Site):
             List[LeaderBoard] -- List of LeaderBoard namedtuples that were created from
                 the table data.
         """
+        table_for_parsing = self.find_table(0)
+        parsed_rows = self.parse_rows(table_for_parsing)
+        
+        return parsed_rows
         pass
 
     def stats(self, loc: int = 0):
