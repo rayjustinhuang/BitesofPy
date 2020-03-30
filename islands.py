@@ -7,18 +7,22 @@ def count_islands(grid):
     It's also preferred to check/mark the visited islands:
     - eg. using the helper function - mark_islands().
     """
-    x = len(grid[0])
-    y = len(grid)
+    x = len(grid)
+    y = len(grid[0])
     
     islands = 0
     for i in range(x):
         for j in range(y):
-            if grid[j][i] == 1:
+            if grid[i][j] == 1:
+                islands += 1
+                mark_islands(i, j, grid)
                 pass
     # islands = 0         # var. for the counts
     # .....some operations.....
     # mark_islands(r, c, grid)
     # return islands
+    
+    return islands
 
 
 def mark_islands(i, j, grid):
@@ -26,4 +30,10 @@ def mark_islands(i, j, grid):
     Input: the row, column and grid
     Output: None. Just mark the visisted islands as in-place operation.
     """
+    grid[i][j] = 'X'
+    
+    if grid[i-1][j] == 1:
+        grid[i-1][j] = 'X'
+    if grid[i+1][j] == 1:
+        grid[i+1][j] = 'X'
     # grid[i][j] = '#'      # one way to mark visited ones - suggestion.
