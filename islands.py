@@ -32,16 +32,20 @@ def mark_islands(i, j, grid):
     """
     grid[i][j] = 'X'
     
-    try: if grid[i-1][j] == 1:
-        grid[i-1][j] = 'X'
+    try: 
+        if grid[i-1][j] == 1:
+            grid[i-1][j] = 'X'
     except: pass
-    try: if grid[i+1][j] == 1:
-        grid[i+1][j] = 'X'
+    try: 
+        if grid[i+1][j] == 1:
+            grid[i+1][j] = 'X'
     except: pass
-    try: if grid[i][j-1] == 1:
-        grid[i][j-1] = 'X'
+    try: 
+        if grid[i][j-1] == 1:
+            grid[i][j-1] = 'X'
     except: pass
-    try: if grid[i][j+1] == 1:
-        grid[i][j+1] = 'X'
+    try: 
+        if grid[i][j+1] == 1:
+            grid[i][j+1] = 'X'
     except: pass
     # grid[i][j] = '#'      # one way to mark visited ones - suggestion.
