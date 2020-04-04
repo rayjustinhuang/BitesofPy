@@ -37,35 +37,35 @@ def mark_islands(i, j, grid):
         cells_to_check = [(i,j)]
         while any(n):
             for pair in cells_to_check:
-                i = pair[0]
-                j = pair[1]
+                x = pair[0]
+                y = pair[1]
                 try: 
-                    if grid[i-1][j] == 1:
-                        grid[i-1][j] = 'X'
+                    if grid[x-1][y] == 1:
+                        grid[x-1][y] = 'X'
                         n[0] = False
                     else:
-                        cells_to_check.append((i-1,j))
+                        cells_to_check.append((x-1,y))
                 except: pass
                 try: 
-                    if grid[i+1][j] == 1:
-                        grid[i+1][j] = 'X'
+                    if grid[x+1][y] == 1:
+                        grid[x+1][y] = 'X'
                         n[1] = False
                     else:
-                        cells_to_check.append((i+1,j))
+                        cells_to_check.append((x+1,y))
                 except: pass
                 try: 
-                    if grid[i][j-1] == 1:
-                        grid[i][j-1] = 'X'
+                    if grid[x][y-1] == 1:
+                        grid[x][y-1] = 'X'
                         n[2] = False
                     else:
-                        cells_to_check,append((i,j-1))
+                        cells_to_check,append((x,y-1))
                 except: pass
                 try: 
-                    if grid[i][j+1] == 1:
-                        grid[i][j+1] = 'X'
+                    if grid[x][y+1] == 1:
+                        grid[x][y+1] = 'X'
                         n[3] = False
                     else:
-                        cells_to_check.append((i,j+1))
+                        cells_to_check.append((x,y+1))
                 except: pass
     
     #check_adjacents(i,j)
