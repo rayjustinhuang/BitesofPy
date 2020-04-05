@@ -42,31 +42,36 @@ def mark_islands(i, j, grid):
                 try: 
                     if grid[x-1][y] == 1:
                         grid[x-1][y] = 'X'
-                        n[0] = False
-                    else:
                         cells_to_check.append((x-1,y))
-                except: pass
+                    else:
+                        n[0] = False
+                except: n[0] = False
                 try: 
                     if grid[x+1][y] == 1:
                         grid[x+1][y] = 'X'
-                        n[1] = False
-                    else:
                         cells_to_check.append((x+1,y))
-                except: pass
+                    else:
+                        n[1] = False
+                except: n[1] = False
                 try: 
                     if grid[x][y-1] == 1:
                         grid[x][y-1] = 'X'
-                        n[2] = False
-                    else:
                         cells_to_check,append((x,y-1))
-                except: pass
+                    else:
+                        n[2] = False
+                except: n[2] = False
                 try: 
                     if grid[x][y+1] == 1:
                         grid[x][y+1] = 'X'
-                        n[3] = False
-                    else:
                         cells_to_check.append((x,y+1))
-                except: pass
+                    else:
+                        n[3] = False
+                except: n[3] = False
+                #for i in range(len(grid)):
+                #    print(grid[i])
+                #print()
+    
+    check_adjacents(i, j)
     
     #check_adjacents(i,j)
     #check_adjacents(i-1,j)
@@ -74,3 +79,16 @@ def mark_islands(i, j, grid):
     #check_adjacents(i,j-1)
     #check_adjacents(i,j+1)
     # grid[i][j] = '#'      # one way to mark visited ones - suggestion.
+#circles = [[1, 1, 0, 0, 0, 1],
+#           [1, 0, 0, 0, 0, 1],
+#           [1, 0, 0, 0, 1, 1],
+#           [1, 0, 0, 0, 1, 0],
+#           [1, 0, 0, 1, 1, 0],
+#           [1, 1, 1, 1, 0, 0]]
+
+squares = [[1, 1, 0, 1],
+           [1, 1, 0, 1],
+           [0, 0, 1, 1],
+           [1, 1, 1, 0]]
+           
+print(count_islands(squares))
