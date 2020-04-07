@@ -40,10 +40,10 @@ def mark_islands(i, j, grid):
                 x = pair[0]
                 y = pair[1]
                 
-                left = abs(x-1)
-                right = abs(x+1)
-                up = abs(y-1)
-                down = abs(y+1)
+                left = max(x-1,0)
+                right = max(x+1,0)
+                up = max(y-1,0)
+                down = max(y+1,0)
                 try: 
                     if grid[left][y] == 1:
                         grid[left][y] = 'X'
