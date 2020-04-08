@@ -17,10 +17,6 @@ def count_islands(grid):
                 islands += 1
                 mark_islands(i, j, grid)
                 pass
-    # islands = 0         # var. for the counts
-    # .....some operations.....
-    # mark_islands(r, c, grid)
-    # return islands
     
     return islands
 
@@ -61,7 +57,7 @@ def mark_islands(i, j, grid):
                 try: 
                     if grid[x][up] == 1:
                         grid[x][up] = 'X'
-                        cells_to_check,append((x,up))
+                        cells_to_check.append((x,up))
                     else:
                         n[2] = False
                 except: n[2] = False
@@ -72,28 +68,5 @@ def mark_islands(i, j, grid):
                     else:
                         n[3] = False
                 except: n[3] = False
-                #for i in range(len(grid)):
-                #    print(grid[i])
-                #print(n)
     
     check_adjacents(i, j)
-    
-    #check_adjacents(i,j)
-    #check_adjacents(i-1,j)
-    #check_adjacents(i+1,j)
-    #check_adjacents(i,j-1)
-    #check_adjacents(i,j+1)
-    # grid[i][j] = '#'      # one way to mark visited ones - suggestion.
-#circles = [[1, 1, 0, 0, 0, 1],
-#           [1, 0, 0, 0, 0, 1],
-#           [1, 0, 0, 0, 1, 1],
-#           [1, 0, 0, 0, 1, 0],
-#           [1, 0, 0, 1, 1, 0],
-#           [1, 1, 1, 1, 0, 0]]
-
-#squares = [[1, 1, 0, 1],
-#           [1, 1, 0, 1],
-#           [0, 0, 1, 1],
-#           [1, 1, 1, 0]]
-           
-#print(count_islands(squares))
