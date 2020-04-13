@@ -12,28 +12,21 @@ def get_others(map_, r, c):
     """
     nums = 0
     # your code here
-    rows = len(map_)
-    columns = len(map_[0])
+    rows, cols = len(map_), len(map_[0])
     
     starting_cell = map_[r][c]
     
-    left, up, down, right = max(c-1,0), max(r-1,0), max(r+1,0), max(c+1,0)
-    
-    check_left = lambda grid, x, y: grid[x][y-1]
-    check_up = lambda grid, x, y: grid[x-1][y]
-    check_down = lambda grid, x, y: grid[x+1][y]
-    check_right = lambda grid, x, y: grid[x][y+1]
+    dirs = [[-1, 0], [0, 1], [0, -1], [1, 0]]
+
+    for dir in dirs:
+        nr, nc = r + dir[0], c + dir[1]
+        if nr >= 0 and nc >= 0 and nr < rows and nc < cols:
+            if map_[nr][nc] != 1:
+                nums += 1
     
     print(map_)
     print(starting_cell)
-    print(check_left(map_, r, c))
-    
-    if starting_cell == 1:
-        try:
-            if check_up(map_, r, c) != 1:
-                nums += 1
-        except: nums += 1
-    
+    print(nums)
 
     return nums
 
@@ -54,4 +47,4 @@ rectangle = [[0, 1, 1, 0],
              [0, 1, 1, 0],
              [0, 1, 1, 0]]
 
-get_others(rectangle, 0, 0)
+get_others(rectangle, 0, 1)
