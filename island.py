@@ -24,9 +24,9 @@ def get_others(map_, r, c):
             if map_[nr][nc] != 1:
                 nums += 1
     
-    print(map_)
-    print(starting_cell)
-    print(nums)
+    #print(map_)
+    #print(starting_cell)
+    #print(nums)
 
     return nums
 
@@ -39,6 +39,14 @@ def island_size(map_):
     """
     perimeter = 0
     # your code here
+    rows = len(map_)
+    cols = len(map_[0])
+    
+    for r in range(rows):
+        for c in range(cols):
+            perimeter += get_others(map_, r, c)
+            
+    print(perimeter)
 
     return perimeter
     
@@ -48,3 +56,5 @@ rectangle = [[0, 1, 1, 0],
              [0, 1, 1, 0]]
 
 get_others(rectangle, 0, 1)
+
+island_size(rectangle)
