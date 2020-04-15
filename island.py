@@ -16,6 +16,9 @@ def get_others(map_, r, c):
     
     starting_cell = map_[r][c]
     
+    if starting_cell == 0:
+        return nums
+    
     dirs = [[-1, 0], [0, 1], [0, -1], [1, 0]]
 
     for dir in dirs:
@@ -44,6 +47,7 @@ def island_size(map_):
     
     for r in range(rows):
         for c in range(cols):
+            print(get_others(map_,r,c))
             perimeter += get_others(map_, r, c)
             
     print(perimeter)
