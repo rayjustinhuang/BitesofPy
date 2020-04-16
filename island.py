@@ -21,16 +21,18 @@ def get_others(map_, r, c):
     
     dirs = [[-1, 0], [0, 1], [0, -1], [1, 0]]
 
+    if starting_cell == 1 and (r == rows-1 or r == 0):
+        nums += 1
+        
+    if starting_cell == 1 and (c == cols-1 or c == 0):
+        nums += 1
+
     for dir in dirs:
         nr, nc = r + dir[0], c + dir[1]
         if nr >= 0 and nc >= 0 and nr < rows and nc < cols:
             if map_[nr][nc] != 1:
                 nums += 1
     
-    #print(map_)
-    #print(starting_cell)
-    #print(nums)
-
     return nums
 
 
@@ -47,18 +49,6 @@ def island_size(map_):
     
     for r in range(rows):
         for c in range(cols):
-            print(get_others(map_,r,c))
             perimeter += get_others(map_, r, c)
-            
-    print(perimeter)
 
     return perimeter
-    
-rectangle = [[0, 1, 1, 0],
-             [0, 1, 1, 0],
-             [0, 1, 1, 0],
-             [0, 1, 1, 0]]
-
-get_others(rectangle, 0, 1)
-
-island_size(rectangle)
