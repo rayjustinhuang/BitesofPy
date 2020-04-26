@@ -17,13 +17,15 @@ def num_ops(n):
     target = 1
     
     while target != n:
-        if target < n:
+        if target < n and target % 3 != 0:
             target *= 2
             ops_num += 1
         else:
             target //= 3
             ops_num += 1
+        print(target)
 
     return ops_num
     
-print(num_ops(10))
+    
+print(num_ops(12))
