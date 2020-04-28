@@ -1,3 +1,5 @@
+import math
+
 def num_ops(n):
     """
     Input: an integer number, the target number
@@ -17,16 +19,22 @@ def num_ops(n):
     target = 1
     start = n
     
-    while target != start:
-        if target % 2 != 0:
-            target *= 2
-            ops_num += 1
-        else:
-            target //= 3
-            ops_num += 1
-        print(target)
+    if math.log2(n).is_integer():
+        ops_num = math.log2(n)
+        return ops_num
+    
+    else:
+    
+        while target != start:
+            if target < n:
+                target *= 2
+                ops_num += 1
+            else:
+                target //= 3
+                ops_num += 1
+            print(target)
 
     return ops_num
     
     
-print(num_ops(10))
+print(num_ops(8))
