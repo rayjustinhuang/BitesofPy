@@ -18,7 +18,7 @@ def num_ops(n):
     start = n
     
     while target != start:
-        if target < n and target % 3 != 0:
+        if target % 2 != 0:
             target *= 2
             ops_num += 1
         else:
