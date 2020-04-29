@@ -24,8 +24,11 @@ def num_ops(n):
         return ops_num
     
     else:
+        
+        ops_num += int(math.log2(n))
+        target = 2**ops_num
     
-        while target != start:
+        while target != n:
             if target < n:
                 target *= 2
                 ops_num += 1
@@ -37,4 +40,4 @@ def num_ops(n):
     return ops_num
     
     
-print(num_ops(8))
+print(num_ops(10))
