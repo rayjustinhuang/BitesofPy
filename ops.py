@@ -1,4 +1,5 @@
 import math
+from collections import deque
 
 def num_ops(n):
     """
@@ -25,18 +26,16 @@ def num_ops(n):
     
     else:
         
-        ops_num += int(math.log2(n))
-        target = 2**ops_num
-    
-        while target != n:
-            if target < n:
-                target *= 2
-                ops_num += 1
-            else:
-                target //= 3
-                ops_num += 1
-            print(target)
+        queue = deque([1])
 
+        while queue[-1] != n:
+            if queue[-1] < n:
+                queue.append(queue[-1]*2)
+            else:
+                queue.append(queue[-1]//3)
+                
+        ops_num = len(queue)-1
+            
     return ops_num
     
     
