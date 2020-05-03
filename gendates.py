@@ -18,6 +18,6 @@ def gen_special_pybites_dates():
         working_date = working_date + timedelta(days=100)
         special_dates.append(working_date)
         
-    return special_dates
+    return sorted(special_dates)
     
     pass
