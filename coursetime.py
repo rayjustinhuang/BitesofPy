@@ -30,9 +30,12 @@ def get_all_timestamps():
         return time_pattern.findall(f.read())
     pass
 
-print(get_all_timestamps())
-
 def calc_total_course_duration(timestamps):
     """Takes timestamps list as returned by get_all_timestamps
        and calculates the total duration as HH:MM:SS"""
+    datetimes =[]
+    for timestamp in timestamps:
+        datetimes.append(datetime.strptime(timestamp, '%M:%S'))
+        
+    
     pass
