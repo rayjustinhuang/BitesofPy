@@ -33,9 +33,11 @@ def get_all_timestamps():
 def calc_total_course_duration(timestamps):
     """Takes timestamps list as returned by get_all_timestamps
        and calculates the total duration as HH:MM:SS"""
-    datetimes =[]
-    for timestamp in timestamps:
-        datetimes.append(datetime.strptime(timestamp, '%M:%S'))
-        
+    answer = timedelta()
     
+    for times in timestamps:
+        m, s = times.split(':')
+        answer += timedelta(minutes=int(m), seconds=int(s))
+        
+    return datetime.strptime(str(answer), '%H:%M:%S').strftime('%H:%M:%S')
     pass
