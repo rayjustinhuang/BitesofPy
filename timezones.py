@@ -8,20 +8,24 @@ TIMEZONES = set(pytz.all_timezones)
 def within_schedule(utc, *timezones):
     """Receive a utc datetime and one or more timezones and check if
        they are all within schedule (MEETING_HOURS)"""
-    boolean = []
+    times = []
     
     timezone_list = list(timezones)[0]
     
-    print(timezone_list)
-    
     for i in range(len(timezone_list)):
         tz = pytz.timezone(timezone_list[i])
-        boolean.append(pytz.utc.localize(utc).astimezone(tz))
+        times.append(pytz.utc.localize(utc).astimezone(tz))
     
-    return boolean
+    boolean = []
+    
+    for time in times:
+        if time.hour in MEETING_HOURS:
+            boolean.append(True)
+        else:
+            boolean.append(False)
+    
+    return bool(all(boolean))
     pass
 
-utc = datetime(2018, 4, 18, 13, 28)
-timezones = ['Europe/Madrid', 'Australia/Sydney', 'America/Chicago']
-
-print(within_schedule(utc, timezones))
+#utc = datetime(2018, 4, 18, 13, 28)
+#timezones = ['Europe/Madrid', 'Australia/Sydney', 'America/Chicago']
