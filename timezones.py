@@ -13,6 +13,8 @@ def within_schedule(utc, *timezones):
     timezone_list = list(timezones)[0]
     
     for i in range(len(timezone_list)):
+        if timezone_list[i] not in TIMEZONES:
+            raise ValueError
         tz = pytz.timezone(timezone_list[i])
         times.append(pytz.utc.localize(utc).astimezone(tz))
     
@@ -23,8 +25,10 @@ def within_schedule(utc, *timezones):
             boolean.append(True)
         else:
             boolean.append(False)
+            
+    answer = all(boolean)
     
-    return bool(all(boolean))
+    return answer
     pass
 
 #utc = datetime(2018, 4, 18, 13, 28)
