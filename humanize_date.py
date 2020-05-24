@@ -33,4 +33,6 @@ def pretty_date(date):
                     return timeoffset.date_str.format(timeoffset.offset)
                 else:
                     return timeoffset.date_str.format(timeoffset.offset/timeoffset.divider)
+    else:
+        date.strftime('%m/%d/%Y')
     pass
