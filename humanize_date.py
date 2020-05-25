@@ -28,7 +28,7 @@ def pretty_date(date):
     
     print(diff)
     
-    if diff <= DAY*2:
+    if diff < DAY*2:
         for timeoffset in TIME_OFFSETS:
             if timeoffset.offset > diff:
                 if timeoffset.divider == None:
@@ -39,5 +39,5 @@ def pretty_date(date):
                 else:
                     return timeoffset.date_str.format(int(diff/timeoffset.divider))
     else:
-        date.strftime('%m/%d/%Y')
+        return date.strftime('%m/%d/%y')
     pass
