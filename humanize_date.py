@@ -26,13 +26,18 @@ def pretty_date(date):
     
     diff = (NOW - date).total_seconds()
     
-    if diff <= DAY:
+    print(diff)
+    
+    if diff <= DAY*2:
         for timeoffset in TIME_OFFSETS:
             if timeoffset.offset > diff:
                 if timeoffset.divider == None:
-                    return timeoffset.date_str.format(timeoffset.offset)
+                    try:
+                        return timeoffset.date_str.format(int(diff))
+                    except:
+                        return timeoffset.date_str
                 else:
-                    return timeoffset.date_str.format(timeoffset.offset/timeoffset.divider)
+                    return timeoffset.date_str.format(int(diff/timeoffset.divider))
     else:
         date.strftime('%m/%d/%Y')
     pass
