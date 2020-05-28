@@ -39,7 +39,7 @@ def gen_files():
         raw_data = f.read().splitlines()
     
     for line in raw_data:
-        if line.split(',')[1] == 'False':
+        if line.split(',')[1] == 'True':
             yield line.split(',')[0]
     pass
 
@@ -51,4 +51,14 @@ def diehard_pybites():
        Calling this function on the dataset (held tempfile) should return:
        Stats(user='clamytoe', challenge=('01', 7))
     """
+    for line in gen_files():
+        challenge, user = line.split('/')
+        if user not in IGNORE:
+            users[user] += 1
+            popular_challenges[challenge] += 1
+    
+    highest_user = users.most_common(1)
+    most_popular_challenge = popular_challenges.most_common(1)
+    
+    return Stats(highest_user[0][0], most_popular_challenge[0])
     pass
