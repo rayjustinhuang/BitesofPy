@@ -76,6 +76,13 @@ def get_dates(dates):
         raise InfDateFmtError
     else:
         d_parse_formats = ["%d/%m/%y", "%m/%d/%y", "%y/%m/%d"]
-        date_format = d_parse_formats[format_counter.most_common(1)[0][0]]
-        return [datetime.strptime(date, date_format) for date in dates]
+        print(format_counter.most_common(1)[0][0][-2])
+        date_format = d_parse_formats[d_parse_formats.index(format_counter.most_common(1)[0][0][-2])]
+        
+        for date in dates:
+            try:
+                format_list.append(datetime.strptime(date, date_format))
+            except:
+                format_list.append("Invalid")
+        return format_list
     pass
