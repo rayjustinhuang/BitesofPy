@@ -63,7 +63,7 @@ def get_dates(dates):
     Alowed/supported date formats are defined in a DF enum class.
     """
     # complete this method
-    format_list = []
+    format_list, date_list = [], []
     
     for date in dates:
         format_list += _maybe_DateFormats(date)
@@ -71,18 +71,18 @@ def get_dates(dates):
     format_counter = Counter(format_list)
     
     if format_counter.most_common(1)[0][0] == DateFormat.NONPARSABLE:
-        raise InfDateFmtError
+        raise InfDateFmtError()
     elif format_counter.most_common(2)[0][1] == format_counter.most_common(2)[1][1]:
-        raise InfDateFmtError
+        raise InfDateFmtError()
     else:
         d_parse_formats = ["%d/%m/%y", "%m/%d/%y", "%y/%m/%d"]
-        print(format_counter.most_common(1)[0][0][-2])
-        date_format = d_parse_formats[d_parse_formats.index(format_counter.most_common(1)[0][0][-2])]
+        idx = format_counter.most_common(1)[0][0].value
+        date_format = d_parse_formats[idx]
         
         for date in dates:
             try:
-                format_list.append(datetime.strptime(date, date_format))
+                date_list.append(datetime.strptime(date, date_format).strftime('%Y-%m-%d'))
             except:
-                format_list.append("Invalid")
-        return format_list
+                date_list.append("Invalid")
+        return date_list
     pass
