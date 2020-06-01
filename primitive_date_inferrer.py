@@ -75,7 +75,7 @@ def get_dates(dates):
     elif format_counter.most_common(2)[0][1] == format_counter.most_common(2)[1][1]:
         raise InfDateFmtError()
     else:
-        d_parse_formats = ["%d/%m/%y", "%m/%d/%y", "%y/%m/%d"]
+        d_parse_formats = DateFormat.get_d_parse_formats()
         idx = format_counter.most_common(1)[0][0].value
         date_format = d_parse_formats[idx]
         
