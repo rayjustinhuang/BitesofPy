@@ -29,9 +29,15 @@ def calc_months_passed(year, month, day):
 
        Return the number of months passed int.
     """
-    target_date = datetime.date(year, month, day)
+    target_date = date(year, month, day)
     
     delta = target_date - START_DATE
     
     number_of_months = delta.days() // 365 * MONTHS_PER_YEAR
+    excess_days = delta.days() % 365
+    number_of_months += excess_days // 30
+    if excess_days % 30 >= 10:
+        number_of_months += 1
+        
+    return number_of_months
     pass
