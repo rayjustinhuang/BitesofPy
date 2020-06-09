@@ -77,7 +77,7 @@ def operas_both_at_premiere(guest, composer):
     if guest not in composers.keys():
         raise ValueError
     
-    celeb = composers[celeb]
+    celeb = composers[guest]
     
     for opera in possible_operas:
         if _get_date(opera.date) < _get_date(celeb.died) and _get_date(opera.date) > _get_date(celeb.born):
