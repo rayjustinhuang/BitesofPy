@@ -76,11 +76,15 @@ def operas_both_at_premiere(guest, composer):
     
     if guest not in composers.keys():
         raise ValueError
+        
+    if composer not in set(opera.author for opera in operas):
+        raise ValueError
     
-    celeb = composers[guest]
+    visitor = composers[guest]
+    author = composers[composer]
     
     for opera in possible_operas:
-        if _get_date(opera.date) < _get_date(celeb.died) and _get_date(opera.date) > _get_date(celeb.born):
+        if _get_date(opera.date) < _get_date(visitor.died) and _get_date(opera.date) > _get_date(visitor.born) and _get_date(opera.date) < _get_date(author.died) and _get_date(opera.date) > _get_date(author.born):
             final_operas.append(opera.play)
             
     return final_operas
