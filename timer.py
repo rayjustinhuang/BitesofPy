@@ -24,14 +24,16 @@ def add_todo(delay_time: str, task: str,
     future_time = start_time
     
     for word in delay_time.split():
-        if word[-1] = 'd':
+        if word[-1] == 'd':
             future_time += timedelta(days=int(word[:-1]))
-        elif word[-1] = 'h':
+        elif word[-1] == 'h':
             future_time += timedelta(hours=int(word[:-1]))
-        elif word[-1] = 'm':
+        elif word[-1] == 'm':
             future_time += timedelta(minutes=int(word[:-1]))
-        elif word[-1] = 's':
+        elif word[-1] == 's':
             future_time += timedelta(seconds=int(word[:-1]))
         else:
             future_time += timedelta(seconds=int(word))
+            
+    return f'{task} @ {future_time}'
     pass
