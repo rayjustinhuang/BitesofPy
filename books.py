@@ -20,7 +20,7 @@ def get_number_books_read(books_per_year_goal: int,
     if use_date < NOW or books_per_year_goal <= 0:
         raise ValueError
         
-    return int((use_date.isocalendar()[1] / WEEKS_PER_YEAR) * 100)
+    return int((use_date.isocalendar()[1] / WEEKS_PER_YEAR) * books_per_year_goal)
     # TODOs
 
     # 1. use dateutil's parse to convert at_date into a
