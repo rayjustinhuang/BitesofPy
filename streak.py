@@ -11,7 +11,7 @@ def extract_dates(data):
         if line[6:8] == "20":
             dates.append(datetime.strptime(line[6:16], '%Y-%m-%d').date())
             
-    return dates
+    return list(set(dates))
     pass
 
 
@@ -33,7 +33,10 @@ def calculate_streak(dates):
     
     sorted_dates = sorted(dates)
     
-    for i in range(1, len(sorted_dates)+1):
+    #print(sorted_dates)
+    #print((sorted_dates[8] - sorted_dates[7]).days)
+    
+    for i in range(1, len(sorted_dates)):
         if (sorted_dates[i] - sorted_dates[i-1]).days == 1:
             streak_counter += 0
         else:
@@ -59,4 +62,4 @@ data = """
     +------------+------------+---------+
     """
 
-print(extract_dates(data))
+print(calculate_streak(extract_dates(data)))
