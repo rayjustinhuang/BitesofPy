@@ -28,6 +28,19 @@ def calculate_streak(dates):
 
        See the tests for more examples that will be used to pass your code.
     """
+    streak_counter = 0
+    max_streak = 0
+    
+    sorted_dates = sorted(dates)
+    
+    for i in range(1, len(sorted_dates)+1):
+        if (sorted_dates[i] - sorted_dates[i-1]).days == 1:
+            streak_counter += 0
+        else:
+            max_streak = streak_counter
+            streak_counter = 0
+    
+    return max_streak
     pass
 
 data = """
@@ -46,4 +59,4 @@ data = """
     +------------+------------+---------+
     """
 
-extract_dates(data)
+print(extract_dates(data))
