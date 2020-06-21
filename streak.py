@@ -37,11 +37,14 @@ def calculate_streak(dates):
     #print((sorted_dates[8] - sorted_dates[7]).days)
     
     for i in range(1, len(sorted_dates)):
+        print((sorted_dates[i] - sorted_dates[i-1]).days ==1)
         if (sorted_dates[i] - sorted_dates[i-1]).days == 1:
-            streak_counter += 0
+            streak_counter += 1
         else:
             max_streak = streak_counter
             streak_counter = 0
+    
+    max_streak = max(max_streak, streak_counter+1)
     
     return max_streak
     pass
@@ -62,4 +65,17 @@ data = """
     +------------+------------+---------+
     """
 
-print(calculate_streak(extract_dates(data)))
+data2 = """
+    +------------+------------+---------+
+    | date       | activity   | count   |
+    |------------+------------+---------|
+    | 2018-11-11 | pcc        | 1       |
+    | 2018-11-07 | pcc        | 1       |
+    | 2018-11-09 | 100d       | 2       |
+    | 2018-11-10 | 100d       | 1       |
+    | 2018-11-08 | pcc        | 1       |
+    +------------+------------+---------+
+    """
+
+
+#print(calculate_streak(extract_dates(data2)))
