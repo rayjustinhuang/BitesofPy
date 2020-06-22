@@ -33,11 +33,10 @@ def calculate_streak(dates):
     
     sorted_dates = sorted(dates)
     
-    #print(sorted_dates)
-    #print((sorted_dates[8] - sorted_dates[7]).days)
+    if TODAY not in sorted_dates and TODAY != (sorted_dates[-1] + timedelta(days=1)):
+        return max_streak
     
     for i in range(1, len(sorted_dates)):
-        print((sorted_dates[i] - sorted_dates[i-1]).days ==1)
         if (sorted_dates[i] - sorted_dates[i-1]).days == 1:
             streak_counter += 1
         else:
@@ -48,34 +47,3 @@ def calculate_streak(dates):
     
     return max_streak
     pass
-
-data = """
-    +------------+------------+---------+
-    | date       | activity   | count   |
-    |------------+------------+---------|
-    | 2018-11-10 | pcc        | 1       |
-    | 2018-11-09 | 100d       | 1       |
-    | 2018-11-07 | 100d       | 2       |
-    | 2018-10-23 | pcc        | 1       |
-    | 2018-10-15 | pcc        | 1       |
-    | 2018-10-05 | bite       | 1       |
-    | 2018-09-21 | bite       | 4       |
-    | 2018-09-18 | bite       | 2       |
-    | 2018-09-18 | bite       | 4       |
-    +------------+------------+---------+
-    """
-
-data2 = """
-    +------------+------------+---------+
-    | date       | activity   | count   |
-    |------------+------------+---------|
-    | 2018-11-11 | pcc        | 1       |
-    | 2018-11-07 | pcc        | 1       |
-    | 2018-11-09 | 100d       | 2       |
-    | 2018-11-10 | 100d       | 1       |
-    | 2018-11-08 | pcc        | 1       |
-    +------------+------------+---------+
-    """
-
-
-#print(calculate_streak(extract_dates(data2)))
