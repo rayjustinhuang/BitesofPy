@@ -34,7 +34,14 @@ def calc_max_uptime(reboots):
     timedeltas = []
     
     for i in range(1, len(timestamps)):
-        timedeltas.append(timestamps[i] - timestamps[i-1])
+        to_append = ((timestamps[i]-timestamps[i-1]), timestamps[i])
+        timedeltas.append(to_append)
+    
+    sorted_stamps = sorted(timedeltas, key=lambda x: x[0], reverse=True)
+    
+    print(sorted_stamps)
     
     return max(timedeltas)
     pass
+
+calc_max_uptime(MAC1)
