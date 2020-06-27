@@ -43,7 +43,7 @@ def calc_max_uptime(reboots):
     
     to_return = max(timedeltas)
     
-    actual_return = (to_return[0].days, str(to_return[1].date()))
+    actual_return = (to_return[0].days, to_return[1].date())
     
     return actual_return
     pass
