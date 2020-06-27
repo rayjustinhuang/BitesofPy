@@ -30,7 +30,7 @@ def calc_max_uptime(reboots):
     for line in reboots.splitlines()[1:]:
         timestamps.append(datetime.strptime(line[-16:], "%a %b %d %H:%M"))
     
-    timestamps = sorted([i.replace(year=2019) for i in timestamps])
+    timestamps = sorted([i.replace(year=2020) for i in timestamps])
     timedeltas = []
     
     for i in range(1, len(timestamps)):
@@ -43,7 +43,7 @@ def calc_max_uptime(reboots):
     
     to_return = max(timedeltas)
     
-    actual_return = (to_return[0].days, to_return[1].date())
+    actual_return = (int(to_return[0].days), str(to_return[1].date()))
     
     return actual_return
     pass
