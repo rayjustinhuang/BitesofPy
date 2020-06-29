@@ -1,8 +1,11 @@
+from functools import wraps
+
 known_users = ['bob', 'julian', 'mike', 'carmen', 'sue']
 loggedin_users = ['mike', 'sue']
 
 
 def login_required(func):
+    @wraps(func)
     def check_user(user):
         if user in loggedin_users:
             return func(user)
