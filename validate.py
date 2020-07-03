@@ -12,5 +12,5 @@ def int_args(func):
             elif i < 0:
                 raise ValueError
         
-        func(*args)
+        return func(*args)
     return checker
