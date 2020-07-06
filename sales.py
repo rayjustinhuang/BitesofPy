@@ -44,7 +44,6 @@ def process_data(url: str) -> pd.DataFrame:
     
     return pd.read_csv(data['download_url'])
 
-print(process_data(URL))
 
 def summary_report(df: pd.DataFrame, stats: Union[List[str], None] = STATS) -> None:
     """Summary report generated from the DataFrame and list of stats
@@ -66,8 +65,14 @@ def summary_report(df: pd.DataFrame, stats: Union[List[str], None] = STATS) -> N
         2015  608473.83  50706.152500   97237.42
         2016  733947.03  61162.252500  118447.83
     """
+    
+    df['year'] = pd.to_datetime(df['month']).dt.year
+    
+    return df.groupby(df['year']).agg(stats)
     pass
 
+data = process_data(URL)
+print(summary_report(data))
 
 def yearly_report(df: pd.DataFrame, year: int) -> None:
     """Generate a sales report for the given year
