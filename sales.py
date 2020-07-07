@@ -71,8 +71,6 @@ def summary_report(df: pd.DataFrame, stats: Union[List[str], None] = STATS) -> N
     return df.groupby(df['year']).agg(stats)
     pass
 
-data = process_data(URL)
-print(summary_report(data))
 
 def yearly_report(df: pd.DataFrame, year: int) -> None:
     """Generate a sales report for the given year
@@ -105,14 +103,23 @@ def yearly_report(df: pd.DataFrame, year: int) -> None:
         11     78628.72
         12     69545.62
     """
+    years = pd.to_datetime(df['month']).dt.year.unique()
+    
+    if year not in years:
+        raise ValueError('The year {} is not included in the report!'.format(year))
+    
+    data = df.loc[pd.to_datetime(df['month']).dt.year == year]
+    
+    print(data.groupby(pd.to_datetime(df['month']).dt.month).sum()['sales'])
+    
     pass
 
 
 # uncomment the following for viewing/testing the reports/code
-# if __name__ == "__main__":
-#     data = process_data(URL)
-#     summary_report(data)
-#     for year in (data["month"].dt.year).unique():
-#         yearly_report(data, year)
+if __name__ == "__main__":
+    data = process_data(URL)
+    summary_report(data)
+    for year in (data["month"].dt.year).unique():
+        yearly_report(data, year)
 
-#     yearly_report(data, 2020)
+    yearly_report(data, 2020)
