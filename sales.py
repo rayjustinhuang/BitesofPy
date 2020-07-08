@@ -66,9 +66,9 @@ def summary_report(df: pd.DataFrame, stats: Union[List[str], None] = STATS) -> N
         2016  733947.03  61162.252500  118447.83
     """
     
-    df['year'] = pd.to_datetime(df['month']).dt.year
+    #df['year'] = pd.to_datetime(df['month']).dt.year
     
-    return df.groupby(df['year']).agg(stats)
+    return df.groupby(pd.to_datetime(df['month']).dt.year).agg(stats)
     pass
 
 
@@ -103,7 +103,7 @@ def yearly_report(df: pd.DataFrame, year: int) -> None:
         11     78628.72
         12     69545.62
     """
-    years = pd.to_datetime(df['month']).dt.year.unique()
+    years = list(pd.to_datetime(df['month']).dt.year.unique())
     
     if year not in years:
         raise ValueError('The year {} is not included in the report!'.format(year))
