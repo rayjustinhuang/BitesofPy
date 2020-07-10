@@ -68,7 +68,7 @@ def summary_report(df: pd.DataFrame, stats: Union[List[str], None] = STATS) -> N
     
     df['month'] = pd.to_datetime(df['month'])
     
-    print(df.groupby(df['month'].dt.year).agg(stats))
+    print(df.groupby(df['month'].dt.year).agg(stats)['sales'])
     pass
 
 
