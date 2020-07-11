@@ -42,7 +42,11 @@ def process_data(url: str) -> pd.DataFrame:
     """
     data = get_data(url)
     
-    return pd.read_csv(data['download_url'])
+    df = pd.read_csv(data['download_url'])
+    
+    df['month'] = pd.to_datetime(df['month'])
+    
+    return df
 
 
 def summary_report(df: pd.DataFrame, stats: Union[List[str], None] = STATS) -> None:
@@ -66,9 +70,9 @@ def summary_report(df: pd.DataFrame, stats: Union[List[str], None] = STATS) -> N
         2016  733947.03  61162.252500  118447.83
     """
     
-    df['month'] = pd.to_datetime(df['month'])
+    df['year'] = df['month'].dt.year
     
-    print(df.groupby(df['month'].dt.year).agg(stats)['sales'])
+    print(df.groupby(df['year']).agg(stats)['sales'])
     pass
 
 
