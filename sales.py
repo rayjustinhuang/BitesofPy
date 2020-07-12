@@ -112,9 +112,12 @@ def yearly_report(df: pd.DataFrame, year: int) -> None:
     if year not in years:
         raise ValueError('The year {} is not included in the report!'.format(year))
     
+    data = df[['month', 'sales']]
     data = df.loc[df['month'].dt.year == year]
     
-    print(data.groupby(df['month'].dt.month).sum()['sales'])
+    print()
+    print(year)
+    print(data.groupby(df['month'].dt.month).agg('sum'))
     
     pass
 
