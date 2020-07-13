@@ -1,6 +1,9 @@
 import datetime
 
 
-def tomorrow(date = datetime.datetime.today().date()):
-    # Your code goes here
-    return date + datetime.timedelta(days=1)
+def tomorrow(tdy = None):
+    
+    if tdy == None:
+        tdy = datetime.date.today()
+    
+    return tdy + datetime.timedelta(days=1)
