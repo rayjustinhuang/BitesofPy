@@ -13,7 +13,7 @@ def get_len_help_text(builtin: BuiltinFunctionType) -> int:
     
     f = StringIO()
     with redirect_stdout(f):
-        print(builtin.help())
+        print(help(builtin))
     
-    return len(f.getvalue())
+    return len(f.getvalue()) - 5
     pass
