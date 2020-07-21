@@ -20,16 +20,25 @@ def get_possible_dict_words(draw):
        valid dictionary words. Use _get_permutations_draw and provided
        dictionary"""
     
-    return [word for word in _get_permutations_draw(draw) if word.lower() in dictionary]
+    return ["".join(word).lower() for word in _get_permutations_draw(draw) if "".join(word).lower() in dictionary]
     pass
 
 def _get_permutations_draw(draw):
     """Helper to get all permutations of a draw (list of letters), hint:
        use itertools.permutations (order of letters matters)"""
        
-    return itertools.permutations(list(draw))
+    letters = [i.strip() for i in draw.split(',')]
+    
+    all_perms = []
+    
+    for i in range(2,len(draw)):
+        all_perms += itertools.permutations(letters, i)
+        
+    return all_perms
     pass
 
-draw = 'T, I, I, G, T, T, L'
+#draw = 'T, I, I, G, T, T, L'
 
-print([word for word in _get_permutations_draw(draw)])
+#print(get_possible_dict_words(draw))
+
+#print(["".join(word) for word in _get_permutations_draw(draw)])
