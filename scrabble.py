@@ -26,19 +26,11 @@ def get_possible_dict_words(draw):
 def _get_permutations_draw(draw):
     """Helper to get all permutations of a draw (list of letters), hint:
        use itertools.permutations (order of letters matters)"""
-       
-    letters = [i.strip() for i in draw.split(',')]
     
     all_perms = []
     
     for i in range(2,len(draw)):
-        all_perms += itertools.permutations(letters, i)
+        all_perms += itertools.permutations(draw, i)
         
     return all_perms
     pass
-
-#draw = 'T, I, I, G, T, T, L'
-
-#print(get_possible_dict_words(draw))
-
-#print(["".join(word) for word in _get_permutations_draw(draw)])
