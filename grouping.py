@@ -30,16 +30,22 @@ def group_cars_by_manufacturer(cars):
     
     for key, group in groupby(cars, lambda x: x[0]):
         car_dict[key] += group
-        
+    
+    for lists in car_dict.values():
+        lists = sorted(lists)    
+    
     alphabetized_cars = sorted(car_dict.items())
+    
+    final_brand = sorted(car_dict.keys())[-1]
         
     for key, value in alphabetized_cars:
         print(key.upper())
         for i in value:
             print(f'- {i[1]}')
-        print()
-        print('...')
-        print()
+        if key != final_brand:
+            print()
+            print('...')
+            print()
     pass
 
-group_cars_by_manufacturer(cars)
+#group_cars_by_manufacturer(cars)
