@@ -44,8 +44,4 @@ def group_cars_by_manufacturer(cars):
             print(f'- {i[1]}')
         if key != final_brand:
             print()
-            print('...')
-            print()
     pass
-
-#group_cars_by_manufacturer(cars)
