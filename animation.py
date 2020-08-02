@@ -16,7 +16,7 @@ def spinner(seconds):
         sys.stdout.write(next(spinner_cycle))
         sys.stdout.flush()
         sleep(STATE_TRANSITION_TIME)
-        sys.stdout.write('\b')
+        sys.stdout.write('\r')
     pass
 
 
