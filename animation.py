@@ -12,7 +12,7 @@ def spinner(seconds):
        Does not return anything, only prints to stdout."""
     spinner_cycle = cycle(SPINNER_STATES)
     
-    for _ in range(int(seconds/STATE_TRANSITION_TIME)):
+    for _ in range(round(seconds/STATE_TRANSITION_TIME)):
         sys.stdout.write(next(spinner_cycle))
         sys.stdout.flush()
         sleep(STATE_TRANSITION_TIME)
