@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 from typing import List
 
 
@@ -29,23 +29,16 @@ def get_srt_section_ids(text: str) -> List[int]:
     chunked_text = [line for line in text.splitlines() if line != ""]
     chunked_text = [chunked_text[i:i+3] for i in range(0, len(chunked_text), 3)]
     
+    time_dict = {}
     
+    for chunk in chunked_text:
+        start, end = chunk[1].split(" --> ")
+        start, end = datetime.strptime(start, "%X,%f").replace(microsecond=0), datetime.strptime(end, "%X,%f").replace(microsecond=0)
+        length = len(chunk[2])
         
-    print(chunked_text)
+        time_dict[chunk[0]] = length/(end - start).seconds
+        
+    ordered = sorted(time_dict.items(), key = lambda x: x[1], reverse = True)
+    
+    return [int(item[0]) for item in ordered]
     pass
-
-text1 = """
-1
-00:00:00,498 --> 00:00:02,827
-Beautiful is better than ugly.
-
-2
-00:00:02,827 --> 00:00:06,383
-Explicit is better than implicit.
-
-3
-00:00:06,383 --> 00:00:09,427
-Simple is better than complex.
-"""
-
-get_srt_section_ids(text1)
