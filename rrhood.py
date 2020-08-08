@@ -57,18 +57,23 @@ def make_character_index(text=text, characters=CHARACTERS):
     """
     index_dict = defaultdict(list)
     
-    unique_words = set()
+    #unique_words = set()
     
     lower_text = text.lower()
     strip_punc = lower_text.translate(str.maketrans('','',string.punctuation))
-    strip_punc = strip_punc.replace('\n', " ")
+    #strip_punc = strip_punc.replace('\n', " ")
     
-    for word in strip_punc.split(" "):
-        unique_words.add(word)
+    #for word in strip_punc.split(" "):
+    #    unique_words.add(word)
         
-    unique_words.remove("")
-    
-    print(unique_words)
+    #unique_words.remove("")
+
+    for word in characters:
+        for i in range(len(strip_punc.splitlines())):
+            if word in strip_punc.splitlines()[i]:
+                index_dict[word].append(i)
+                
+    print(index_dict)
     pass
 
 make_character_index()
