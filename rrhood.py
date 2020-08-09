@@ -69,10 +69,16 @@ def make_character_index(text=text, characters=CHARACTERS):
     #unique_words.remove("")
 
     for word in characters:
-        for i in range(len(strip_punc.splitlines())):
-            if word in strip_punc.splitlines()[i]:
-                index_dict[word].append(i)
-                
+        if type(word) == tuple:
+            word_to_use = word[0]
+            for i in range(len(strip_punc.splitlines())):
+                if any(words.lower() in strip_punc.splitlines()[i] for words in word):
+                    index_dict[word_to_use].append(i)
+        else:
+            for i in range(len(strip_punc.splitlines())):
+                if word.lower() in strip_punc.splitlines()[i]:
+                    index_dict[word].append(i)
+                    
     print(index_dict)
     pass
 
