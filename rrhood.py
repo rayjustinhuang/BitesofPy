@@ -79,7 +79,7 @@ def make_character_index(text=text, characters=CHARACTERS):
                 if word.lower() in strip_punc.splitlines()[i]:
                     index_dict[word].append(i)
                     
-    print(index_dict)
+    return index_dict
     pass
 
-make_character_index()
+#make_character_index()
