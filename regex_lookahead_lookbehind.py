@@ -22,8 +22,10 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
     n: How often character should be repeated, defaults to 1
     char: Character which also counts if repeated n times
     """
-    findall_n_reps = re.findall(rf'(.)\1{{n}}', text)
-
+    findall_n_reps = re.findall(rf'(.)(?={n})', text)
+    findall_n_chars_following = re.findall(rf'(.)(?={char})', text)
+    
+    return len(findall_n_reps) + len(findall_n_chars_following)
 
 def check_surrounding_chars(text, surrounding_chars):
     """
