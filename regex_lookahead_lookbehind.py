@@ -9,9 +9,11 @@ def count_n_repetitions(text, n=1):
     text: UTF-8 compliant input text
     n: How often character should be repeated, defaults to 1
     """
-    findall_list = re.findall(rf'(.)\1{{{n},}}', text)
+    findall_list = re.findall(rf'(.+)\1{{{n},}}', text)
     
     return len(findall_list)
+    
+print(count_n_repetitions("\n\n\nAs are newlines\n\n\n", 2))
 
 def count_n_reps_or_n_chars_following(text, n=1, char=""):
     """
@@ -26,6 +28,9 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
     findall_n_chars_following = re.findall(rf'(.)(?={char})', text)
     
     return len(findall_n_reps) + len(findall_n_chars_following)
+    
+#print(count_n_reps_or_n_chars_following("1112345", 2, 'z'))
+
 
 def check_surrounding_chars(text, surrounding_chars):
     """
@@ -35,3 +40,10 @@ def check_surrounding_chars(text, surrounding_chars):
     text: UTF-8 compliant input text
     surrounding_chars: List of characters
     """
+    count = 0
+    for char in surrounding_chars:
+        count += len(re.findall(rf'(.)(?={char})', text))
+        count += len(re.findall(rf'(.)(?<={char})', text))
+        
+    return count
+        
