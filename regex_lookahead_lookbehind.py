@@ -13,7 +13,7 @@ def count_n_repetitions(text, n=1):
     
     return len(findall_list)
     
-print(count_n_repetitions("\n\n\nAs are newlines\n\n\n", 2))
+#print(count_n_repetitions("\n\n\nAs are newlines\n\n\n", 2))
 
 def count_n_reps_or_n_chars_following(text, n=1, char=""):
     """
@@ -24,8 +24,8 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
     n: How often character should be repeated, defaults to 1
     char: Character which also counts if repeated n times
     """
-    findall_n_reps = re.findall(rf'(.)(?={n})', text)
-    findall_n_chars_following = re.findall(rf'(.)(?={char})', text)
+    findall_n_reps = re.findall(rf'([\s\S])(?={n})', text)
+    findall_n_chars_following = re.findall(rf'([\s\S])(?={char})', text)
     
     return len(findall_n_reps) + len(findall_n_chars_following)
     
@@ -42,8 +42,8 @@ def check_surrounding_chars(text, surrounding_chars):
     """
     count = 0
     for char in surrounding_chars:
-        count += len(re.findall(rf'(.)(?={char})', text))
-        count += len(re.findall(rf'(.)(?<={char})', text))
+        count += len(re.findall(rf'([\s\S])(?={char})', text))
+        count += len(re.findall(rf'([\s\S])(?<={char})', text))
         
     return count
         
