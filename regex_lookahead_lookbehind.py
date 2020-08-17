@@ -9,11 +9,11 @@ def count_n_repetitions(text, n=1):
     text: UTF-8 compliant input text
     n: How often character should be repeated, defaults to 1
     """
-    findall_list = re.findall(rf'([\s\S]+)\1{{{n},}}', text)
+    findall_list = re.findall(rf'([\s\S]+)(?=\1)', text)
     
     return len(findall_list)
     
-#print(count_n_repetitions("\n\n\nAs are newlines\n\n\n", 2))
+print(count_n_repetitions("????{{{?}}}", 1))
 
 def count_n_reps_or_n_chars_following(text, n=1, char=""):
     """
