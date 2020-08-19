@@ -9,7 +9,7 @@ def count_n_repetitions(text, n=1):
     text: UTF-8 compliant input text
     n: How often character should be repeated, defaults to 1
     """
-    findall_list = re.findall(rf'([\s\S]+)(?=\1{{{n}}})', text)
+    findall_list = re.findall(rf'([\s\S])(?=\1{{{n}}})', text)
     
     return len(findall_list)
     
