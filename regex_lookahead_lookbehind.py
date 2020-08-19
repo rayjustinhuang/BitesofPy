@@ -25,7 +25,7 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
     char: Character which also counts if repeated n times
     """
     findall_n_reps = re.findall(rf'([\s\S])(?=\1{{{n}}})', text)
-    findall_n_chars_following = re.findall(rf'([\s\S])(?={char})', text)
+    findall_n_chars_following = re.findall(rf'([\s\S])(?={{char}})', text)
     
     return len(findall_n_reps) + len(findall_n_chars_following)
     
@@ -42,8 +42,8 @@ def check_surrounding_chars(text, surrounding_chars):
     """
     count = 0
     for char in surrounding_chars:
-        count += len(re.findall(rf'([\s\S])(?={char})', text))
-        count += len(re.findall(rf'([\s\S])(?<={char})', text))
+        count += len(re.findall(rf'([\s\S])(?={{char}})', text))
+        count += len(re.findall(rf'([\s\S])(?<={{char}})', text))
         
     return count
         
