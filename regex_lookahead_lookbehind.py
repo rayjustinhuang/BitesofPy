@@ -13,7 +13,7 @@ def count_n_repetitions(text, n=1):
     
     return len(findall_list)
     
-print(count_n_repetitions("????{{{?}}}", 1))
+#print(count_n_repetitions("????{{{?}}}", 1))
 
 def count_n_reps_or_n_chars_following(text, n=1, char=""):
     """
@@ -25,11 +25,17 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
     char: Character which also counts if repeated n times
     """
     findall_n_reps = re.findall(rf'([\s\S])(?=\1{{{n}}})', text)
-    findall_n_chars_following = re.findall(rf'([\s\S])(?={{char}})', text)
+    
+    if char == "":
+        return len(findall_n_reps)
+    
+    findall_n_chars_following = re.findall(rf'([\s\S])(?={char}{{{n}}})', text)
+    
+    #print(findall_n_chars_following)
     
     return len(findall_n_reps) + len(findall_n_chars_following)
     
-#print(count_n_reps_or_n_chars_following("1112345", 2, 'z'))
+print(count_n_reps_or_n_chars_following("????{{{?}}}", 1, ''))
 
 
 def check_surrounding_chars(text, surrounding_chars):
