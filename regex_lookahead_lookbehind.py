@@ -28,14 +28,19 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
     
     if char == "":
         return len(findall_n_reps)
+        
+    else:
     
-    findall_n_chars_following = re.findall(rf'([\s\S])(?={char}{{{n}}})', text)
+        findall_n_chars_following = re.findall(rf'([\s\S])(?={char}{{{n}}})', text)
+        
+        print(findall_n_reps)
+        print(findall_n_chars_following)
     
-    #print(findall_n_chars_following)
+        return len(findall_n_reps) + len(findall_n_chars_following)
     
-    return len(findall_n_reps) + len(findall_n_chars_following)
-    
-print(count_n_reps_or_n_chars_following("????{{{?}}}", 1, ''))
+#findall_n_reps) + len(findall_n_chars_following)
+print(count_n_reps_or_n_chars_following("????{{{?}}}", 1, 'z'))
+print(count_n_reps_or_n_chars_following("zz Don't count double!", 1, 'z'))
 
 
 def check_surrounding_chars(text, surrounding_chars):
