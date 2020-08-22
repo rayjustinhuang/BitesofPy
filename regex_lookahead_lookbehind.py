@@ -31,12 +31,11 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
         
     else:
     
-        findall_n_chars_following = re.findall(rf'([\s\S])(?={char}{{{n}}})', text)
+        findall_n_chars_following = re.findall(rf'([\s\S])(?={char}{{{n}}})|([\s\S])(?=\1{{{n}}})', text)
         
-        print(findall_n_reps)
         print(findall_n_chars_following)
     
-        return len(findall_n_reps) + len(findall_n_chars_following)
+        return len(findall_n_chars_following)
     
 #findall_n_reps) + len(findall_n_chars_following)
 print(count_n_reps_or_n_chars_following("????{{{?}}}", 1, 'z'))
