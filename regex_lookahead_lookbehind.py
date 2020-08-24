@@ -54,8 +54,8 @@ def check_surrounding_chars(text, surrounding_chars):
     """
     count = 0
     for char in surrounding_chars:
-        count += len(re.findall(rf'([\s\S])(?={{char}})', text))
-        count += len(re.findall(rf'([\s\S])(?<={{char}})', text))
+        count += len(re.findall(rf'([\s\S])(?={{char}})|(?<={{char}})', text))
+        #count += len(re.findall(rf'([\s\S])(?<={{char}})', text))
         
     return count
         
