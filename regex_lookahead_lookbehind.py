@@ -40,8 +40,8 @@ def count_n_reps_or_n_chars_following(text, n=1, char=""):
         return len(findall_n_chars_following)
     
 #findall_n_reps) + len(findall_n_chars_following)
-print(count_n_reps_or_n_chars_following("????{{{?}}}", 1, 'z'))
-print(count_n_reps_or_n_chars_following("zz Don't count double!", 1, 'z'))
+#print(count_n_reps_or_n_chars_following("????{{{?}}}", 1, '?'))
+#print(count_n_reps_or_n_chars_following("????[[[?]]]", 1, '['))
 
 
 def check_surrounding_chars(text, surrounding_chars):
@@ -54,7 +54,7 @@ def check_surrounding_chars(text, surrounding_chars):
     """
     count = 0
     for char in surrounding_chars:
-        count += len(re.findall(rf'([\s\S])(?={{char}})|(?<={{char}})', text))
+        count += len(re.findall(rf'([\s\S])(?={char})(?<={char})', text))
         #count += len(re.findall(rf'([\s\S])(?<={{char}})', text))
         
     return count
