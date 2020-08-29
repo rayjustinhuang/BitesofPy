@@ -10,3 +10,7 @@ def count_down(data_type):
         print(data_type[:count])
         count -= 1
     pass
+
+@fun.register
+def _(arg: int):
+    count_down(str(arg))
