@@ -11,6 +11,10 @@ def count_down(data_type):
         count -= 1
     pass
 
-@fun.register
+@count_down.register
 def _(arg: int):
     count_down(str(arg))
+    
+@count_down.register
+def _(arg: tuple):
+    count_down(''.join(str(i) for i in arg))
