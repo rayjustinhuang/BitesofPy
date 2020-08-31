@@ -18,3 +18,7 @@ def _(arg: int):
 @count_down.register
 def _(arg: tuple):
     count_down(''.join(str(i) for i in arg))
+    
+@count_down.register
+def _(arg: list):
+    count_down(''.join(str(i) for i in arg))
