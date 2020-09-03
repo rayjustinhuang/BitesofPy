@@ -16,6 +16,10 @@ def _(arg: int):
     count_down(str(arg))
     
 @count_down.register
+def _(arg: float):
+    count_down(str(arg))
+    
+@count_down.register
 def _(arg: tuple):
     count_down(''.join(str(i) for i in arg))
     
