@@ -8,6 +8,8 @@ def print_hanging_indents(poem):
     for i in range(len(split_poem)):
         if i == len(split_poem)-1:
             print('    '+split_poem[i].strip())
+        elif split_poem[i] == "":
+            continue
         elif split_poem[i+1].strip() != "":
             print(split_poem[i].strip())
         else:
