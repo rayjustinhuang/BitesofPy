@@ -3,15 +3,12 @@ INDENTS = 4
 
 def print_hanging_indents(poem):
     
-    split_poem = poem.splitlines()
-    
-    print(split_poem)
+    split_poem = poem.strip().splitlines()
     
     for i in range(len(split_poem)):
-        print(i)
-        if i == len(split_poem):
+        if i == len(split_poem)-1:
             print('    '+split_poem[i].strip())
-        elif split_poem[i+1] != "":
+        elif split_poem[i+1].strip() != "":
             print(split_poem[i].strip())
         else:
             print("    "+split_poem[i].strip())
@@ -25,7 +22,7 @@ shakespeare_unformatted = """
                           Or to take Arms against a Sea of troubles,
                           """
 
-print_hanging_indents(shakespeare_unformatted)
+#print_hanging_indents(shakespeare_unformatted)
 
 """
         try:
