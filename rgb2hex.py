@@ -7,5 +7,9 @@ def rgb_to_hex(rgb):
         if not 0<= num <= 255:
             raise ValueError
             
+    r = str(hex(rgb[0]))[2:].zfill(2)
+    g = str(hex(rgb[1]))[2:].zfill(2)
+    b = str(hex(rgb[2]))[2:].zfill(2)
     
+    return f'#{r}{g}{b}'
     pass
