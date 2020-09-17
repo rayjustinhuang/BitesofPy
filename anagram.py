@@ -6,5 +6,8 @@ def is_anagram(word1, word2):
     word1_list = [i for i in word1.lower() if i != " "]
     word2_list = [j for j in word2.lower() if j != " "]
     
-    return word1_list.sort() == word2_list.sort()
+    word1_list.sort()
+    word2_list.sort()
+    
+    return word1_list == word2_list
     pass
