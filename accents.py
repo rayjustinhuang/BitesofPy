@@ -8,7 +8,7 @@ def filter_accents(text):
     
     for i in text:
         if unicodedata.decomposition(i) != "":
-            accented_chars.add(i)
+            accented_chars.add(i.lower())
             
     return sorted(list(accented_chars))
     pass
