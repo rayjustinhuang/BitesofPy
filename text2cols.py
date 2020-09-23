@@ -23,14 +23,15 @@ def text_to_columns(text):
             current_len = len(multiline)
             multiline += [""]*(max_lines - current_len)
     
-    for multiline in wrapped_lines:
-        for line in multiline:
-            if len(line) < COL_WIDTH:
-                print(len(line))
-                line = line.ljust(20, ' ')
+    output_lines = [[] for _ in range(max_lines)]
+    
+    for i in range(max_lines):
+        for j in range(len(wrapped_lines)):
+            output_lines[i].append(wrapped_lines[j][i].ljust(20, ' '))
     
     print(wrapped_lines)
     print(max_lines)
+    print(output_lines)
     pass
 
 text = """My house is small but cosy.
