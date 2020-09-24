@@ -29,13 +29,9 @@ def text_to_columns(text):
         for j in range(len(wrapped_lines)):
             output_lines[i].append(wrapped_lines[j][i].ljust(20, ' '))
     
-    print(wrapped_lines)
-    print(max_lines)
-    print(output_lines)
+    final_output = []        
+    for multiline in output_lines:
+        final_output.append('    '.join(multiline))
+    
+    return '\n'.join(final_output)
     pass
-
-text = """My house is small but cosy.
-
-    It has a white kitchen and an empty fridge."""
-
-text_to_columns(text)
