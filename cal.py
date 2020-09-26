@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 def get_weekdays(calendar_output):
     """Receives a multiline Unix cal output and returns a mapping (dict) where
        keys are int days and values are the 2 letter weekdays (Su Mo Tu ...)"""
@@ -8,15 +10,15 @@ def get_weekdays(calendar_output):
         cal_list.append(line)
         
     print(cal_list)
+    
+    cal_dict = defaultdict(str)
+    
+    for j in range(2,len(cal_list)):
+        for i in range(0,len(cal_list[1]),3):
+            if cal_list[j][i:i+2] == "" or cal_list[j][i:i+2] == "  ":
+                continue
+            else:
+                cal_dict[int(cal_list[j][i:i+2])] = cal_list[1][i:i+2]
+    
+    return cal_dict
     pass
-
-april_1981 = """     April 1981
-Su Mo Tu We Th Fr Sa
-          1  2  3  4
- 5  6  7  8  9 10 11
-12 13 14 15 16 17 18
-19 20 21 22 23 24 25
-26 27 28 29 30
-"""
-
-get_weekdays(april_1981)
