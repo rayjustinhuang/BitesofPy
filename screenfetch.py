@@ -28,17 +28,19 @@ def sysinfo_scrape(output):
     
     cleaned_lines = []
     
+    cleaned_lines.append(lines[1][start_index+1:])
+    
     for line in lines[2:]:
         if line[start_index+1:].strip():
             cleaned_lines.append(line[start_index+1:])
     
     sysinfo_dict = {}
     
-    for line in cleaned_lines:
+    sysinfo_dict['Name'] = cleaned_lines[0]
+    
+    for line in cleaned_lines[1:]:
         key, value = line.split(': ')
         sysinfo_dict[key] = value
         
     return sysinfo_dict
     pass
-
-#sysinfo_scrape(output)
