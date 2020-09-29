@@ -61,6 +61,15 @@ class Corpora:
         :param txt: Corpus of text
         :return: cleaned up corpus
         """
+        
+        cleaned_text = self.txt.lower()
+        no_punc = cleaned_text.translate(str.maketrans('', '', string.punctuation))
+        no_extras = no_punc
+        for word in self.extra:
+            no_extras.translate(str.maketrans('','', word))
+            
+        return no_extras
+        
         pass
 
     @property
