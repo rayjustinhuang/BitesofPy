@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List, Set, Tuple
+import string
 
 
 STOPWORDS: set = {
@@ -46,7 +47,7 @@ class Corpora:
     
     txt: str
     count: int
-    tag:str
+    tag: str
     extra: list
     stopwords: set
 
@@ -61,13 +62,16 @@ class Corpora:
         :param txt: Corpus of text
         :return: cleaned up corpus
         """
-        
+
         cleaned_text = self.txt.lower()
+        
         no_punc = cleaned_text.translate(str.maketrans('', '', string.punctuation))
+        no_punc = no_punc.translate(str.maketrans('—',' '))
+
         no_extras = no_punc
         for word in self.extra:
             no_extras.translate(str.maketrans('','', word))
-            
+        
         return no_extras
         
         pass
@@ -82,6 +86,7 @@ class Corpora:
 
         :return: List of tuples, i.e. ("word", count)
         """
+        
         pass
 
     @property
@@ -111,3 +116,7 @@ class Corpora:
         :return: None
         """
         pass
+    
+test = Corpora(GETTYSBURG, 5, '#', ['term'], STOPWORDS)
+
+test.cleaned()
