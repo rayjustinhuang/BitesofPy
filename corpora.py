@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List, Set, Tuple
 import string
+from collections import Counter
 
 
 STOPWORDS: set = {
@@ -46,7 +47,7 @@ class Corpora:
     """
     
     txt: str
-    count: int
+    count: int = 5
     tag: str
     extra: list
     stopwords: set
@@ -86,6 +87,16 @@ class Corpora:
 
         :return: List of tuples, i.e. ("word", count)
         """
+        
+        corpus = self.cleaned().split()
+        
+        corpus_cleaned = [word for word in corpus if word not in self.stopwords]
+        
+        word_counts = Counter(corpus_cleaned)
+        
+        list_of_tuples = [(key, value) for key, value in word_counts]
+        
+        return list_of_tuples
         
         pass
 
