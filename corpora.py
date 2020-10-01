@@ -94,9 +94,7 @@ class Corpora:
         
         word_counts = Counter(corpus_cleaned)
         
-        list_of_tuples = [(key, value) for key, value in word_counts]
-        
-        return list_of_tuples
+        return word_counts.items()
         
         pass
 
