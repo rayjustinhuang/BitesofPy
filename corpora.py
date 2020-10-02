@@ -48,7 +48,7 @@ class Corpora:
     
     txt: str
     count: int = 5
-    tag: str
+    tag: str = '#'
     extra: list
     stopwords: set
 
@@ -124,8 +124,16 @@ class Corpora:
         :param metrics: List of tuples with word counts
         :return: None
         """
+        
+        metrics = self.metrics()
+        
+        sorted_metrics = sorted(metrics, key = lambda x: x[1])
+        
+        for metric in sorted_metrics[:self.count]:
+            print(metric[0].rjust(10), tag*metric[1])
+        
         pass
     
-test = Corpora(GETTYSBURG, 5, '#', ['term'], STOPWORDS)
+test = Corpora(GETTYSBURG, 5, '#', [], STOPWORDS)
 
-test.cleaned()
+test.graph()
