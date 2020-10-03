@@ -47,10 +47,11 @@ class Corpora:
     """
     
     txt: str
-    count: int = 5
-    tag: str = '#'
     extra: list
     stopwords: set
+    count: int = 5
+    tag: str = '#'
+
 
     @property
     def cleaned(self) -> str:
@@ -88,13 +89,13 @@ class Corpora:
         :return: List of tuples, i.e. ("word", count)
         """
         
-        corpus = self.cleaned().split()
+        corpus = self.cleaned
         
-        corpus_cleaned = [word for word in corpus if word not in self.stopwords]
+        corpus_cleaned = [word for word in corpus.split() if word not in self.stopwords]
         
-        word_counts = Counter(corpus_cleaned)
+        self.metrics = Counter(corpus_cleaned)
         
-        return word_counts.items()
+        return self.metrics.items()
         
         pass
 
@@ -125,7 +126,7 @@ class Corpora:
         :return: None
         """
         
-        metrics = self.metrics()
+        metrics = self.metrics
         
         sorted_metrics = sorted(metrics, key = lambda x: x[1])
         
@@ -134,6 +135,6 @@ class Corpora:
         
         pass
     
-test = Corpora(GETTYSBURG, 5, '#', [], STOPWORDS)
+#test = Corpora(GETTYSBURG, [], STOPWORDS)
 
-test.graph()
+#print(test.cleaned)
