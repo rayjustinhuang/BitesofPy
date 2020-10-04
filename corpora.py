@@ -47,8 +47,8 @@ class Corpora:
     """
     
     txt: str
-    extra: list
-    stopwords: set
+    extra: list = field(default_factory=list)
+    stopwords: set = field(default_factory=set)
     count: int = 5
     tag: str = '#'
 
@@ -71,8 +71,8 @@ class Corpora:
         no_punc = no_punc.translate(str.maketrans('—',' '))
 
         no_extras = no_punc
-        for word in self.extra:
-            no_extras.translate(str.maketrans('','', word))
+        for char in self.extra:
+            no_extras.translate(str.maketrans('','', char))
         
         return no_extras
         
@@ -135,6 +135,6 @@ class Corpora:
         
         pass
     
-#test = Corpora(GETTYSBURG, [], STOPWORDS)
+test = Corpora(GETTYSBURG, ["—", "\n", "  "], STOPWORDS)
 
-#print(test.cleaned)
+#print(len(test.cleaned))
