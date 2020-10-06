@@ -72,10 +72,10 @@ class Corpora:
 
         no_extras = no_punc
         for char in self.extra:
-            if char == '—':
-                no_extras = no_extras.translate(str.maketrans('—',' '))
+            if char == '  ':
+                no_extras = no_extras.replace('  ', ' ')
             else:
-                no_extras = no_extras.translate(str.maketrans('','', char))
+                no_extras = no_extras.translate(str.maketrans(char,' '*len(char)))
         
         return no_extras
         
