@@ -48,7 +48,7 @@ class Corpora:
     
     txt: str
     extra: list = field(default_factory=list)
-    stopwords: set = field(default_factory=set)
+    stopwords: set = field(default_factory=lambda: STOPWORDS)
     count: int = 5
     tag: str = '#'
 
@@ -96,9 +96,9 @@ class Corpora:
         
         corpus_cleaned = [word for word in corpus.split() if word not in self.stopwords]
         
-        self.metrics = Counter(corpus_cleaned)
+        counted = Counter(corpus_cleaned)
         
-        return self.metrics.items()
+        return counted.most_common(self.count)
         
         pass
 
@@ -138,14 +138,16 @@ class Corpora:
         
         pass
 
-"""    
-test = Corpora(GETTYSBURG)
+"""   
+test = Corpora(GETTYSBURG, stopwords = STOPWORDS)
 
-print(test.cleaned)
+#print(test.cleaned)
 
 test.extra = [EXTRA_CHAR[0]]
 
-print(test.extra)
+#print(test.extra)
 
-print(test.cleaned)
+#print(test.cleaned)
+
+print(test.metrics)
 """
