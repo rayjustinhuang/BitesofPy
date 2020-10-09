@@ -171,22 +171,9 @@ class Corpora:
         
         metrics = self.metrics
         
-        sorted_metrics = sorted(metrics, key = lambda x: x[1])
+        sorted_metrics = sorted(metrics, key = lambda x: x[1], reverse = True)
         
         for metric in sorted_metrics[:self.count]:
-            print(metric[0].rjust(10), tag*metric[1])
+            print(metric[0].rjust(10), self.tag*metric[1])
         
         pass
-
-  
-#test = Corpora(TAX_SYSTEM_IN_US)
-
-#print(test.cleaned)
-
-#test.extra = ["men", "man"]
-
-#print(test.extra)
-
-#print(test.cleaned)
-
-#print(test.metrics)
