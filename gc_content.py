@@ -6,10 +6,7 @@ def calculate_gc_content(sequence):
     Returns the percentage of GC content (rounded to the last two digits)
     """
     joined = "".join(sequence.lower())
-    
     count = Counter(joined)
-    
-    print(count)
     
     return round((count['g'] + count['c']) / (count['g'] + count['c'] + count['t'] + count['a'])*100,2)
     pass
