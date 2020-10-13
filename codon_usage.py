@@ -58,7 +58,11 @@ def return_codon_usage_table(
             value = pair[1].strip()
         
             formatted_translation_table[key] = value
-        
+    
+    formatted_translation_table['Base1'] = formatted_translation_table['Base1'].replace('T','U')
+    formatted_translation_table['Base2'] = formatted_translation_table['Base2'].replace('T','U')
+    formatted_translation_table['Base3'] = formatted_translation_table['Base3'].replace('T','U')
+    
     print(formatted_translation_table)
     pass
 
