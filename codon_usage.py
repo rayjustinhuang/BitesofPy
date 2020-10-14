@@ -1,5 +1,6 @@
 import os
 from urllib.request import urlretrieve
+import collections
 
 # Translation Table:
 # https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG11
@@ -64,6 +65,8 @@ def return_codon_usage_table(
     formatted_translation_table['Base3'] = formatted_translation_table['Base3'].replace('T','U')
     
     print(formatted_translation_table)
+    
+    codons = collections.namedtuple('Codon', ['name', 'AA', 'freq', 'count'])
     pass
 
 
