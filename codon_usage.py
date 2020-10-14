@@ -66,7 +66,13 @@ def return_codon_usage_table(
     
     print(formatted_translation_table)
     
+    base_len = len("".join(sequences)) - 2
+    
     codons = collections.namedtuple('Codon', ['name', 'AA', 'freq', 'count'])
+    
+    print(base_len)
+    
+    
     pass
 
 
