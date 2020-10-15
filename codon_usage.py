@@ -66,13 +66,22 @@ def return_codon_usage_table(
     
     print(formatted_translation_table)
     
-    base_len = len("".join(sequences)) - 2
+    joined_sequences = "".join(sequences)
     
-    codons = collections.namedtuple('Codon', ['name', 'AA', 'freq', 'count'])
+    base_len = len(joined_sequences) - 2
     
-    print(base_len)
+    codon = collections.namedtuple('Codon', ['name', 'AA', 'freq', 'count'])
     
+    translation_tuples = []
     
+    for i in range(len(formatted_translation_table['AAs'])):
+        name = formatted_translation_table['Base1'][i] + formatted_translation_table['Base2'][i] + formatted_translation_table['Base3'][i]
+        AA = formatted_translation_table['AAs'][i]
+        count = joined_sequences.count(name)
+        freq = count/base_len
+        translation_tuples.append(codon(name, AA, freq, count))
+
+    print(translation_tuples)    
     pass
 
 
