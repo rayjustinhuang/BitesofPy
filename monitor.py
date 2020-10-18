@@ -23,8 +23,12 @@ def timeit():
     
     end = get_today()
     
-    violations += (end - start) % OPERATION_THRESHOLD_IN_SECONDS
+    total_time = (end - start)
     
-    if violations.elements() >= ALERT_THRESHOLD:
+    seconds = total_time.total_seconds()
+    
+    violations = seconds % OPERATION_THRESHOLD_IN_SECONDS
+    
+    if violations >= ALERT_THRESHOLD:
         print(ALERT_MSG)
     pass
