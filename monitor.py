@@ -19,18 +19,22 @@ def get_today():
 def timeit():
     global violations
     start = time.time()
+    start_date = get_today()
     
-    #print(start)
+    print(start)
     
     yield
     
     end = time.time()
+    end_date = get_today()
+    
+    print(end)
     
     total_time = (end - start)
     
-    #print(total_time)
+    print(total_time)
     
-    #seconds = total_time.total_seconds()
+    seconds = total_time.total_seconds()
 
     if total_time >= OPERATION_THRESHOLD_IN_SECONDS:
         violations += 1
