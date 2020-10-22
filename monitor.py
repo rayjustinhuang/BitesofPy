@@ -18,27 +18,22 @@ def get_today():
 @contextmanager
 def timeit():
     global violations
-    start = time.time()
-    start_date = get_today()
-    
-    print(start)
+    start = time()
     
     yield
     
-    end = time.time()
-    end_date = get_today()
-    
-    print(end)
+    end = time()
     
     total_time = (end - start)
-    
-    print(total_time)
-    
-    seconds = total_time.total_seconds()
 
     if total_time >= OPERATION_THRESHOLD_IN_SECONDS:
-        violations += 1
+        today = [get_today()]
+        violations.update(today)
     
-    if len(violations) >= ALERT_THRESHOLD:
+    if sum(violations.values()) >= ALERT_THRESHOLD:
         print(ALERT_MSG)
     pass
+
+#with timeit():
+#    print(abcd)
+#    sleep(2)
