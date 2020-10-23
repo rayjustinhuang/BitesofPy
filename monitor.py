@@ -30,8 +30,9 @@ def timeit():
         today = [get_today()]
         violations.update(today)
     
-    if sum(violations.values()) >= ALERT_THRESHOLD:
-        print(ALERT_MSG)
+    if violations:
+        if violations.most_common(1)[0][1] >= ALERT_THRESHOLD:
+            print(ALERT_MSG)
     pass
 
 #with timeit():
