@@ -26,5 +26,6 @@ def strip_range(start, end):
                 new_string += DOT
             else:
                 new_string += text[i]
-        
+        return new_string
+    return char_replace
     pass
