@@ -20,19 +20,22 @@ def strip_range(start, end):
     """
     def real_decorator(func):
         @wraps(func)
-        def char_replace(*args):
-            print(args)
+        def char_replace(text):
             new_string = ''
-            for i in range(len(args)):
+            for i in range(len(text)):
                 if i >= start and i < 5:
                     new_string += DOT
                 else:
-                    new_string += args[i]
+                    new_string += text[i]
             return new_string
         return char_replace
+    return real_decorator
     pass
 
-text = 'Hello world'
-@strip_range(3, 5)
-def gen_output(text):
-    print(text)
+#text = 'Hello world'
+
+#@strip_range(3, 5)
+#def gen_output(var):
+#    return var
+    
+#print(gen_output(text))
