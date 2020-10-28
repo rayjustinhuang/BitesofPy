@@ -23,7 +23,7 @@ def strip_range(start, end):
         def char_replace(text):
             new_string = ''
             for i in range(len(text)):
-                if i >= start and i < 5:
+                if i >= start and i < end:
                     new_string += DOT
                 else:
                     new_string += text[i]
@@ -31,11 +31,3 @@ def strip_range(start, end):
         return char_replace
     return real_decorator
     pass
-
-#text = 'Hello world'
-
-#@strip_range(3, 5)
-#def gen_output(var):
-#    return var
-    
-#print(gen_output(text))
