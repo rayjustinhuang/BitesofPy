@@ -8,6 +8,9 @@ def cached_property(func):
         if attribute == None:
             return attribute
         value_set = obj.__dict__[self.func.__name__] = self.func(attribute)
+        
+        if attribute != value_set:
+            return AttributeError
         return value_set
     return wrapper
 
