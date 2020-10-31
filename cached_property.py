@@ -8,9 +8,6 @@ def cached_property(func):
         if attribute == None:
             return attribute
         value_set = obj.__dict__[self.func.__name__] = self.func(attribute)
-        
-        if attribute != value_set:
-            return AttributeError
         return value_set
     return wrapper
 
@@ -40,3 +37,10 @@ class Planet:
     #@mass.setter
     #def mass(self, value):
     #    self._mass = value
+    
+blue = Planet('blue')
+masses = [blue.mass for _ in range(10)]
+initial_mass = masses[0]
+print(masses)
+print(initial_mass)
+blue.mass = 11
