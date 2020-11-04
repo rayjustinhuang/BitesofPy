@@ -15,6 +15,10 @@ def get_common_domains(url=COMMON_DOMAINS):
     soup = bs4.BeautifulSoup(req.content, 'html.parser')
     
     print(soup)
+    
+    emails = soup.find_all('src', TARGET_DIV)
+    
+    print(emails)
     pass
 
 
