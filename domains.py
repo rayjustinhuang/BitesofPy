@@ -14,11 +14,13 @@ def get_common_domains(url=COMMON_DOMAINS):
     
     soup = bs4.BeautifulSoup(req.content, 'html.parser')
     
-    print(soup)
+    #print(soup)
     
-    emails = soup.find_all('src', TARGET_DIV)
+    emails = soup.find_all('div', TARGET_DIV)[0].find_all('img')
     
-    print(emails)
+    domain_list = [line.get('src').split('=')[-1] for line in emails]
+    
+    return domain_list
     pass
 
 
@@ -29,5 +31,8 @@ def get_most_common_domains(emails, common_domains=None):
         common_domains = get_common_domains()
 
     # your code
+    given_domains = [item.split('@')[-1] for item in emails]
     
-get_common_domains()
+    result_count = Counter(given_domains)
+    
+    return [i for i in filter(lambda x: x[0] not in common_domains, result_count.items())]
