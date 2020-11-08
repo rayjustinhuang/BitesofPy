@@ -35,4 +35,4 @@ def get_most_common_domains(emails, common_domains=None):
     
     result_count = Counter(given_domains)
     
-    return [i for i in filter(lambda x: x[0] not in common_domains, result_count.items())]
+    return sorted([i for i in filter(lambda x: x[0] not in common_domains, result_count.items())], key = lambda x: x[1], reverse = True)
