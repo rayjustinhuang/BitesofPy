@@ -44,14 +44,19 @@ class BridgeHand:
         #diamonds = [card for card in self.cards if card.suit == 'D']
         #clubs = [card for card in self.cards if card.suit == 'C']
         
-        cards_sorted = sorted(self.cards, key = lambda card: (Suit[card.suit].value, Rank[card.rank].value))
+        cards_sorted = sorted(self.cards, key = lambda card: (card.suit.value, card.rank.value))
         
         output_dict = dict()
         
         for card in cards_sorted:
-            output_dict[card.suit] = ''.join([i for i in cards_sorted if i.suit == card.suit])
+            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        
+        output_string = ""
+        
+        for item in output_dict:
+            output_string += f'{item}:{output_dict[item]} '
             
-        print(output_dict)
+        return output_string.strip()
             
 
     @property
@@ -88,5 +93,24 @@ class BridgeHand:
         """ Return the losing trick count for this hand - see bite description
             for the procedure
         """
-        
-print(Rank['A'].value)
+
+def hand_generator(card_string):
+    """ Generate actual list of Card instances from card_string """
+    card_list = []
+    for suit_holding in card_string.split():
+        suit = Suit[suit_holding[0]]
+        for rank in suit_holding[2:]:
+            card = Card(suit, Rank[rank])
+            card_list.append(card)
+            
+    return card_list
+    
+test_hand = hand_generator("S:AKJ H:QJT9 D:5432 C:AK")
+
+test = BridgeHand(test_hand)
+
+print(str(test))
+
+test_card = test_hand[0]
+
+#print(test_card.suit.name)
