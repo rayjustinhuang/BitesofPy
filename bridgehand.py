@@ -68,6 +68,13 @@ class BridgeHand:
     @property
     def doubletons(self) -> int:
         """ Return the number of doubletons contained in this hand """
+        
+        output_dict = dict()
+        
+        for card in cards_sorted:
+            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        
+        return sum(1 for tons in output_dict.values() if len(tons) == 2)
 
     @property
     def singletons(self) -> int:
