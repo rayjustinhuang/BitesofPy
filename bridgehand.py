@@ -26,6 +26,8 @@ class BridgeHand:
             raise ValueError
         else:
             self.cards = cards
+            
+        #self.deckdict = {}
 
     def __str__(self) -> str:
         """
@@ -79,6 +81,13 @@ class BridgeHand:
     @property
     def singletons(self) -> int:
         """ Return the number of singletons contained in this hand """
+        
+        output_dict = dict()
+        
+        for card in cards_sorted:
+            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        
+        return sum(1 for tons in output_dict.values() if len(tons) == 1)
 
     @property
     def voids(self) -> int:
