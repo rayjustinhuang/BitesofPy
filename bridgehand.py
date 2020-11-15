@@ -94,6 +94,14 @@ class BridgeHand:
         """ Return the number of voids (missing suits) contained in
             this hand
         """
+        
+        output_dict = dict()
+        
+        for card in cards_sorted:
+            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+            
+        return 4-len(output_dict)
+        
 
     @property
     def ssp(self) -> int:
