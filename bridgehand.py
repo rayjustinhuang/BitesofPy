@@ -109,6 +109,20 @@ class BridgeHand:
             Doubletons are worth one point, singletons two points,
             voids 3 points
         """
+        output_dict = dict()
+        
+        for suit in 'SHDC':
+            output_dict[suit] = len([i.rank.name for i in cards_sorted if i.suit.name == suit])
+            
+        ssp_total = 0
+        
+        for value in output_dict.values():
+            if 2 >= value >= 0:
+                ssp_total += SSP[value]
+        
+            
+        return ssp_total
+        
 
     @property
     def total_points(self) -> int:
@@ -140,3 +154,6 @@ print(str(test))
 test_card = test_hand[0]
 
 print(test_card.rank)
+
+#for letter in 'SHDC':
+#    print(letter)
