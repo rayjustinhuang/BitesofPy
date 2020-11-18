@@ -127,12 +127,38 @@ class BridgeHand:
     @property
     def total_points(self) -> int:
         """ Return the total points (hcp and ssp) contained in this hand """
+        
+        return self.hcp + self.ssp
 
     @property
     def ltc(self) -> int:
         """ Return the losing trick count for this hand - see bite description
             for the procedure
         """
+        output_dict = dict()
+        
+        for card in cards_sorted:
+            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        
+        ltc = 0
+        
+        for suit in 'SHDC':
+            check = output_dict[suit][:3]
+            if len(check) == 0:
+                continue
+            elif len(check) == 1:
+                if check == 'A':
+                    continue
+                else:
+                    ltc += 1
+            elif len(check) == 2:
+                if check == 'AK':
+                    continue
+                elif 'A' in check or 'K' in check:
+                    ltc += 1
+                else:
+                    ltc += 2
+                
 
 def hand_generator(card_string):
     """ Generate actual list of Card instances from card_string """
