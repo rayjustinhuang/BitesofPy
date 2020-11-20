@@ -158,19 +158,31 @@ class BridgeHand:
                     ltc += 1
                 else:
                     ltc += 2
-                
+            else:
+                if check == 'AKQ':
+                    continue
+                elif 'AK' in check or 'AQ' in check or 'KQ' in check:
+                    ltc += 1
+                elif 'A' in check or 'K' in check or 'Q' in check:
+                    ltc += 2
+                else:
+                    ltc += 3
+        
+        return ltc
 
-def hand_generator(card_string):
-    """ Generate actual list of Card instances from card_string """
-    card_list = []
-    for suit_holding in card_string.split():
-        suit = Suit[suit_holding[0]]
-        for rank in suit_holding[2:]:
-            card = Card(suit, Rank[rank])
-            card_list.append(card)
-            
-    return card_list
-    
+                
+#def hand_generator(card_string):
+#    """ Generate actual list of Card instances from card_string """
+#    card_list = []
+#    for suit_holding in card_string.split():
+#        suit = Suit[suit_holding[0]]
+#        for rank in suit_holding[2:]:
+#            card = Card(suit, Rank[rank])
+#            card_list.append(card)
+#            
+#    return card_list
+
+"""    
 test_hand = hand_generator("S:AKJ H:QJT9 D:5432 C:AK")
 
 test = BridgeHand(test_hand)
@@ -180,6 +192,6 @@ print(str(test))
 test_card = test_hand[0]
 
 print(test_card.rank)
-
+"""
 #for letter in 'SHDC':
 #    print(letter)
