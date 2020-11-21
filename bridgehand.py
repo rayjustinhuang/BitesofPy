@@ -27,7 +27,12 @@ class BridgeHand:
         else:
             self.cards = cards
             
-        #self.deckdict = {}
+        self.cards_sorted = sorted(self.cards, key = lambda card: (card.suit.value, card.rank.value))
+        
+        self.dict_rep = {}
+        
+        for card in self.cards_sorted:
+            self.dict_rep[card.suit.name] = "".join([i.rank.name for i in self.cards_sorted if i.suit.name == card.suit.name])
 
     def __str__(self) -> str:
         """
@@ -46,17 +51,17 @@ class BridgeHand:
         #diamonds = [card for card in self.cards if card.suit == 'D']
         #clubs = [card for card in self.cards if card.suit == 'C']
         
-        cards_sorted = sorted(self.cards, key = lambda card: (card.suit.value, card.rank.value))
+        #cards_sorted = sorted(self.cards, key = lambda card: (card.suit.value, card.rank.value))
         
-        output_dict = dict()
+        #output_dict = dict()
         
-        for card in cards_sorted:
-            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        #for card in cards_sorted:
+        #    output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
         
         output_string = ""
         
-        for item in output_dict:
-            output_string += f'{item}:{output_dict[item]} '
+        for item in self.dict_rep:
+            output_string += f'{item}:{dict_rep[item]} '
             
         return output_string.strip()
             
@@ -71,23 +76,23 @@ class BridgeHand:
     def doubletons(self) -> int:
         """ Return the number of doubletons contained in this hand """
         
-        output_dict = dict()
+        #output_dict = dict()
         
-        for card in cards_sorted:
-            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        #for card in cards_sorted:
+        #    output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
         
-        return sum(1 for tons in output_dict.values() if len(tons) == 2)
+        return sum(1 for tons in self.dict_rep.values() if len(tons) == 2)
 
     @property
     def singletons(self) -> int:
         """ Return the number of singletons contained in this hand """
         
-        output_dict = dict()
+        #output_dict = dict()
         
-        for card in cards_sorted:
-            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        #for card in cards_sorted:
+        #    output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
         
-        return sum(1 for tons in output_dict.values() if len(tons) == 1)
+        return sum(1 for tons in self.dict_rep.values() if len(tons) == 1)
 
     @property
     def voids(self) -> int:
@@ -95,12 +100,12 @@ class BridgeHand:
             this hand
         """
         
-        output_dict = dict()
+        #output_dict = dict()
         
-        for card in cards_sorted:
-            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        #for card in cards_sorted:
+        #    output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
             
-        return 4-len(output_dict)
+        return 4-len(self.dict_rep)
         
 
     @property
@@ -112,7 +117,7 @@ class BridgeHand:
         output_dict = dict()
         
         for suit in 'SHDC':
-            output_dict[suit] = len([i.rank.name for i in cards_sorted if i.suit.name == suit])
+            output_dict[suit] = len([i.rank.name for i in self.cards_sorted if i.suit.name == suit])
             
         ssp_total = 0
         
@@ -135,15 +140,15 @@ class BridgeHand:
         """ Return the losing trick count for this hand - see bite description
             for the procedure
         """
-        output_dict = dict()
+        #output_dict = dict()
         
-        for card in cards_sorted:
-            output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
+        #for card in cards_sorted:
+        #    output_dict[card.suit.name] = "".join([i.rank.name for i in cards_sorted if i.suit.name == card.suit.name])
         
         ltc = 0
         
         for suit in 'SHDC':
-            check = output_dict[suit][:3]
+            check = self.dict_rep[suit][:3]
             if len(check) == 0:
                 continue
             elif len(check) == 1:
