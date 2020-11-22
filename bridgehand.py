@@ -61,7 +61,7 @@ class BridgeHand:
         output_string = ""
         
         for item in self.dict_rep:
-            output_string += f'{item}:{dict_rep[item]} '
+            output_string += f'{item}:{self.dict_rep[item]} '
             
         return output_string.strip()
             
