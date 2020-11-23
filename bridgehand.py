@@ -70,7 +70,7 @@ class BridgeHand:
     def hcp(self) -> int:
         """ Return the number of high card points contained in this hand """
 
-        return sum(1 for card in self.cards if card.rank in HCP)
+        return sum(HCP[card.rank] for card in self.cards if card.rank in HCP)
 
     @property
     def doubletons(self) -> int:
