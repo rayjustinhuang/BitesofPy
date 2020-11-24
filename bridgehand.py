@@ -148,30 +148,33 @@ class BridgeHand:
         ltc = 0
         
         for suit in 'SHDC':
-            check = self.dict_rep[suit][:3]
-            if len(check) == 0:
+            try:
+                check = self.dict_rep[suit][:3]
+                if len(check) == 0:
+                    continue
+                elif len(check) == 1:
+                    if check == 'A':
+                        continue
+                    else:
+                        ltc += 1
+                elif len(check) == 2:
+                    if check == 'AK':
+                        continue
+                    elif 'A' in check or 'K' in check:
+                        ltc += 1
+                    else:
+                        ltc += 2
+                else:
+                    if check == 'AKQ':
+                        continue
+                    elif 'AK' in check or 'AQ' in check or 'KQ' in check:
+                        ltc += 1
+                    elif 'A' in check or 'K' in check or 'Q' in check:
+                        ltc += 2
+                    else:
+                        ltc += 3
+            except:
                 continue
-            elif len(check) == 1:
-                if check == 'A':
-                    continue
-                else:
-                    ltc += 1
-            elif len(check) == 2:
-                if check == 'AK':
-                    continue
-                elif 'A' in check or 'K' in check:
-                    ltc += 1
-                else:
-                    ltc += 2
-            else:
-                if check == 'AKQ':
-                    continue
-                elif 'AK' in check or 'AQ' in check or 'KQ' in check:
-                    ltc += 1
-                elif 'A' in check or 'K' in check or 'Q' in check:
-                    ltc += 2
-                else:
-                    ltc += 3
         
         return ltc
 
