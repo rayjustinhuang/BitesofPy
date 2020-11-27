@@ -6,6 +6,9 @@ def pascal(N: int) -> List[int]:
     Return the Nth row of Pascal triangle
     """
     # you code ...
+    if N == 0:
+        return []
+    
     triangle_rows = []
     
     for i in range(1, N+1):
@@ -20,9 +23,7 @@ def pascal(N: int) -> List[int]:
             for j in range(1,i-1):
                 add_row[j] = triangle_rows[i-2][j-1] + triangle_rows[i-2][j]
                 
-        #print(add_row)
+        
         triangle_rows.append(add_row)
-    # return row
+    
     return triangle_rows[N-1]
-
-#print(pascal(7))
