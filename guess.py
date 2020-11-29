@@ -12,7 +12,7 @@ class Game:
 
     def __init__(self):
         """Init _guesses, _answer, _win to set(), get_random_number(), False"""
-        self._guesses = field(defaultfactory = set())
+        self._guesses = field(default_factory = lambda: set())
         self._answer = get_random_number()
         self._win = False
         pass
@@ -25,6 +25,18 @@ class Game:
            'Number not in range'
            'Already guessed'
            If all good, return the int"""
+        
+           
+        userinput = input('Please enter a number')
+        
+        if type(userinput) != int:
+            raise ValueError('Should be a number')
+        elif START > userinput or END < userinput:
+            raise ValueError('Number not in range')
+        elif userinput in self._guesses:
+            raise ValueError('Already guessed')
+        else:
+            return userinput
         pass
 
     def _validate_guess(self, guess):
