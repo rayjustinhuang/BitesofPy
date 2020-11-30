@@ -45,6 +45,16 @@ class Game:
            {guess} is too low
            {guess} is too high
            Return a boolean"""
+           
+        if self._answer == guess:
+            print(f'{guess} is correct!')
+            return True
+        elif self._answer < guess:
+            print(f'{guess} is too high')
+            return False
+        else:
+            print(f'{guess} is too low')
+            return False
         pass
 
     def __call__(self):
