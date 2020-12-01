@@ -60,6 +60,15 @@ class Game:
     def __call__(self):
         """Entry point / game loop, use a loop break/continue,
            see the tests for the exact win/lose messaging"""
+        
+        counter = 0
+        
+        while result == False:
+            result = self._validate_guess(guess)
+            counter += 1
+            if counter == 5:
+                print(f'Guessed 5 times, answer was {self._answer}')
+            
         pass
 
 
