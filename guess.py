@@ -1,3 +1,4 @@
+import random
 MAX_GUESSES = 5
 START, END = 1, 20
 
@@ -12,7 +13,7 @@ class Game:
 
     def __init__(self):
         """Init _guesses, _answer, _win to set(), get_random_number(), False"""
-        self._guesses = field(default_factory = lambda: set())
+        self._guesses = set()
         self._answer = get_random_number()
         self._win = False
         pass
@@ -61,9 +62,11 @@ class Game:
         """Entry point / game loop, use a loop break/continue,
            see the tests for the exact win/lose messaging"""
         
-        counter = 0
+        counter, result = 0, False
+        print(f'Guess a number between {START} and {END}:')
         
         while result == False:
+            self.guess()
             result = self._validate_guess(guess)
             counter += 1
             if counter == 5:
