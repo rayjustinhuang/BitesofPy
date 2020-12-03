@@ -30,14 +30,20 @@ class Game:
            
         userinput = input('Please enter a number')
         
-        if type(userinput) != int:
+        try:
+            usernumber = int(userinput)
+            assert type(usernumber) == int
+        except:
             raise ValueError('Should be a number')
-        elif START > userinput or END < userinput:
+        
+        if type(usernumber) != int:
+            raise ValueError('Should be a number')
+        if usernumber < START or usernumber > END:
             raise ValueError('Number not in range')
-        elif userinput in self._guesses:
+        elif usernumber in self._guesses:
             raise ValueError('Already guessed')
         else:
-            return userinput
+            return usernumber
         pass
 
     def _validate_guess(self, guess):
@@ -66,9 +72,11 @@ class Game:
         print(f'Guess a number between {START} and {END}:')
         
         while result == False:
-            self.guess()
+            guess = self.guess()
             result = self._validate_guess(guess)
             counter += 1
+            self._guesses.add(guess)
+            print(self._guesses)
             if counter == 5:
                 print(f'Guessed 5 times, answer was {self._answer}')
             
