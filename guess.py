@@ -27,22 +27,20 @@ class Game:
            'Already guessed'
            If all good, return the int"""
         
-           
-        try:
-            usernumber = int(input('Please enter a number '))
-            print(usernumber)
-            
-            if usernumber < START or usernumber > END:
-                raise ValueError('Number not in range')
-            elif usernumber in self._guesses:
-                raise ValueError('Already guessed')
-            else:
-                pass
-        except ValueError:
-            print('Should be a number')
-        else:
-            return usernumber
-        
+        while True:
+            try:
+                usernumber = int(input('Please enter a number '))
+                
+                if usernumber < START or usernumber > END:
+                    raise ValueError('Number not in range')
+                elif usernumber in self._guesses:
+                    raise ValueError('Already guessed')
+                else:
+                    return usernumber
+            except ValueError:
+                print('Should be a number')
+                continue
+
         pass
 
     def _validate_guess(self, guess):
