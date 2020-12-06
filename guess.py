@@ -27,19 +27,17 @@ class Game:
            'Already guessed'
            If all good, return the int"""
         
-        while True:
-            try:
-                usernumber = int(input('Please enter a number '))
-                
-                if usernumber < START or usernumber > END:
-                    raise ValueError('Number not in range')
-                elif usernumber in self._guesses:
-                    raise ValueError('Already guessed')
-                else:
-                    return usernumber
-            except ValueError:
-                print('Should be a number')
-                continue
+        usernumber = input('Please enter a number ')
+        
+        if type(usernumber) != int:
+            try: usernumber = int(usernumber)
+            except: raise ValueError('Should be a number')
+        elif usernumber < START or usernumber > END:
+            raise ValueError('Number not in range')
+        elif usernumber in self._guesses:
+            raise ValueError('Already guessed')
+        else:
+            return usernumber
 
         pass
 
@@ -66,10 +64,15 @@ class Game:
            see the tests for the exact win/lose messaging"""
         
         counter, result = 0, False
-        print(f'Guess a number between {START} and {END}:')
+        print(f'Guess a number between {START} and {END}: ')
         
         while result == False:
-            guess = self.guess()
+            while True:
+                try:
+                    guess = self.guess()
+                    break
+                except ValueError as err:
+                    print(err)
             result = self._validate_guess(guess)
             counter += 1
             self._guesses.add(guess)
