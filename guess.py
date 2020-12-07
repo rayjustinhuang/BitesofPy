@@ -27,12 +27,16 @@ class Game:
            'Already guessed'
            If all good, return the int"""
         
-        usernumber = input('Please enter a number ')
+        usernumber = input(f'Guess a number between {START} and {END}: ')
         
-        if type(usernumber) != int:
-            try: usernumber = int(usernumber)
-            except: raise ValueError('Should be a number')
-        elif usernumber < START or usernumber > END:
+        try:
+            usernumber = int(usernumber)
+        except:
+            raise ValueError('Should be a number')
+            
+        usernumber = int(usernumber)
+        
+        if usernumber < START or usernumber > END:
             raise ValueError('Number not in range')
         elif usernumber in self._guesses:
             raise ValueError('Already guessed')
@@ -49,13 +53,13 @@ class Game:
            Return a boolean"""
            
         if self._answer == guess:
-            print(f'{guess} is correct!')
+            print(f'{guess} is correct!', end="")
             return True
         elif self._answer < guess:
-            print(f'{guess} is too high')
+            print(f'{guess} is too high', end="")
             return False
         else:
-            print(f'{guess} is too low')
+            print(f'{guess} is too low', end="")
             return False
         pass
 
@@ -64,21 +68,23 @@ class Game:
            see the tests for the exact win/lose messaging"""
         
         counter, result = 0, False
-        print(f'Guess a number between {START} and {END}: ')
         
         while result == False:
+            if counter == 0:
+                print('Please enter a number', end="")
             while True:
                 try:
                     guess = self.guess()
                     break
                 except ValueError as err:
-                    print(err)
+                    print(err, end="")
             result = self._validate_guess(guess)
             counter += 1
             self._guesses.add(guess)
-            print(self._guesses)
+            print()
             if counter == 5:
-                print(f'Guessed 5 times, answer was {self._answer}')
+                print(f'Guessed 5 times, answer was {self._answer}', end="")
+                break
             
         pass
 
