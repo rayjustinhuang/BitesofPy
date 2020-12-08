@@ -29,6 +29,9 @@ class Game:
         
         usernumber = input(f'Guess a number between {START} and {END}: ')
         
+        if usernumber == "":
+            raise ValueError('Please enter a number')
+        
         try:
             usernumber = int(usernumber)
         except:
@@ -70,8 +73,6 @@ class Game:
         counter, result = 0, False
         
         while result == False:
-            if counter == 0:
-                print('Please enter a number', end="")
             while True:
                 try:
                     guess = self.guess()
