@@ -29,7 +29,7 @@ class Game:
         
         usernumber = input(f'Guess a number between {START} and {END}: ')
         
-        if usernumber == "":
+        if usernumber == "" or usernumber == None:
             raise ValueError('Please enter a number')
         
         try:
@@ -56,13 +56,13 @@ class Game:
            Return a boolean"""
            
         if self._answer == guess:
-            print(f'{guess} is correct!', end="")
+            print(f'{guess} is correct!')
             return True
         elif self._answer < guess:
-            print(f'{guess} is too high', end="")
+            print(f'{guess} is too high')
             return False
         else:
-            print(f'{guess} is too low', end="")
+            print(f'{guess} is too low')
             return False
         pass
 
@@ -78,11 +78,10 @@ class Game:
                     guess = self.guess()
                     break
                 except ValueError as err:
-                    print(err, end="")
+                    print(err)
             result = self._validate_guess(guess)
             counter += 1
             self._guesses.add(guess)
-            print()
             if counter == 5:
                 print(f'Guessed 5 times, answer was {self._answer}', end="")
                 break
