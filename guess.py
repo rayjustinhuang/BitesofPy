@@ -57,6 +57,7 @@ class Game:
            
         if self._answer == guess:
             print(f'{guess} is correct!')
+            self._win = True
             return True
         elif self._answer < guess:
             print(f'{guess} is too high')
