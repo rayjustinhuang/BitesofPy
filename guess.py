@@ -71,18 +71,21 @@ class Game:
         """Entry point / game loop, use a loop break/continue,
            see the tests for the exact win/lose messaging"""
         
-        counter, result = 0, False
+        counter = 0
         
-        while result == False:
+        while self._win == False:
             while True:
                 try:
                     guess = self.guess()
+                    self._guesses.add(guess)
                     break
                 except ValueError as err:
                     print(err)
-            result = self._validate_guess(guess)
+
             counter += 1
-            self._guesses.add(guess)
+            self._win = self._validate_guess(guess)
+            
+
             if counter == 5:
                 print(f'Guessed 5 times, answer was {self._answer}', end="")
                 break
