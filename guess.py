@@ -44,6 +44,7 @@ class Game:
         elif usernumber in self._guesses:
             raise ValueError('Already guessed')
         else:
+            self._guesses.add(usernumber)
             return usernumber
 
         pass
@@ -71,13 +72,12 @@ class Game:
         """Entry point / game loop, use a loop break/continue,
            see the tests for the exact win/lose messaging"""
         
-        counter = 0
+        counter, result = 0, False
         
         while self._win == False:
             while True:
                 try:
                     guess = self.guess()
-                    self._guesses.add(guess)
                     break
                 except ValueError as err:
                     print(err)
