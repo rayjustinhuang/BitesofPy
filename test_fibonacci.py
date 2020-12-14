@@ -1,14 +1,12 @@
 from fibonacci import fib
+import pytest
 
 # write one or more pytest functions below, they need to start with test_
-def negative_number(n):
-    assert n > 0
+def test_negative_number():
+    with pytest.raises(ValueError):
+        fib(-1)
     
-def check_result(n):
-    if n == 0:
-        assert n == 0
-    elif n == 1:
-        assert n == 1
-    else:
-        pass
-	#assert
+def test_check_result(n):
+    assert fib(0) == 0
+    assert fib(1) == 1
+    assert fib(11) == 89
