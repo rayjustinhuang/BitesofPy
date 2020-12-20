@@ -16,6 +16,8 @@ def test_check_outofrange():
         list_to_decimal([-3, 5, 9])
     with pytest.raises(ValueError):
         list_to_decimal([11, 1, 2])
+    with pytest.raises(ValueError):
+        list_to_decimal([10, 3, 6])
         
 def test_check_goodexamples():
     assert list_to_decimal([4, 2, 6]) == 426
