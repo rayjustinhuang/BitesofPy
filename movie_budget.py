@@ -30,15 +30,17 @@ def rent_or_stream(
     """
     considered_months = {date.strftime(timeformat.date, '%Y-%m') for timeformat in renting_history}
     
-    result_dict = {key: None for key in considered_months}
+    rentprice_dict = {key: 0 for key in considered_months}
+    result_dict = {key: "stream" for key in considered_months}
     
     for month in considered_months:
         for movie in renting_history:
             if date.strftime(movie.date, '%Y-%m') == month:
-                result_dict[month] += movie.price
-                
-    print(result_dict)
+                rentprice_dict[month] += movie.price
+    
+    for month in result_dict:
+        if rentprice_dict[month] <= streaming_cost_per_month:
+            result_dict[month] = 'rent'
+    
+    return result_dict
     pass
-
-renting_test = [MovieRented('Mad Max Fury Road', 4, date(2020, 12, 1))]
-rent_or_stream(renting_test)
