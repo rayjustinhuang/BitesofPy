@@ -23,7 +23,13 @@ def json_file():
 
 # write your pytest code ...
 def test_serviceIPrange(json_file):
-    print(parse_ipv4_service_ranges(json_file))
+    iplist = parse_ipv4_service_ranges(json_file)
+    assert str(iplist[0]) == (f"13.248.118.0/24 is allocated to the AMAZON "
+                                f"service in the eu-west-1 region")
+
     
-test_serviceIPrange(json_file)
-    
+#def serviceIPrange():
+#    print(json_file())
+#    print(parse_ipv4_service_ranges(json_file()))
+
+#serviceIPrange()    
