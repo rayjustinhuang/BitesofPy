@@ -26,6 +26,12 @@ def test_serviceIPrange(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
     assert str(iplist[0]) == (f"13.248.118.0/24 is allocated to the AMAZON "
                                 f"service in the eu-west-1 region")
+                                
+def test_get_aws_service_range(json_file):
+    iplist = parse_ipv4_service_ranges(json_file)
+    with pytest.raises(ValueError):
+        get_aws_service_range(123456, iplist) 
+    
 
     
 #def serviceIPrange():
