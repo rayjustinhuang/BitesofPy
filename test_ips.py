@@ -27,10 +27,14 @@ def test_serviceIPrange(json_file):
     assert str(iplist[0]) == (f"13.248.118.0/24 is allocated to the AMAZON "
                                 f"service in the eu-west-1 region")
                                 
-def test_get_aws_service_range(json_file):
+def test_error_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
     with pytest.raises(ValueError):
-        get_aws_service_range(123456, iplist) 
+        get_aws_service_range('asdfasdf', iplist)
+
+def test_working_get_aws_service_range(json_file):
+    iplist = parse_ipv4_service_ranges(json_file)
+    assert ServiceIPRange(service='AMAZON', region='us-east-1', cidr=IPv4Network('52.95.245.0/24')) in get_aws_service_range('52.95.245.0/24', iplist)
     
 
     
