@@ -34,7 +34,7 @@ def test_error_get_aws_service_range(json_file):
 
 def test_working_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
-    assert ServiceIPRange(service='AMAZON', region='us-east-1', cidr=IPv4Network('52.95.245.0/24')) in get_aws_service_range('52.95.245.0/24', iplist)
+    assert ServiceIPRange(service='AMAZON', region='us-east-1', cidr=IPv4Network('52.95.245.0/24')) in get_aws_service_range('52.95.245.0', iplist)
     
 
     
