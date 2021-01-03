@@ -26,11 +26,17 @@ def test_serviceIPrange(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
     assert str(iplist[0]) == (f"13.248.118.0/24 is allocated to the AMAZON "
                                 f"service in the eu-west-1 region")
+    assert str(iplist[-1]) == (f"54.250.251.0/24 is allocated to the WORKSPACES_GATEWAYS "
+                                f"service in the ap-northeast-1 region")
                                 
 def test_error_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
+    
     with pytest.raises(ValueError):
-        get_aws_service_range('asdfasdf', iplist)
+        get_aws_service_range('invalid string', iplist)
+    
+    with pytest.raises(ValueError):
+        get_aws_service_range('52.95.245.0/24', iplist)
 
 def test_working_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
