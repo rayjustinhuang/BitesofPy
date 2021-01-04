@@ -28,6 +28,8 @@ def test_serviceIPrange(json_file):
                                 f"service in the eu-west-1 region")
     assert str(iplist[-1]) == (f"54.250.251.0/24 is allocated to the WORKSPACES_GATEWAYS "
                                 f"service in the ap-northeast-1 region")
+    assert str(iplist[1]) == (f"18.208.0.0/13 is allocated to the AMAZON "
+                                f"service in the us-east-1 region")
                                 
 def test_error_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
