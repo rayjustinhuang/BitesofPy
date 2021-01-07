@@ -32,6 +32,7 @@ def test_serviceIPrange(json_file):
                                 f"service in the us-east-1 region")
     assert len(iplist) == 1886
     assert type(iplist[0]) == ServiceIPRange
+    assert iplist[0] == ServiceIPRange(service='AMAZON', region='eu-west-1', cidr=IPv4Network('13.248.118.0/24'))
                                 
 def test_error_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
