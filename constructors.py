@@ -19,3 +19,11 @@ class Domain:
     # next add a __str__ method and write 2 class methods
     # called parse_from_url and parse_from_email to construct domains
     # from an URL and email respectively
+    def __str__(self):
+        return self.name
+    
+    def parse_from_url(self):
+        pass
+    
+    def parse_from_email(self):
+        pass
