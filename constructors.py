@@ -3,6 +3,7 @@ import re
 
 class DomainException(Exception):
     """Raised when an invalid is created."""
+    pass
 
 
 class Domain:
@@ -22,7 +23,13 @@ class Domain:
     def __str__(self):
         return self.name
     
-    def parse_from_url(self):
+    def parse_from_url(self, url):
+        try:
+            re.match(r'(https?:\/\/)([a-zA-Z0-9]+\.[a-z]{2,3})', url)
+        except:
+            raise DomainException
+        _, domain = re.match(r'(https?:\/\/)([a-zA-Z0-9]+\.[a-z]{2,3})', url)
+        self.name = domain
         pass
     
     def parse_from_email(self):
