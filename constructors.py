@@ -23,14 +23,29 @@ class Domain:
     def __str__(self):
         return self.name
     
-    def parse_from_url(self, url):
+    def parse_url(self, url):
         try:
             re.match(r'(https?:\/\/)([a-zA-Z0-9]+\.[a-z]{2,3})', url)
         except:
             raise DomainException
-        _, domain = re.match(r'(https?:\/\/)([a-zA-Z0-9]+\.[a-z]{2,3})', url)
+        _, domain = re.match(r'(https?:\/\/)([a-zA-Z0-9]+\.[a-z]{2,3})', url).groups()
         self.name = domain
+        return None
         pass
     
-    def parse_from_email(self):
+    def parse_email(self, email):
+        try:
+            re.match(r'.+@(.+\.[a-zA-Z]{2,3})', email)
+        except:
+            raise DomainException
+        domain = re.match(r'.+@(.+\.[a-zA-Z]{2,3})', email).groups()[0]
+        self.name = domain
+        return None
         pass
+    
+str(Domain('google.com'))
+domain = Domain.parse_url("http://pybit.es")
+print(str(domain))
+domain2 = Domain.parse_email("julian@pybit.es")
+print(str(domain2))
+type(domain)
