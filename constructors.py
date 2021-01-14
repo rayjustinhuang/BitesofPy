@@ -27,16 +27,16 @@ class Domain:
             raise DomainException
         _, domain = re.match(r'(https?:\/\/)([a-zA-Z0-9]+\.[a-z]{2,3})', name).groups()
         self.name = domain
-        return domain
+        #return domain
         pass
     
     @classmethod
     def parse_email(self, name):
-        if re.match(r'.+@(.+\.[a-zA-Z]{2,3})', name):
+        if re.match(r'.+@(.+\.[a-zA-Z]{2,3})', name) == None:
             raise DomainException
         domain = re.match(r'.+@(.+\.[a-zA-Z]{2,3})', name).groups()[0]
         self.name = domain
-        return domain
+        #return domain
         pass
     
 #str(Domain('google.com'))
