@@ -7,7 +7,8 @@ def cached_property(func):
     def wrapper(attribute):
         if attribute == None:
             return attribute
-        value_set = attribute.__dict__[func.__name__] = func(attribute)
+        #value_set = attribute.__dict__[func.__name__] = func(attribute)
+        value_set = property(lambda s: func(attribute))
         return value_set
     return wrapper
 
@@ -39,9 +40,11 @@ class Planet:
     #    self._mass = value
     
 blue = Planet('blue')
+print(blue)
 print(blue.mass)
 masses = [blue.mass for _ in range(10)]
 initial_mass = masses[0]
 print(masses)
 print(initial_mass)
 blue.mass = 11
+print(masses)
