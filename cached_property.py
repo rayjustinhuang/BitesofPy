@@ -2,15 +2,14 @@ from random import random
 from time import sleep
 
 
-def cached_property(func):
+def cached_property(method):
     """decorator used to cache expensive object attribute lookup"""
-    def wrapper(attribute):
-        if attribute == None:
-            return attribute
-        #value_set = attribute.__dict__[func.__name__] = func(attribute)
-        value_set = property(lambda s: func(attribute))
-        return value_set
-    return wrapper
+    name = f'{method.__name__}'
+    def wrapped(self, *args, **kwargs):
+        if not hasattr(self, name):
+            setattr(self, name, method(self, *args, **kwargs))
+        return getattr(self, name)
+    return property(wrapped)
 
 
 class Planet:
