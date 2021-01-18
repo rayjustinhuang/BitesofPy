@@ -4,7 +4,7 @@ from time import sleep
 
 def cached_property(method):
     """decorator used to cache expensive object attribute lookup"""
-    name = f'{method.__name__}'
+    name = '{}'.format(method.__name__)
     def wrapped(self, *args, **kwargs):
         if not hasattr(self, name):
             setattr(self, name, method(self, *args, **kwargs))
