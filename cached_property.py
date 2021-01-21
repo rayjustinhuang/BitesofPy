@@ -4,11 +4,11 @@ from time import sleep
 
 def cached_property(method):
     """decorator used to cache expensive object attribute lookup"""
-    prop_name = '_{}'.format(method.__name__)
+    name = f'_{method.__name__}'
     def wrapped(self, *args):
         if method.__get__ == None:
-            setattr(self, prop_name, method(self, *args))
-        return getattr(self, prop_name)
+            setattr(self, name, method(self, *args))
+        return getattr(self, name)
     return property(wrapped)
 
 
