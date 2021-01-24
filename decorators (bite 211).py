@@ -13,15 +13,17 @@ def retry(func):
     @wraps(func)
     # ... retry MAX_RETRIES times
     def looper():
-    for i in range(MAX_RETRIES):
+        for i in range(MAX_RETRIES):
     # make sure you include this for testing:
-        try:
-            func
-        except Exception as exc:
-            print exc
+            try:
+                func
+            except Exception as exc:
+                print(exc)
+            return func
     # except Exception as exc:
     #     print(exc)
     # ...
     # and use wraps to preserve docstring
     #
+    return looper
     pass
