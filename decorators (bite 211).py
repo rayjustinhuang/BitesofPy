@@ -12,14 +12,14 @@ def retry(func):
        you print the exception thrown"""
     @wraps(func)
     # ... retry MAX_RETRIES times
-    def looper():
+    def looper(*args, **kwargs):
         for i in range(MAX_RETRIES):
     # make sure you include this for testing:
             try:
-                func
+                func(*args, **kwargs)
             except Exception as exc:
                 print(exc)
-            return func
+            return func(*args, **kwargs)
     # except Exception as exc:
     #     print(exc)
     # ...
