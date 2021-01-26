@@ -17,9 +17,10 @@ def retry(func):
     # make sure you include this for testing:
             try:
                 func(*args, **kwargs)
+                return func(*args, **kwargs)
             except Exception as exc:
                 print(exc)
-            return func(*args, **kwargs)
+        raise MaxRetriesException
     # except Exception as exc:
     #     print(exc)
     # ...
