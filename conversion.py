@@ -9,9 +9,10 @@ def dec_to_base(number, base):
     
     if quotient < base:
         new_number += str(quotient)
-        return int(new_number)
     else:
         quotient = number % base
         new_number += str(quotient)
         dec_to_base(quotient, base)
+        
+    return int(new_number)
     # return n
