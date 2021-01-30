@@ -6,13 +6,16 @@ def dec_to_base(number, base):
     """
     # your code
     new_number = ""
+    quotient = number % base
     
     if quotient < base:
         new_number += str(quotient)
     else:
-        quotient = number % base
         new_number += str(quotient)
         dec_to_base(quotient, base)
         
     return int(new_number)
     # return n
+    
+
+#dec_to_base(256, 8)
