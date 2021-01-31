@@ -5,17 +5,8 @@ def dec_to_base(number, base):
     Output: the converted number in the new base without the prefix (eg. '0b')
     """
     # your code
-    new_number = ""
-    quotient = number % base
-    
-    if quotient < base:
-        new_number += str(quotient)
+    if number == 0:
+        return 0
     else:
-        new_number += str(quotient)
-        dec_to_base(quotient, base)
-        
-    return int(new_number)
-    # return n
-    
-
-#dec_to_base(256, 8)
+        quotient = number % base
+        return quotient + 10*dec_to_base(number//base, base)
