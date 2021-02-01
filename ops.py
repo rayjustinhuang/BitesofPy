@@ -16,16 +16,12 @@ def num_ops(n):
     [Hint] the data structure is the key to solve it efficiently.
     """
     # you code
-    ops_num = 0
-    target = 1
-    start = n
+    start = 1
     
     if math.log2(n).is_integer():
-        ops_num = math.log2(n)
-        return ops_num
+        return math.log2(n)
     
     else:
-        
         queue = deque([1])
 
         while queue[-1] != n:
@@ -38,5 +34,6 @@ def num_ops(n):
             
     return ops_num
     
-    
-print(num_ops(10))
+
+print(num_ops(8))    
+#print(num_ops(15))
