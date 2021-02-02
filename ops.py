@@ -19,13 +19,14 @@ def num_ops(n):
     start = 1
     
     if math.log2(n).is_integer():
-        return math.log2(n)
+        return int(math.log2(n))
     
     else:
         queue = deque([1])
 
         while queue[-1] != n:
-            if queue[-1] < n:
+            print(queue[-1])
+            if queue[-1] < n and queue[-1]*2 not in queue:
                 queue.append(queue[-1]*2)
             else:
                 queue.append(queue[-1]//3)
@@ -35,5 +36,6 @@ def num_ops(n):
     return ops_num
     
 
-print(num_ops(8))    
-#print(num_ops(15))
+#print(num_ops(8))    
+#print(num_ops(10))
+print(num_ops(12))
