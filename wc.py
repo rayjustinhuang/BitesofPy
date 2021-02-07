@@ -7,7 +7,7 @@ def wc(file_):
         text = f.read()
         filename = f.name
         lines = len(text.splitlines())
-        words = len(text.split(' '))
+        words = len(text.replace('\n', ' ').strip().split(' '))
         chars = len(text)
         
     #print(lines, words, chars)
