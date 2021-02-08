@@ -3,14 +3,14 @@ def wc(file_):
        lines/words/chars, and returns a string of these numbers + file, e.g.:
        3 12 60 /tmp/somefile
        (both tabs and spaces are allowed as separator)"""
+    
     with open(file_) as f:
         text = f.read()
         filename = f.name
-        lines = len(text.splitlines())
-        words = len(text.replace('\n', ' ').strip().split(' '))
-        chars = len(text)
         
-    #print(lines, words, chars)
+        lines = len(text.splitlines())
+        words = len([word for word in text.replace('\n', ' ').strip().split(' ') if word != ''])
+        chars = len(text)
         
     return f'{lines}\t{words}\t{chars}\t{filename}'
     pass
