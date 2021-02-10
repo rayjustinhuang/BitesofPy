@@ -6,11 +6,11 @@ def tail(filepath, n):
         text = f.read()
         lines = text.splitlines()
         max_n = len(lines)
+        
+        print(lines)
     
-    if n == 1:
-        return lines[-1]
-    elif n > max_n:
+    if n > max_n:
         return lines
     else:
-        return lines[-n]
+        return lines[max_n-n:]
     pass
