@@ -44,6 +44,15 @@ def test_error_get_aws_service_range(json_file):
     
     with pytest.raises(ValueError):
         get_aws_service_range('52.95.245.0/24', iplist)
+        
+    with pytest.raises(ValueError):
+        get_aws_service_range('12345678', iplist)
+        
+    with pytest.raises(ValueError):
+        get_aws_service_range(None, iplist)
+        
+    with pytest.raises(ValueError):
+        get_aws_service_range(' ', iplist)
 
 def test_working_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
