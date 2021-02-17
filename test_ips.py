@@ -55,8 +55,23 @@ def test_error_get_aws_service_range(json_file):
     with pytest.raises(ValueError):
         get_aws_service_range(' ', iplist)
         
+    with pytest.raises(ValueError):
+        get_aws_service_range('', iplist)
+        
+    with pytest.raises(ValueError):
+        get_aws_service_range('////////', iplist)
+        
 
 def test_working_get_aws_service_range(json_file):
     iplist = parse_ipv4_service_ranges(json_file)
     assert ServiceIPRange(service='AMAZON', region='us-east-1', cidr=IPv4Network('52.95.245.0/24')) in get_aws_service_range('52.95.245.0', iplist)
     assert ServiceIPRange(service='WORKSPACES_GATEWAYS', region = 'ap-northeast-1', cidr=IPv4Network('54.250.251.0/24')) in get_aws_service_range('54.250.251.0', iplist)
+    
+
+    
+#def serviceIPrange():
+#    print(json_file())
+#    print(parse_ipv4_service_ranges(json_file()))
+#    print(len(parse_ipv4_service_ranges(json_file())))
+
+#serviceIPrange()    
