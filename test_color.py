@@ -11,8 +11,6 @@ def gen():
 
 
 def test_gen_hex_color(gen):
-    with patch('random.sample') as random_sample_mock:
-        random_sample_mock.return_value = 117, 156, 138
-        
-        assert next(gen) == '#759C8A'
+    with patch('random.sample', return_value = 1):
+        assert next(gen) == '#010101'
     pass
