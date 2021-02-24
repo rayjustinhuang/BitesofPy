@@ -9,8 +9,11 @@ import color
 def gen():
     return color.gen_hex_color()
 
+test_colors = [(117, 156, 138, '#759C8A')]
 
-def test_gen_hex_color(gen):
-    with patch('random.sample', return_value = 1):
-        assert next(gen) == '#010101'
+@pytest.mark.parametrize('red, blue, green, expected', test_colors)
+@patch('color.sample')
+def test_gen_hex_color(gen, red, blue, green, expected, mock_sample):
+    mock_sample.return_value = red, blue, green
+    assert next(gen) == expected
     pass
