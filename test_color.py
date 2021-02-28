@@ -24,12 +24,11 @@ def mock_sample(sample_space, n):
 
 
 #@pytest.mark.parametrize('red, blue, green, expected', test_colors)
-#@patch('color.sample', mock_sample)
+@patch('color.sample', mock_sample)
 def test_gen_hex_color(mock_sample, gen):
-    with patch('color.sample', mock_sample) as mock_sample:
-        mock_sample.assert_called_with(range(0, 256), 3)
-        mock_sample.return_value = red, blue, green
-        assert next(gen) == '#759C8A'
+    mock_sample.return_value = red, blue, green
+    assert next(gen) == '#759C8A'
+    mock_sample.assert_called_with(range(0, 256), 3)
     pass
 
                 
