@@ -1,4 +1,5 @@
 import pandas as pd
+import string
 
 
 def series_simple_math(
@@ -121,7 +122,7 @@ def create_series_mask(ser: pd.Series, mask: list) -> pd.core.series.Series:
     """
     alphabet = list(string.ascii_lowercase)
     result_mask = [True if i in mask else False for i in alphabet]
-    return ser[result_mask]
+    return result_mask
     pass
 
 
