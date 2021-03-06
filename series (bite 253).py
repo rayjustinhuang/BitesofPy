@@ -154,7 +154,8 @@ def custom_series_function(ser: pd.Series,
     third_quar = summary_values['75%']
     maximum = summary_values['max']
     
-    boolean_mask = any((minimum - within <= ser <= minimum + within), (first_quar - within <= ser <= first_quar + within), (median - within <= ser <= median + within), (third_quar - within <= ser <= third_quar + within), (maximum - within <= ser <= maximum + within))
+    boolean_mask = [any((minimum - within <= i <= minimum + within), (first_quar - within <= i <= first_quar + within), (median - within <= i <= median + within), (third_quar - within <= i <= third_quar + within), (maximum - within <= i <= maximum + within)) for i in ser]
     
-    return ser[boolean_mask]
+    
+    return boolean_mask
     pass
