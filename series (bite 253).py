@@ -147,15 +147,26 @@ def custom_series_function(ser: pd.Series,
     :param ser: Series to perform operation on
     :param within: The value to calculate the range of number within
     """
-    summary_values = ser.describe()
-    minimum = summary_values['min']
-    first_quar = summary_values['25%']
-    median = summary_values['50%']
-    third_quar = summary_values['75%']
-    maximum = summary_values['max']
+    summary_values = ser.quantile([0, 0.25, 0.5, 0.75, 1])
+    
+    minimum = summary_values[0.00]
+    first_quar = summary_values[0.25]
+    median = summary_values[0.50]
+    third_quar = summary_values[0.75]
+    maximum = summary_values[1.00]
     
     boolean_mask = [any((minimum - within <= i <= minimum + within), (first_quar - within <= i <= first_quar + within), (median - within <= i <= median + within), (third_quar - within <= i <= third_quar + within), (maximum - within <= i <= maximum + within)) for i in ser]
     
     
     return boolean_mask
     pass
+
+file_name = "https://bites-data.s3.us-east-2.amazonaws.com/iris.csv"
+df = pd.read_csv(file_name)
+def sepal_length_series():
+    """Returns the Sepal Length Series from the Iris DataFrame"""
+    return df.sepal_length.sort_values().reset_index(drop=True)
+    
+#print(sepal_length_series())
+
+print(custom_series_function(sepal_length_series(), 0.1))
