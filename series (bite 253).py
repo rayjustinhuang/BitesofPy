@@ -155,7 +155,7 @@ def custom_series_function(ser: pd.Series,
     third_quar = summary_values[0.75]
     maximum = summary_values[1.00]
     
-    boolean_mask = [any((minimum - within <= i <= minimum + within), (first_quar - within <= i <= first_quar + within), (median - within <= i <= median + within), (third_quar - within <= i <= third_quar + within), (maximum - within <= i <= maximum + within)) for i in ser]
+    boolean_mask = [any([(minimum - within <= i <= minimum + within), (first_quar - within <= i <= first_quar + within), (median - within <= i <= median + within), (third_quar - within <= i <= third_quar + within), (maximum - within <= i <= maximum + within)]) for i in ser]
     
     
     return boolean_mask
