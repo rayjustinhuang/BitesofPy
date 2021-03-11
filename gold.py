@@ -33,6 +33,9 @@ def years_gold_value_decreased(gold_prices: str = gold_prices) -> (int, int):
         prices.append(float(prc))
     
     data = pd.DataFrame({'Years': years, 'Prices': prices})
+    
+    data['Last Year Prices'] = data['Prices'].shift(1)
+    
     print(data)
     pass
 
