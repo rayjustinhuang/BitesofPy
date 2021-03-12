@@ -36,7 +36,12 @@ def years_gold_value_decreased(gold_prices: str = gold_prices) -> (int, int):
     
     data['Last Year Prices'] = data['Prices'].shift(1)
     
-    print(data)
+    data['Delta'] = data['Prices'] - data['Last Year Prices']
+    
+    max_year = data.loc[data['Delta'] == data['Delta'].max(), 'Years']
+    min_year = data.loc[data['Delta'] == data['Delta'].min(), 'Years']
+    
+    return (min_year, max_year)
     pass
 
-years_gold_value_decreased()
+print(years_gold_value_decreased())
