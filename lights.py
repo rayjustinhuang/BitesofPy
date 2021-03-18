@@ -115,7 +115,7 @@ class LightsGrid:
         # First extract the slice of the grid into a new dataframe
         sub_df = df.iloc[x1:x2, y1:y2]
 
-        # Now create a mask of all lights == 0 in the slice
+        # Now create a mask of all relevant lights in the slice
         mask_off = sub_df < 5
 
         # # Now turn on all lights that are off
@@ -134,6 +134,22 @@ class LightsGrid:
 
         For each light in the grid slice given turn the light down
           by the given amount. Don't turn a light down past 0"""
+        # Process grid coordinates
+        grid_coords = process_grid_coordinates(s1, s2)
+        
+        x1, y1, x2, y2 = grid_coords
+
+        # First extract the slice of the grid into a new dataframe
+        sub_df = df.iloc[x1:x2, y1:y2]
+
+        # Now create a mask of all relevant lights in the slice
+        mask_off = sub_df > 5
+
+        # # Now turn down all lights that are on
+        sub_df[mask_off] -= 1
+
+        # Finally overwrite the grid with the new values
+        df.iloc[x1:x2, y1:y2] = sub_df
         pass
 
     def toggle(self, s1: str, s2: str):
