@@ -163,15 +163,24 @@ class LightsGrid:
           - If the light is off, turn it on at intensity 3
         """
         # Process grid coordinates
-
+        grid_coords = process_grid_coordinates(s1, s2)
+        
+        x1, y1, x2, y2 = grid_coords
+        
         # First extract the slice of the grid into a new dataframe
-
+        sub_df = df.iloc[x1:x2, y1:y2]
+        
         # Now create a mask of all lights > 0 in the slice
-
+        mask_on = sub_df > 0
+        
         # Now turn off all lights that are on in the slice
+        sub_df[mask_on] = 0
+        
         # Set all lights that are off to 3 in the slice
+        sub_df[-mask_on] = 3
 
         # Finally overwrite the grid with the new values
+        df.iloc[x1:x2, y1:y2] = sub_df
 
     def follow_instructions(self):
         """Function to process all instructions.
