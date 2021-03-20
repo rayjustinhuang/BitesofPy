@@ -87,10 +87,10 @@ class LightsGrid:
         sub_df = df.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all lights == 0 in the slice
-        mask_off = sub_df > 0
+        mask_on = sub_df > 0
 
         # # Now turn on all lights that are off
-        sub_df[mask_off] = 0
+        sub_df[mask_on] = 0
 
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
@@ -116,10 +116,10 @@ class LightsGrid:
         sub_df = df.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all relevant lights in the slice
-        mask_off = sub_df < 5
+        mask_on = sub_df < 5
 
         # # Now turn on all lights that are off
-        sub_df[mask_off] += 1
+        sub_df[mask_on] += 1
 
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
@@ -143,10 +143,10 @@ class LightsGrid:
         sub_df = df.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all relevant lights in the slice
-        mask_off = sub_df > 5
+        mask_on = sub_df > 5
 
         # # Now turn down all lights that are on
-        sub_df[mask_off] -= 1
+        sub_df[mask_on] -= 1
 
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
@@ -188,6 +188,14 @@ class LightsGrid:
         Each instruction should be processed in sequence,
           excluding the first instruction of course.
         """
+        for line in instructions[1:]:
+            words = line.split()
+            numbers = [chunk for chunk in line.split() if ',' in chunk]
+            s1, s2 = numbers
+            
+            if words[0] == 'toggle':
+                toggle(s1, s2)
+            elif 
         pass
 
     @property
