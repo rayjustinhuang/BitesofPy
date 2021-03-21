@@ -195,7 +195,14 @@ class LightsGrid:
             
             if words[0] == 'toggle':
                 toggle(s1, s2)
-            elif 
+            elif words[0] == 'turn':
+                if words[1] == 'off':
+                    turn_off(s1,s2)
+                elif words[1] == 'on':
+                    turn_on(s1,s2)
+                elif words[1] == 'down':
+                    turn_down(word[2], s1, s2)
+            
         pass
 
     @property
