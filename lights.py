@@ -195,13 +195,15 @@ class LightsGrid:
             
             if words[0] == 'toggle':
                 toggle(s1, s2)
-            elif words[0] == 'turn':
+            else:
                 if words[1] == 'off':
                     turn_off(s1,s2)
                 elif words[1] == 'on':
                     turn_on(s1,s2)
                 elif words[1] == 'down':
                     turn_down(word[2], s1, s2)
+                else:
+                    turn_up(word[2], s1, s2)
             
         pass
 
