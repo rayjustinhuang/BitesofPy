@@ -22,12 +22,12 @@ class LightsGrid:
         Suggested return are 4 integers representing x1, x2, y1, y2 [hint]"""
         output_list = []
         
-        for char in s1:
-            if char.is_digit():
+        for char in s1.split(','):
+            if char.isdigit():
                 output_list.append(char)
         
-        for char in s2:
-            if char.is_digit():
+        for char in s2.split(','):
+            if char.isdigit():
                 output_list.append(char)
                 
         return output_list
@@ -54,7 +54,8 @@ class LightsGrid:
           - If the light is off, turn it on at intensity 1
         """
         # Process grid coordinates
-        grid_coords = process_grid_coordinates(s1, s2)
+        grid_coords = self.process_grid_coordinates(s1, s2)
+        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
@@ -69,6 +70,8 @@ class LightsGrid:
 
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
+        
+        return df
 
     def turn_off(self, s1: str, s2: str):
         """The turn_off function takes 2 parameters:
@@ -79,7 +82,8 @@ class LightsGrid:
         Turn off all lights in the grid slice given."""
         
         # Process grid coordinates
-        grid_coords = process_grid_coordinates(s1, s2)
+        grid_coords = self.process_grid_coordinates(s1, s2)
+        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
@@ -95,6 +99,7 @@ class LightsGrid:
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
         
+        return df
         pass
 
     def turn_up(self, amount: int, s1: str, s2: str):
@@ -108,7 +113,8 @@ class LightsGrid:
           by the given amount. Don't turn a light up past 5"""
           
         # Process grid coordinates
-        grid_coords = process_grid_coordinates(s1, s2)
+        grid_coords = self.process_grid_coordinates(s1, s2)
+        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
@@ -123,6 +129,8 @@ class LightsGrid:
 
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
+        
+        return df
         pass
 
     def turn_down(self, amount: int, s1: str, s2: str):
@@ -135,7 +143,8 @@ class LightsGrid:
         For each light in the grid slice given turn the light down
           by the given amount. Don't turn a light down past 0"""
         # Process grid coordinates
-        grid_coords = process_grid_coordinates(s1, s2)
+        grid_coords = self.process_grid_coordinates(s1, s2)
+        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
@@ -150,6 +159,8 @@ class LightsGrid:
 
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
+        
+        return df
         pass
 
     def toggle(self, s1: str, s2: str):
@@ -164,6 +175,7 @@ class LightsGrid:
         """
         # Process grid coordinates
         grid_coords = process_grid_coordinates(s1, s2)
+        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
         
@@ -181,6 +193,8 @@ class LightsGrid:
 
         # Finally overwrite the grid with the new values
         df.iloc[x1:x2, y1:y2] = sub_df
+        
+        return df
 
     def follow_instructions(self):
         """Function to process all instructions.
@@ -194,16 +208,16 @@ class LightsGrid:
             s1, s2 = numbers
             
             if words[0] == 'toggle':
-                toggle(s1, s2)
+                self.toggle(s1, s2)
             else:
                 if words[1] == 'off':
-                    turn_off(s1,s2)
+                    self.turn_off(s1,s2)
                 elif words[1] == 'on':
-                    turn_on(s1,s2)
+                    self.turn_on(s1,s2)
                 elif words[1] == 'down':
-                    turn_down(word[2], s1, s2)
+                    self.turn_down(word[2], s1, s2)
                 else:
-                    turn_up(word[2], s1, s2)
+                    self.turn_up(word[2], s1, s2)
             
         pass
 
