@@ -55,12 +55,11 @@ class LightsGrid:
         """
         # Process grid coordinates
         grid_coords = self.process_grid_coordinates(s1, s2)
-        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
         # First extract the slice of the grid into a new dataframe
-        sub_df = df.iloc[x1:x2, y1:y2]
+        sub_df = self.grid.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all lights == 0 in the slice
         mask_off = sub_df == 0
@@ -69,9 +68,9 @@ class LightsGrid:
         sub_df[mask_off] = 1
 
         # Finally overwrite the grid with the new values
-        df.iloc[x1:x2, y1:y2] = sub_df
+        self.grid.iloc[x1:x2, y1:y2] = sub_df
         
-        return df
+        return self.grid
 
     def turn_off(self, s1: str, s2: str):
         """The turn_off function takes 2 parameters:
@@ -83,12 +82,11 @@ class LightsGrid:
         
         # Process grid coordinates
         grid_coords = self.process_grid_coordinates(s1, s2)
-        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
         # First extract the slice of the grid into a new dataframe
-        sub_df = df.iloc[x1:x2, y1:y2]
+        sub_df = self.grid.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all lights == 0 in the slice
         mask_on = sub_df > 0
@@ -97,9 +95,9 @@ class LightsGrid:
         sub_df[mask_on] = 0
 
         # Finally overwrite the grid with the new values
-        df.iloc[x1:x2, y1:y2] = sub_df
+        self.grid.iloc[x1:x2, y1:y2] = sub_df
         
-        return df
+        return self.grid
         pass
 
     def turn_up(self, amount: int, s1: str, s2: str):
@@ -114,12 +112,11 @@ class LightsGrid:
           
         # Process grid coordinates
         grid_coords = self.process_grid_coordinates(s1, s2)
-        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
         # First extract the slice of the grid into a new dataframe
-        sub_df = df.iloc[x1:x2, y1:y2]
+        sub_df = self.grid.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all relevant lights in the slice
         mask_on = sub_df < 5
@@ -128,9 +125,9 @@ class LightsGrid:
         sub_df[mask_on] += 1
 
         # Finally overwrite the grid with the new values
-        df.iloc[x1:x2, y1:y2] = sub_df
+        self.grid.iloc[x1:x2, y1:y2] = sub_df
         
-        return df
+        return self.grid
         pass
 
     def turn_down(self, amount: int, s1: str, s2: str):
@@ -144,12 +141,11 @@ class LightsGrid:
           by the given amount. Don't turn a light down past 0"""
         # Process grid coordinates
         grid_coords = self.process_grid_coordinates(s1, s2)
-        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
 
         # First extract the slice of the grid into a new dataframe
-        sub_df = df.iloc[x1:x2, y1:y2]
+        sub_df = self.grid.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all relevant lights in the slice
         mask_on = sub_df > 5
@@ -158,9 +154,9 @@ class LightsGrid:
         sub_df[mask_on] -= 1
 
         # Finally overwrite the grid with the new values
-        df.iloc[x1:x2, y1:y2] = sub_df
+        self.grid.iloc[x1:x2, y1:y2] = sub_df
         
-        return df
+        return self.grid
         pass
 
     def toggle(self, s1: str, s2: str):
@@ -175,12 +171,11 @@ class LightsGrid:
         """
         # Process grid coordinates
         grid_coords = process_grid_coordinates(s1, s2)
-        df = self.grid
         
         x1, y1, x2, y2 = grid_coords
         
         # First extract the slice of the grid into a new dataframe
-        sub_df = df.iloc[x1:x2, y1:y2]
+        sub_df = self.grid.iloc[x1:x2, y1:y2]
         
         # Now create a mask of all lights > 0 in the slice
         mask_on = sub_df > 0
@@ -192,9 +187,9 @@ class LightsGrid:
         sub_df[-mask_on] = 3
 
         # Finally overwrite the grid with the new values
-        df.iloc[x1:x2, y1:y2] = sub_df
+        self.grid.iloc[x1:x2, y1:y2] = sub_df
         
-        return df
+        return self.grid
 
     def follow_instructions(self):
         """Function to process all instructions.
