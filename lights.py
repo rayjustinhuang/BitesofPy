@@ -24,11 +24,11 @@ class LightsGrid:
         
         for char in s1.split(','):
             if char.isdigit():
-                output_list.append(char)
+                output_list.append(int(char))
         
         for char in s2.split(','):
             if char.isdigit():
-                output_list.append(char)
+                output_list.append(int(char))
                 
         return output_list
         pass
@@ -170,7 +170,7 @@ class LightsGrid:
           - If the light is off, turn it on at intensity 3
         """
         # Process grid coordinates
-        grid_coords = process_grid_coordinates(s1, s2)
+        grid_coords = self.process_grid_coordinates(s1, s2)
         
         x1, y1, x2, y2 = grid_coords
         
@@ -210,9 +210,9 @@ class LightsGrid:
                 elif words[1] == 'on':
                     self.turn_on(s1,s2)
                 elif words[1] == 'down':
-                    self.turn_down(word[2], s1, s2)
+                    self.turn_down(words[2], s1, s2)
                 else:
-                    self.turn_up(word[2], s1, s2)
+                    self.turn_up(words[2], s1, s2)
             
         pass
 
