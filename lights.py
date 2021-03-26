@@ -39,7 +39,7 @@ class LightsGrid:
           - no lights are less than 0"""
         for i in range(self.grid_size):
             for j in range(self.grid_size):
-                assert self.grid.iloc[i,j] > 0
+                assert self.grid.iloc[i,j] >= 0
                 assert self.grid.iloc[i,j] <= 5
         pass
 
@@ -57,6 +57,8 @@ class LightsGrid:
         grid_coords = self.process_grid_coordinates(s1, s2)
         
         x1, y1, x2, y2 = grid_coords
+        x2 += 1
+        y2 += 1
 
         # First extract the slice of the grid into a new dataframe
         sub_df = self.grid.iloc[x1:x2, y1:y2]
@@ -84,6 +86,8 @@ class LightsGrid:
         grid_coords = self.process_grid_coordinates(s1, s2)
         
         x1, y1, x2, y2 = grid_coords
+        x2 += 1
+        y2 += 1
 
         # First extract the slice of the grid into a new dataframe
         sub_df = self.grid.iloc[x1:x2, y1:y2]
@@ -114,6 +118,8 @@ class LightsGrid:
         grid_coords = self.process_grid_coordinates(s1, s2)
         
         x1, y1, x2, y2 = grid_coords
+        x2 += 1
+        y2 += 1
 
         # First extract the slice of the grid into a new dataframe
         sub_df = self.grid.iloc[x1:x2, y1:y2]
@@ -143,6 +149,8 @@ class LightsGrid:
         grid_coords = self.process_grid_coordinates(s1, s2)
         
         x1, y1, x2, y2 = grid_coords
+        x2 += 1
+        y2 += 1
 
         # First extract the slice of the grid into a new dataframe
         sub_df = self.grid.iloc[x1:x2, y1:y2]
@@ -173,6 +181,8 @@ class LightsGrid:
         grid_coords = self.process_grid_coordinates(s1, s2)
         
         x1, y1, x2, y2 = grid_coords
+        x2 += 1
+        y2 += 1
         
         # First extract the slice of the grid into a new dataframe
         sub_df = self.grid.iloc[x1:x2, y1:y2]
@@ -184,7 +194,7 @@ class LightsGrid:
         sub_df[mask_on] = 0
         
         # Set all lights that are off to 3 in the slice
-        sub_df[-mask_on] = 3
+        sub_df[~mask_on] = 3
 
         # Finally overwrite the grid with the new values
         self.grid.iloc[x1:x2, y1:y2] = sub_df
@@ -274,6 +284,11 @@ if __name__ == "__main__":
     turn up 3 99,93 through 99,95
     turn on 80,22 through 86,72
     turn off 3,72 through 68,75"""
+    
+    #instructions = """create grid of length 10
+                #turn on 0,0 through 9,9"""
+                #turn off 0,0 through 4,4
+                #turn on 0,0 through 9,9"""
 
     # Create a list of all the instructions
     instructions = [line.strip() for line in instructions.splitlines()]
