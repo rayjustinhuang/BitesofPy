@@ -207,7 +207,7 @@ class LightsGrid:
         Each instruction should be processed in sequence,
           excluding the first instruction of course.
         """
-        for line in instructions[1:]:
+        for line in self.instructions[1:]:
             words = line.split()
             numbers = [chunk for chunk in line.split() if ',' in chunk]
             s1, s2 = numbers
@@ -285,10 +285,10 @@ if __name__ == "__main__":
     turn on 80,22 through 86,72
     turn off 3,72 through 68,75"""
     
-    #instructions = """create grid of length 10
-                #turn on 0,0 through 9,9"""
-                #turn off 0,0 through 4,4
-                #turn on 0,0 through 9,9"""
+    instructions2 = """create grid of length 10
+                turn on 0,0 through 9,9
+                turn off 0,0 through 4,4
+                toggle 3,3 through 6,6"""
 
     # Create a list of all the instructions
     instructions = [line.strip() for line in instructions.splitlines()]
