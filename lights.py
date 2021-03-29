@@ -128,7 +128,7 @@ class LightsGrid:
         mask_on = sub_df < 5
 
         # # Now turn on all lights that are off
-        sub_df[mask_on] += 1
+        sub_df[mask_on] += amount
 
         # Finally overwrite the grid with the new values
         self.grid.iloc[x1:x2, y1:y2] = sub_df
@@ -159,7 +159,7 @@ class LightsGrid:
         mask_on = sub_df > 5
 
         # # Now turn down all lights that are on
-        sub_df[mask_on] -= 1
+        sub_df[mask_on] -= amount
 
         # Finally overwrite the grid with the new values
         self.grid.iloc[x1:x2, y1:y2] = sub_df
@@ -220,9 +220,9 @@ class LightsGrid:
                 elif words[1] == 'on':
                     self.turn_on(s1,s2)
                 elif words[1] == 'down':
-                    self.turn_down(words[2], s1, s2)
+                    self.turn_down(int(words[2]), s1, s2)
                 else:
-                    self.turn_up(words[2], s1, s2)
+                    self.turn_up(int(words[2]), s1, s2)
             
         pass
 
@@ -285,10 +285,15 @@ if __name__ == "__main__":
     turn on 80,22 through 86,72
     turn off 3,72 through 68,75"""
     
-    instructions = """create grid of length 10
+    instructions3 = """create grid of length 10
                 turn on 0,0 through 9,9
                 turn off 0,0 through 4,9
                 turn on 0,0 through 4,4"""
+
+    instructions = """create grid of length 10
+                turn on 0,0 through 9,9
+                turn off 0,0 through 4,4
+                turn up 3 0,0 through 4,9"""
 
     # Create a list of all the instructions
     instructions = [line.strip() for line in instructions.splitlines()]
