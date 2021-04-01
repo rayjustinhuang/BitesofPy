@@ -159,7 +159,7 @@ class LightsGrid:
         sub_df = self.grid.iloc[x1:x2, y1:y2]
 
         # Now create a mask of all relevant lights in the slice
-        mask_on = sub_df > 5
+        mask_on = sub_df > 0
 
         # # Now turn down all lights that are on
         sub_df[mask_on] -= amount
@@ -303,7 +303,7 @@ if __name__ == "__main__":
                 
     instructions = """create grid of length 10
                 turn on 0,0 through 9,9
-                turn down 2 0,0 through 9,9"""
+                turn down 1 0,0 through 9,9"""
 
     # Create a list of all the instructions
     instructions = [line.strip() for line in instructions.splitlines()]
