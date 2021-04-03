@@ -12,7 +12,7 @@ def calculate_flux(XYZ: str) -> list:
     df = pd.read_csv(XYZ)
     
     df['Dollar Flux'] = df['12/31/20'] - df['12/31/19']
-    df['Percentage Flux'] = df['12/31/20'] / df['12/31/19']
+    df['Percentage Flux'] = df['12/31/20'] / df['12/31/19'] - 1
     
     return list(tuple(df.loc[i]) for i in range(df.shape[0]))
 
@@ -22,8 +22,6 @@ def identify_flux(xyz: list) -> list:
     each item and determine if it is above both
     thresholds. if so, add to the list
     """
-    flagged_lines = []
+    flagged_lines = [tup for tup in xyz if abs(tup[3]) > THRESHOLDS[0] and abs(tup[4]) > THRESHOLDS[1]]
 
     return flagged_lines
-    
-print(calculate_flux(XYZ))
