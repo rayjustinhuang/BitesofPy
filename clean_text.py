@@ -44,12 +44,18 @@ def strip_url_email(x_df):
 def to_lowercase(x_df):
     # Convert the contents of the 'text' column to lower case
     # Return the Dataframe with the 'text' as lower case
+    df = x_df.str.lower()
+    return df
     pass
 
 
 def strip_stopwords(x_df):
     # Drop all stop words from the 'text' column
     # Return the Dataframe with the 'text' stripped of stop words
+    df = x_df.str.replace(stop_words[0], '')
+    for stopword in stop_words[1:]:
+        df = df.str.replace(stopword, '')
+    return df
     pass
 
 
