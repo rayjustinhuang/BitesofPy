@@ -63,6 +63,8 @@ def strip_non_ascii(x_df):
     # Remove all non-ascii characters from the 'text' column
     # Return the Dataframe with the 'text' column
     #   stripped of non-ascii characters
+    df = x_df.str.encode('ascii', 'ignore').str.decode('ascii')
+    return df
     pass
 
 
