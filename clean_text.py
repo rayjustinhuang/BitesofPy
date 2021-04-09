@@ -72,6 +72,9 @@ def strip_digits_punctuation(x_df):
     # Remove all digits and punctuation characters from the 'text' column
     # Return the Dataframe with the 'text' column
     #   stripped of all digit and punctuation characters
+    df = x_df.str.replace('\d+', "")
+    table = str.maketrans(dict.fromkeys(string.punctuation))
+    df = df.str.translate(table)
     pass
 
 
