@@ -35,8 +35,8 @@ def strip_url_email(x_df):
     # Strip all URLs (http://...) and Emails (somename@email.address)
     # The 'text' column should be modified to remove
     #   all URls and Emails
-    df = x_df['text'].str.replace(r'([Hh][Tt][Tt][Pp][Ss]?:\/\/)([a-zA-Z0-9]+\.[a-zA-Z]{2,3})(\/[a-zA-Z0-9]+)*\.[a-zA-Z]{2,4}', '')
-    df = df.str.replace(r'.+@(.+\.[a-zA-Z]{2,3})', '')
+    df = pd.DataFrame(x_df['text'].str.replace(r"(http|ftp|https)://([\w+?\.\w+])+([a-zA-Z0-9\~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\'\,]*)?", ''))
+    df = pd.DataFrame(df['text'].str.replace(r'\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b', ''))
     return df
     pass
 
@@ -44,7 +44,7 @@ def strip_url_email(x_df):
 def to_lowercase(x_df):
     # Convert the contents of the 'text' column to lower case
     # Return the Dataframe with the 'text' as lower case
-    df = x_df.str.lower()
+    df = x_df['text'].str.lower()
     return df
     pass
 
@@ -110,3 +110,9 @@ def get_tdidf():
         .pipe(sort_columns)
     )
     return df
+    
+#test = pd.DataFrame(["this is a url http://www.pybites.com in the middle of other text",
+#              "this is an email bob@pybites.com in the middle of other text",
+#              "no url or email",], columns = ['text'])
+              
+#print(strip_url_email(test))
