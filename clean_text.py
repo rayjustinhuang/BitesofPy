@@ -52,9 +52,7 @@ def to_lowercase(x_df):
 def strip_stopwords(x_df):
     # Drop all stop words from the 'text' column
     # Return the Dataframe with the 'text' stripped of stop words
-    df = x_df.str.replace(stop_words[0], '')
-    for stopword in stop_words[1:]:
-        df = df.str.replace(stopword, '')
+    df = x_df.apply(lambda x: " ".join([word for word in x.split() if word not in stop_words]))
     return df
     pass
 
@@ -75,13 +73,14 @@ def strip_digits_punctuation(x_df):
     df = x_df.str.replace('\d+', "")
     table = str.maketrans(dict.fromkeys(string.punctuation))
     df = df.str.translate(table)
+    return df
     pass
 
 
 def calculate_tfidf(x_df):
     # Calculate the 'tf-idf' matrix of the 'text' column
     # Return the 'tf-idf' Dataframe
-    tfidf_obj = TFIDF(x_df["text"])
+    tfidf_obj = TFIDF(x_df)
     return tfidf_obj()
 
 
@@ -90,6 +89,8 @@ def sort_columns(x_df):
     #   it's possible that the order of the columns may be different
     # Sort the 'tf-idf' Dataframe columns
     #   This ensure the tests are compatible
+    df = x_df.sort_index(axis=1).copy()
+    return df
     pass
 
 
