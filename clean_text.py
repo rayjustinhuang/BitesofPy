@@ -44,7 +44,7 @@ def strip_url_email(x_df):
 def to_lowercase(x_df):
     # Convert the contents of the 'text' column to lower case
     # Return the Dataframe with the 'text' as lower case
-    df = x_df['text'].str.lower()
+    df = pd.DataFrame(x_df['text'].str.lower())
     return df
     pass
 
@@ -52,7 +52,7 @@ def to_lowercase(x_df):
 def strip_stopwords(x_df):
     # Drop all stop words from the 'text' column
     # Return the Dataframe with the 'text' stripped of stop words
-    df = x_df.apply(lambda x: " ".join([word for word in x.split() if word not in stop_words]))
+    df = pd.DataFrame(x_df['text'].apply(lambda x: " ".join([word for word in x.split() if word not in stop_words])))
     return df
     pass
 
@@ -61,7 +61,7 @@ def strip_non_ascii(x_df):
     # Remove all non-ascii characters from the 'text' column
     # Return the Dataframe with the 'text' column
     #   stripped of non-ascii characters
-    df = x_df.str.encode('ascii', 'ignore').str.decode('ascii')
+    df = pd.DataFrame(x_df['text'].str.encode('ascii', 'ignore').str.decode('ascii'))
     return df
     pass
 
@@ -70,9 +70,9 @@ def strip_digits_punctuation(x_df):
     # Remove all digits and punctuation characters from the 'text' column
     # Return the Dataframe with the 'text' column
     #   stripped of all digit and punctuation characters
-    df = x_df.str.replace('\d+', "")
+    df = pd.DataFrame(x_df['text'].str.replace('\d+', ""))
     table = str.maketrans(dict.fromkeys(string.punctuation))
-    df = df.str.translate(table)
+    df = pd.DataFrame(df['text'].str.translate(table))
     return df
     pass
 
@@ -80,7 +80,7 @@ def strip_digits_punctuation(x_df):
 def calculate_tfidf(x_df):
     # Calculate the 'tf-idf' matrix of the 'text' column
     # Return the 'tf-idf' Dataframe
-    tfidf_obj = TFIDF(x_df)
+    tfidf_obj = TFIDF(x_df['text'])
     return tfidf_obj()
 
 
@@ -89,7 +89,7 @@ def sort_columns(x_df):
     #   it's possible that the order of the columns may be different
     # Sort the 'tf-idf' Dataframe columns
     #   This ensure the tests are compatible
-    df = x_df.sort_index(axis=1).copy()
+    df = pd.DataFrame(x_df.sort_index(axis=1).copy())
     return df
     pass
 
