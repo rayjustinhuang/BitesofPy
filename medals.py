@@ -13,6 +13,7 @@ def athletes_most_medals(data=data):
     
     results_dict = {'Names': [top_man, top_woman], 'Medals': [medal_counts[top_man], medal_counts[top_woman]]}
     
-    return pd.DataFrame(results_dict['Medals'], index=results_dict['Names'], columns=['Medals'])
+    results = pd.Series(results_dict['Medals'], index=results_dict['Names'])
+    
+    return results
     pass
-
