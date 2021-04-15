@@ -82,6 +82,8 @@ def update_pycons_lat_lon(pycons):
         matching_nominatim_data = place_data[key]
         place.lat = matching_nominatim_data[0]['lat']
         place.lon = matching_nominatim_data[0]['lon']
+        
+    return pycons
     pass
 
 update_pycons_lat_lon(_get_pycons())
