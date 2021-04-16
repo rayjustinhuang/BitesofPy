@@ -80,13 +80,13 @@ def update_pycons_lat_lon(pycons):
     for place in pycons:
         key = 'https://nominatim.openstreetmap.org/search?q=' + place.city + "," + place.country + '&format=json&accept-language=en'
         matching_nominatim_data = place_data[key]
-        place.lat = matching_nominatim_data[0]['lat']
-        place.lon = matching_nominatim_data[0]['lon']
+        place.lat = float(matching_nominatim_data[0]['lat'])
+        place.lon = float(matching_nominatim_data[0]['lon'])
         
     return pycons
     pass
 
-update_pycons_lat_lon(_get_pycons())
+
 def create_travel_plan(pycons):
     """
     Create your travel plan to visit all the PyCons.
@@ -94,9 +94,18 @@ def create_travel_plan(pycons):
     Return a list of Trips with each Trip containing the origin PyCon,
     the destination PyCon and the travel distance between the PyCons.
     """
+    sorted_pycons = sorted(pycons, key=lambda x: x.start_date)
+    
+    trip_list = []
+    
+    for i in range(len(sorted_pycons)-1):
+        trip = Trip(sorted_pycons[i], sorted_pycons[i+1], _km_distance(sorted_pycons[i], sorted_pycons[i+1]))
+        trip_list.append(trip)
+        
+    return trip_list
     pass
 
-
+create_travel_plan(update_pycons_lat_lon(_get_pycons()))
 def total_travel_distance(journey):
     """
     Return the total travel distance of your PyCon journey in kilometers
