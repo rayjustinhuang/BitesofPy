@@ -105,10 +105,13 @@ def create_travel_plan(pycons):
     return trip_list
     pass
 
-create_travel_plan(update_pycons_lat_lon(_get_pycons()))
+
 def total_travel_distance(journey):
     """
     Return the total travel distance of your PyCon journey in kilometers
     rounded to one decimal.
     """
+    return round(sum(trip.distance for trip in journey),1)
     pass
+
+# print(total_travel_distance(create_travel_plan(update_pycons_lat_lon(_get_pycons()))))
