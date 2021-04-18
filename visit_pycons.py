@@ -113,5 +113,3 @@ def total_travel_distance(journey):
     """
     return round(sum(trip.distance for trip in journey),1)
     pass
-
-# print(total_travel_distance(create_travel_plan(update_pycons_lat_lon(_get_pycons()))))
