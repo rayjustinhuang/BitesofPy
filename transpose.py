@@ -21,7 +21,9 @@ def transpose(data):
         for i in range(n):
             outputs[i].append(item[i])
     
-    return list(zip(outputs))
+    outputs = [tuple(i) for i in outputs]
+    
+    return outputs
     pass
 
 POSTS = {'2017-8': 19, '2017-9': 13, '2017-10': 13,
