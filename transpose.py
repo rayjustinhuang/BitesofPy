@@ -13,9 +13,15 @@ def transpose(data):
     In: transpose(data)
     Out: [('Bob', 'Julian'), (60, 221), (60, 34), (56, 78)]
     """
-    items = data.items()
-    print(items)
-    return list(zip(items))
+    n = len(list(data.items())[0])
+    
+    outputs = [[] for i in range(n)]
+    
+    for item in data.items():
+        for i in range(n):
+            outputs[i].append(item[i])
+    
+    return list(zip(outputs))
     pass
 
 POSTS = {'2017-8': 19, '2017-9': 13, '2017-10': 13,
