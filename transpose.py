@@ -13,7 +13,10 @@ def transpose(data):
     In: transpose(data)
     Out: [('Bob', 'Julian'), (60, 221), (60, 34), (56, 78)]
     """
-    n = len(list(data.items())[0])
+    if type(data) == dict:
+        n = len(list(data.items())[0])
+    else:
+        n = len(data[0])
     
     outputs = [[] for i in range(n)]
     
