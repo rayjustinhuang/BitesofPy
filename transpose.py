@@ -20,16 +20,16 @@ def transpose(data):
     
     outputs = [[] for i in range(n)]
     
-    for item in data.items():
-        for i in range(n):
-            outputs[i].append(item[i])
-    
+    if type(data) == dict:
+        for item in data.items():
+            for i in range(n):
+                outputs[i].append(item[i])
+    else:
+        for item in data:
+            for i in range(n):
+                outputs[i].append(item[i])
+                
     outputs = [tuple(i) for i in outputs]
     
     return outputs
     pass
-
-POSTS = {'2017-8': 19, '2017-9': 13, '2017-10': 13,
-         '2017-11': 12, '2017-12': 11, '2018-1': 3}
-
-print(transpose(POSTS))
