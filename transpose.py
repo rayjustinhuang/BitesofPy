@@ -32,4 +32,4 @@ def transpose(data):
     outputs = [tuple(i) for i in outputs]
     
     return outputs
-    pass
+    
