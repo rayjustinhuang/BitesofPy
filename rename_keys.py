@@ -13,22 +13,29 @@ def strip_at_signs(input_dict):
     new_dict = dict(zip(new_keys, input_dict.values()))
         
     return new_dict
+    
+def iterdict(input_dict):
+    new_dict = {}
+    
+    for key, val in input_dict.items():
+        if type(val) == dict:
+            new_key = key.replace('@', '')
+            new_dict[new_key] = input_dict[key]
+            iterdict(val)
+        else:
+            new_dict[key] = val
+    
+    return new_dict
 
 def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
     change = data.copy()
     
     change = strip_at_signs(change)
     
-    new_vals = []
-    
-    for val in change.values():
-        if type(val) == dict:
-            new_vals.append(strip_at_signs(val))
-        else:
-            new_vals.append(val)
+    iterdict(change)
             
-    return dict(zip(change, new_vals))
+    return change
     
-test = {'@user_name': 'jdoe', 1: 'one', 2: 'two', '@three': 3}
+test = {'@pii': {'@address': [{'@city': 'London'}, {'city': 'Moscow'}], '@email': 'jane@example.com', '@id': 12345, 'name': {'@first_name': 'Jane', '@last_name': 'Doe'}}}
 
 print(rename_keys(test))
