@@ -18,9 +18,9 @@ def iterdict(input_dict):
     new_dict = {}
     
     for key, val in input_dict.items():
+        new_key = key.replace('@', '')
+        new_dict[new_key] = input_dict[key]
         if type(val) == dict:
-            new_key = key.replace('@', '')
-            new_dict[new_key] = input_dict[key]
             iterdict(val)
         else:
             new_dict[key] = val
@@ -37,5 +37,7 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
     return change
     
 test = {'@pii': {'@address': [{'@city': 'London'}, {'city': 'Moscow'}], '@email': 'jane@example.com', '@id': 12345, 'name': {'@first_name': 'Jane', '@last_name': 'Doe'}}}
+
+print(iterdict(test))
 
 print(rename_keys(test))
