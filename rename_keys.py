@@ -17,6 +17,8 @@ def strip_at_signs(input_dict):
 def iterdict(input_dict):
     new_dict = {}
     
+    input_dict = strip_at_signs(input_dict)
+    
     for key, val in input_dict.items():
         new_key = key.replace('@', '')
         new_dict[new_key] = input_dict[key]
