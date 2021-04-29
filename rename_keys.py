@@ -20,9 +20,10 @@ def iterdict(input_dict):
     input_dict = strip_at_signs(input_dict)
     
     for key, val in input_dict.items():
-        new_key = key.replace('@', '')
-        new_dict[new_key] = input_dict[key]
         if type(val) == dict:
+            val = strip_at_signs(val)
+            new_key = key.replace('@', '')
+            new_dict[key] = val
             iterdict(val)
         else:
             new_dict[key] = val
