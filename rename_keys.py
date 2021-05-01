@@ -24,9 +24,9 @@ def iterdict(input_dict):
             val = strip_at_signs(val)
             new_key = key.replace('@', '')
             new_dict[key] = val
-            iterdict(val)
         else:
             new_dict[key] = val
+        iterdict(val)
     
     return new_dict
 
