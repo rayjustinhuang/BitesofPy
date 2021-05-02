@@ -1,4 +1,5 @@
 from typing import Dict, Any
+from collections.abc import Iterable
 
 def strip_at_signs(input_dict):
     new_keys = []
@@ -24,6 +25,9 @@ def iterdict(input_dict):
             val = strip_at_signs(val)
             new_key = key.replace('@', '')
             new_dict[key] = val
+        elif isinstance(val, Iterable):
+            for obj in val:
+                iterdict(obj)
         else:
             new_dict[key] = val
         iterdict(val)
