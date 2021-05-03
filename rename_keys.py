@@ -27,7 +27,8 @@ def iterdict(input_dict):
             new_dict[key] = val
         elif isinstance(val, Iterable):
             for obj in val:
-                iterdict(obj)
+                if type(obj) == dict:
+                    iterdict(obj)
         else:
             new_dict[key] = val
         iterdict(val)
