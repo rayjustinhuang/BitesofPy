@@ -28,7 +28,7 @@ def iterdict(input_dict):
         elif isinstance(val, Iterable):
             for obj in val:
                 if type(obj) == dict:
-                    iterdict(obj)
+                    obj = strip_at_signs(obj)
         else:
             new_dict[key] = val
         iterdict(val)
