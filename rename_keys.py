@@ -25,13 +25,13 @@ def iterdict(input_dict):
             val = strip_at_signs(val)
             new_key = key.replace('@', '')
             new_dict[key] = val
+            iterdict(val)
         elif isinstance(val, Iterable):
             for obj in val:
                 if type(obj) == dict:
-                    obj = strip_at_signs(obj)
+                    iterdict(obj)
         else:
             new_dict[key] = val
-        iterdict(val)
     
     return new_dict
 
