@@ -48,10 +48,11 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
             new_key = key.replace('@', '')
             new_dict[key] = val
         elif isinstance(val, Iterable):
+            new_val = []
             for obj in val:
                 if type(obj) == dict:
                     value = strip_at_signs(obj)
-            new_dict[key] = value
+                new_val.append(value)
         else:
             new_dict[key] = val
     
