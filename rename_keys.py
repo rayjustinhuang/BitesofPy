@@ -47,19 +47,19 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
             val = strip_at_signs(val)
             new_key = key.replace('@', '')
             new_dict[key] = val
-        elif isinstance(val, Iterable):
+        elif isinstance(val, list):
             new_val = []
             for obj in val:
                 if type(obj) == dict:
-                    value = strip_at_signs(obj)
-                new_val.append(value)
+                    new_val.append(strip_at_signs(obj))
+            new_dict[key] = new_val
         else:
             new_dict[key] = val
     
     return new_dict
     
 test = {'@pii': {'@address': [{'@city': 'London'}, {'city': 'Moscow'}], '@email': 'jane@example.com', '@id': 12345, 'name': {'@first_name': 'Jane', '@last_name': 'Doe'}}}
+test2 = {'@user_name': 'jdoe', 1: 'one', 2: 'two', '@three': 3}
+# print(iterdict(test))
 
-print(iterdict(test))
-
-print(rename_keys(test))
+print(rename_keys(test2))
