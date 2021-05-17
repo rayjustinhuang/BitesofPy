@@ -53,11 +53,14 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                 elif isinstance(val2, dict):
                     # sub_dict[sub_key] = strip_at_signs(val2)
                     subsub_dict = {}
+
                     for key3, val3 in val2.items():
                         subsub_key = key3.replace('@', '')
                         subsub_val = val3
                         subsub_dict[subsub_key] = subsub_val
+
                     sub_dict[sub_key] = subsub_dict
+
                 else:
                     sub_dict[sub_key] = val2
                     
