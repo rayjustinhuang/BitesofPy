@@ -24,6 +24,15 @@ def dict_in_list(input_list):
         new_list.append(strip_at_signs(item))
         
     return new_list
+    
+def dict_in_dict(input_dict):
+    subsub_dict = {}
+    for key, val in input_dict.items():
+        subsub_key = key.replace('@', '')
+        subsub_val = val
+        subsub_dict[subsub_key] = subsub_val
+        
+    return subsub_dict, subsub_key
 
 def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
     change = copy.deepcopy(data)
@@ -52,15 +61,11 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                     sub_dict[sub_key] = new_val
                 elif isinstance(val2, dict):
                     # sub_dict[sub_key] = strip_at_signs(val2)
-                    subsub_dict = {}
-
-                    for key3, val3 in val2.items():
-                        subsub_key = key3.replace('@', '')
-                        subsub_val = val3
-                        subsub_dict[subsub_key] = subsub_val
-
-                    sub_dict[sub_key] = subsub_dict
-
+                    sub_dict = {}
+                    sub_dict[sub_key], subsub_key = dict_in_dict(val2)
+                    if isinstance(sub_dict[sub_key], dict):
+                        subsub_dict = {}
+                        subsub_dict[subsub_key], _ = dict_in_dict(sub_dict[sub_key])
                 else:
                     sub_dict[sub_key] = val2
                     
