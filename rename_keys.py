@@ -66,7 +66,7 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                                         subsub_key = key4.replace('@', '')
                                         subsub_val = val4
                                         
-                                        subsub_dict[subsub_key] = subsub_val
+                                        subsub_dict[subsub_key] = strip_at_signs(subsub_val)
                                 
                                     sub_dict[sub_key] = subsub_dict
                                 else:
