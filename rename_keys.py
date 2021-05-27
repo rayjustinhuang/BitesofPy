@@ -84,14 +84,14 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
 
                     subsub_dict = {}
                     for key3, val3 in val2.items():
-                        subsub_key = key.replace('@', '')
+                        subsub_key = key3.replace('@', '')
                         subsub_val = val3
                         subsub_dict[subsub_key] = subsub_val
                     
                         if isinstance(val3, dict):
                             subsubsub_dict = {}
                             for key4, val4 in val3.items():
-                                subsubsub_key = key.replace('@', '')
+                                subsubsub_key = key4.replace('@', '')
                                 subsubsub_val = val4
                                 subsubsub_dict[subsubsub_key] = subsubsub_val
                         
@@ -147,4 +147,4 @@ test3 = {'@contentUrl': 'contentUrl',
                                               'tags': {'tag': {'@label': 'label'}}}]}}
 # print(iterdict(test))
 
-print(rename_keys(test3))
+print(rename_keys(test))
