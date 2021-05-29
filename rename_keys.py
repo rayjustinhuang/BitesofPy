@@ -48,6 +48,7 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
             
             for key2, val2 in val.items():
                 sub_key = key2.replace('@', '')
+ 
                 if isinstance(val2, list):
                     new_val = []
                     for item in val2:
@@ -58,20 +59,20 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                             
                             sub_dict = {}
                             for key3, val3 in item.items():
-                                sub_key = key3.replace('@', '')
-                                sub_val = val3
+                                subsub_key = key3.replace('@', '')
+                                subsub_val = val3
                                 
-                                if type(sub_val) == dict:
-                                    subsub_dict = {}
+                                if type(subsub_val) == dict:
+                                    subsubsub_dict = {}
                                     for key4, val4 in sub_val.items():
-                                        subsub_key = key4.replace('@', '')
-                                        subsub_val = val4
+                                        subsubsub_key = key4.replace('@', '')
+                                        subsubsub_val = val4
                                         
-                                        subsub_dict[subsub_key] = strip_at_signs(subsub_val)
+                                        subsubsub_dict[subsubsub_key] = strip_at_signs(subsubsub_val)
                                 
-                                    sub_dict[sub_key] = subsub_dict
+                                    sub_dict[subsub_key] = subsubsub_dict
                                 else:
-                                    sub_dict[sub_key] = sub_val
+                                    sub_dict[subsub_key] = subsub_val
                             
                             new_val.append(strip_at_signs(sub_dict))    
                             
@@ -102,7 +103,7 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                 else:
                     sub_dict[sub_key] = val2
                     
-            sub_dict = strip_at_signs(sub_dict)
+            #sub_dict = strip_at_signs(sub_dict)
             
             new_dict[new_key] = sub_dict
                     
