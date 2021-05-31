@@ -70,6 +70,8 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                                         subsubsub_dict[subsubsub_key] = strip_at_signs(subsubsub_val)
                                 
                                     subsub_dict[subsub_key] = subsubsub_dict
+                                elif type(subsub_val) == list:
+                                    subsub_dict[subsub_key] = dict_in_list(item)
                                 else:
                                     subsub_dict[subsub_key] = subsub_val
                             
