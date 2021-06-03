@@ -53,6 +53,7 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
 
                     new_val = []
                     for item in val2:
+ 
                         if type(item) == list:
 
                             new_val.append(dict_in_list(item))
@@ -81,10 +82,10 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                                     subsub_dict[subsub_key] = dict_in_list(subsub_val)
                                     
                                 else:
-
+                                    # London and Moscow issue
                                     subsub_dict[subsub_key] = subsub_val
                             
-                            new_val.append(strip_at_signs(sub_dict))    
+                            new_val.append(strip_at_signs(subsub_dict))    
                             
                         else:
                             new_val.append(item)
