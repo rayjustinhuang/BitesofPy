@@ -69,7 +69,7 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
                                 if type(subsub_val) == dict:
                                     subsubsub_dict = {}
 
-                                    for key4, val4 in sub_val.items():
+                                    for key4, val4 in subsub_val.items():
                                         subsubsub_key = key4.replace('@', '')
                                         subsubsub_val = val4
                                         
@@ -126,37 +126,3 @@ def rename_keys(data: Dict[Any, Any]) -> Dict[Any, Any]:
             new_dict[key] = val
 
     return new_dict
-    
-test = {'@pii': {'@address': [{'@city': 'London'}, {'city': 'Moscow'}], '@email': 'jane@example.com', '@id': 12345, 'name': {'@first_name': 'Jane', '@last_name': 'Doe'}}}
-test2 = {'@user_name': 'jdoe', 1: 'one', 2: 'two', '@three': 3}
-test3 = {'@contentUrl': 'contentUrl',
-                         '@createdAt': datetime.strptime('2020-06-11T09:08:13Z', '%Y-%m-%dT%H:%M:%SZ'),
-                          '@defaultViewId': 'defaultViewId',
-                          '@encryptExtracts': False,
-                          '@id': 'id',
-                          '@name': 'Login',
-                          '@showTabs': True,
-                          '@size': 1,
-                          '@updatedAt': datetime.strptime('2020-07-20T06:41:34Z', '%Y-%m-%dT%H:%M:%SZ'),
-                          '@webpageUrl': 'webpageUrl',
-                          'dataAccelerationConfig': {'@accelerationEnabled': False},
-                          'owner': {'@id': 'id', '@name': 'name'},
-                          'project': {'@id': 'id', '@name': 'name'},
-                          'tags': {'tag': {'@label': 'label'}},
-                          'views': {'view': [{'@contentUrl': 'contentUrl',
-                                             '@createdAt': '2020-06-11T09:08:13Z',
-                                              '@id': 'id',
-                                              '@name': 'name',
-                                              '@updatedAt': '2020-07-20T06:41:34Z',
-                                              '@viewUrlName': 'Sheet1',
-                                              'tags': {'tag': {'@label': 'label'}}},
-                                             {'@contentUrl': 'contentUrl',
-                                              '@createdAt': '2020-06-11T09:08:13Z',
-                                              '@id': 'id',
-                                              '@name': 'name',
-                                              '@updatedAt': 'updatedAt',
-                                              '@viewUrlName': 'viewUrlName',
-                                              'tags': {'tag': {'@label': 'label'}}}]}}
-# print(iterdict(test))
-
-print(rename_keys(test))
