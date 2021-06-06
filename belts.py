@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from urllib.request import urlretrieve
+import pandas as pd
 
 SCORES = [10, 50, 100, 175, 250, 400, 600, 800, 1000]
 BELTS = ('white yellow orange green blue brown black '
@@ -34,7 +35,11 @@ def get_belts(data: str) -> dict:
     with open(data) as f:
         json_data = json.load(f)
     
-    print(json_data)
+    df = pd.DataFrame(json_data)
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.sort_values(by=['date'])
+    print(df)
     pass
 
+data = get_data()
 get_belts(data)
