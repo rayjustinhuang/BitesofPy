@@ -40,7 +40,21 @@ def get_belts(data: str) -> dict:
     df = df.sort_values(by=['date'])
     
     df['cumsum'] = df['score'].cumsum()
-    print(df)
+    
+    # reverse_df = df.sort_values(by=['date'], ascending = False)
+    prev_cumsum = 0
+    final_dict = {}
+    active_belt = 0
+    for index, row in df.iterrows():
+        active_score = row['cumsum']
+        
+        if active_score >= SCORES[active_belt] and prev_cumsum < SCORES[active_belt]:
+            final_dict[BELTS[active_belt]] = row['date']
+            active_belt += 1
+        
+        prev_cumsum = row['cumsum']
+    
+    return final_dict
     pass
 
 data = get_data()
