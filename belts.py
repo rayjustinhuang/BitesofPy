@@ -38,6 +38,7 @@ def get_belts(data: str) -> dict:
     df = pd.DataFrame(json_data)
     df['date'] = pd.to_datetime(df['date'])
     df = df.sort_values(by=['date'])
+    df['date'] = df['date'].dt.strftime('%B %d, %Y')
     
     df['cumsum'] = df['score'].cumsum()
     
@@ -58,4 +59,4 @@ def get_belts(data: str) -> dict:
     pass
 
 data = get_data()
-get_belts(data)
+print(get_belts(data))
