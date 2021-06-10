@@ -52,11 +52,9 @@ def get_belts(data: str) -> dict:
         if active_score >= SCORES[active_belt] and prev_cumsum < SCORES[active_belt]:
             final_dict[BELTS[active_belt]] = row['date']
             active_belt += 1
+            active_belt = min(active_belt, 8)
         
         prev_cumsum = row['cumsum']
     
     return final_dict
     pass
-
-data = get_data()
-print(get_belts(data))
