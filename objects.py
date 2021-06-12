@@ -18,8 +18,10 @@ def score_objects(objects: List[str],
             running_total += scores['builtin']
         elif keyword.iskeyword(item):
             running_total += scores['keyword']
-        else:
+        elif isinstance(item, types.ModuleType):
             running_total += scores['module']
+        else:
+            continue
             
     return running_total
     pass
