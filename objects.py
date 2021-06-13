@@ -2,6 +2,7 @@ from typing import Dict, List
 import types
 import keyword
 import inspect
+import builtins
 
 scores = {
     "builtin": 1,
@@ -15,7 +16,7 @@ def score_objects(objects: List[str],
                       
     running_total = 0
     for item in objects:
-        if isinstance(item, types.BuiltinFunctionType):
+        if item in dir(builtins):
             running_total += scores['builtin']
         elif keyword.iskeyword(item):
             running_total += scores['keyword']
@@ -28,7 +29,8 @@ def score_objects(objects: List[str],
     pass
 
 test = ['raise', 'random']
+test2 = ['any', 'all', 'max']
 
-print(score_objects(test, scores))
+print(score_objects(test2, scores))
 
 print(isinstance('random', types.ModuleType))
