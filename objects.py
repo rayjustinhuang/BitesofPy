@@ -1,6 +1,7 @@
 from typing import Dict, List
 import types
 import keyword
+import inspect
 
 scores = {
     "builtin": 1,
@@ -18,10 +19,16 @@ def score_objects(objects: List[str],
             running_total += scores['builtin']
         elif keyword.iskeyword(item):
             running_total += scores['keyword']
-        elif isinstance(item, types.ModuleType):
+        elif inspect.ismodule(item):
             running_total += scores['module']
         else:
             continue
             
     return running_total
     pass
+
+test = ['raise', 'random']
+
+print(score_objects(test, scores))
+
+print(isinstance('random', types.ModuleType))
