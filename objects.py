@@ -3,6 +3,7 @@ import types
 import keyword
 import inspect
 import builtins
+import sys
 
 scores = {
     "builtin": 1,
@@ -20,7 +21,7 @@ def score_objects(objects: List[str],
             running_total += scores['builtin']
         elif keyword.iskeyword(item):
             running_total += scores['keyword']
-        elif inspect.ismodule(item):
+        elif item in sys.builtin_module_names:
             running_total += scores['module']
         else:
             continue
@@ -31,6 +32,6 @@ def score_objects(objects: List[str],
 test = ['raise', 'random']
 test2 = ['any', 'all', 'max']
 
-print(score_objects(test2, scores))
+print(score_objects(test, scores))
 
 print(isinstance('random', types.ModuleType))
