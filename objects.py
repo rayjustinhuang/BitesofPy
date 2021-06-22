@@ -24,22 +24,14 @@ def score_objects(objects: List[str],
             importlib.import_module(item)
             running_total += scores['module']
         except:
-            if item in dir(builtins):
+            if item in dir(builtins) and keyword.iskeyword(item):
+                running_total += scores['builtin'] + scores['keyword']
+            elif item in dir(builtins):
                 running_total += scores['builtin']
             elif keyword.iskeyword(item):
                 running_total += scores['keyword']
             else:
                 continue
             
-        print(item, running_total)    
     return running_total
     pass
-
-test = ['raise', 'random']
-test2 = ['any', 'all', 'max']
-
-print(score_objects(test, scores))
-
-#print(isinstance('random', types.ModuleType))
-
-#help('modules')
