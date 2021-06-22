@@ -3,9 +3,6 @@ import types
 import keyword
 import inspect
 import builtins
-import sys
-import pkg_resources
-import pip
 import importlib
 
 scores = {
