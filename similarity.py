@@ -32,7 +32,12 @@ def get_similarities(tags=None):
     """Should return a list of similar tag pairs (tuples)"""
     tags = tags or _get_tags()
     # do your thing ...
-    for tag in tags:
-        print(tag)
-        
-get_similarities()
+    combos = itertools.combinations(tags, 2)
+    
+    final_output = []
+    for combo in combos:
+        seq = SequenceMatcher(None, combo[0], combo[1])
+        if seq.ratio() > 0.9:
+            final_output.append(combo)
+    
+    return final_output
