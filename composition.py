@@ -34,14 +34,15 @@ class File:
         data: -> Optional[str] -- If the file exists, it returns its contents.
             If it does not exists, it returns None.
     """
-    def __init__(self, name: str, file):
+    def __init__(self, name: str):
         self.name = name
-        self.file = file
+        self.file = Path(name)
         
     @property
     def data(self):
         if self.file:
-            return self.file
+            with open(self.file) as f:
+                return f.read()
         else: return None
     pass
 
