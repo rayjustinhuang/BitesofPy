@@ -15,8 +15,8 @@ def create_parser():
        returns a argparse.ArgumentParser object"""
        
     parser = argparse.ArgumentParser(description='Calculate your BMI')
-    parser.add_argument('WEIGHT', metavar='-w, --weight', type=int, nargs=1, help='Your weight in kg')
-    parser.add_argument('LENGTH', metavar='-l, --length', type=int, nargs=1, help='Your length in cm')
+    parser.add_argument('weight', metavar='-w, --weight', action='store', type=float, nargs=1, help='Your weight in kg')
+    parser.add_argument('length', metavar='-l, --length', action='store', type=float, nargs=1, help='Your length in cm')
     
     return parser
     pass
