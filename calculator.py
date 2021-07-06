@@ -34,6 +34,12 @@ def create_parser():
 
        Note that type=float times out here so do the casting in the calculator
        function above!"""
+       
+    parser = ArgumentParser('Enter an operation and integers')
+    parser.AddArgument('operation')
+    parser.AddArgument('-integers', nargs='+')
+    
+    return parser
     pass
 
 
