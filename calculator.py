@@ -36,11 +36,10 @@ def create_parser():
        function above!"""
        
     parser = argparse.ArgumentParser('Enter an operation and integers')
-    parser.add_argument('-a','--add', type=str, nargs=1)
-    parser.add_argument('-s','--sub', type=str, nargs=1)
-    parser.add_argument('-m','--mul', type=str, nargs=1)
-    parser.add_argument('-d','--div', type=str, nargs=1)
-    parser.add_argument('-integers', type=int, nargs='+')
+    parser.add_argument('-a','--add', type=float, nargs='+')
+    parser.add_argument('-s','--sub', type=float, nargs='+')
+    parser.add_argument('-m','--mul', type=float, nargs='+')
+    parser.add_argument('-d','--div', type=float, nargs='+')
     
     return parser
     pass
