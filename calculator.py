@@ -11,17 +11,17 @@ def calculator(operation, numbers):
         running_total = numbers[0]
         for i in range(1, len(numbers)):
             running_total -= numbers[i]
-        return running_total
+        return round(running_total,2)
     elif operation == 'mul':
         running_total = numbers[0]
         for i in range(1, len(numbers)):
             running_total *= numbers[i]
-        return running_total
+        return round(running_total,2)
     else:
         running_total = numbers[0]
         for i in range(1, len(numbers)):
             running_total /= numbers[i]
-        return running_total
+        return round(running_total,2)
     pass
 
 
@@ -35,7 +35,7 @@ def create_parser():
        Note that type=float times out here so do the casting in the calculator
        function above!"""
        
-    parser = argparse.ArgumentParser('Enter an operation and integers')
+    parser = argparse.ArgumentParser('A simple calculator')
     parser.add_argument('-a','--add', type=float, nargs='+')
     parser.add_argument('-s','--sub', type=float, nargs='+')
     parser.add_argument('-m','--mul', type=float, nargs='+')
