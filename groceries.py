@@ -94,4 +94,13 @@ def handle_args(args=None, cart=None):
         cart = Groceries()
 
     # different crud operations - please complete ...
-    #
+    for operation, *args in vars(args).items():
+        print(operation, *args)
+        if operation == 'add':
+            pass
+        elif operation == 'delete':
+            pass
+        elif operation == 'list':
+            pass
+        else:
+            pass
