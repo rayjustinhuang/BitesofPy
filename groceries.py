@@ -97,10 +97,10 @@ def handle_args(args=None, cart=None):
     for operation, *args in vars(args).items():
         print(operation, *args)
         if operation == 'add':
-            pass
+            cart.add(Item(*args))
         elif operation == 'delete':
-            pass
+            cart.delete(*args)
         elif operation == 'list':
-            pass
+            cart.show()
         else:
-            pass
+            cart.search(*args)
