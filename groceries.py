@@ -99,10 +99,16 @@ def handle_args(args=None, cart=None):
     for operation, *args in vars(args).items():
         print(operation, *args)
         if operation == 'add':
-            cart.add(Item(*args))
+            if len(*args) == 3:
+                cart.add(Item(*args))
+            else: raise SystemExit
         elif operation == 'delete':
-            cart.delete(*args)
+            if len(*args) == 1:
+                cart.delete(*args)
+            else: raise SystemExit
         elif operation == 'list':
-            cart.show()
+            if list(*args) == None:
+                cart.show()
+            else: raise SystemExit
         else:
             cart.search(*args)
