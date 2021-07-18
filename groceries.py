@@ -99,8 +99,9 @@ def handle_args(args=None, cart=None):
     for operation, *args in vars(args).items():
         print(operation, *args)
         if operation == 'add':
-            if len(*args) == 3:
-                cart.add(Item(*args))
+            if len(args) == 3:
+                prod, price, craving = args
+                cart.add(Item(str(prod), int(price), bool(craving)))
             else: raise SystemExit
         elif operation == 'delete':
             if len(*args) == 1:
