@@ -97,22 +97,20 @@ def handle_args(args=None, cart=None):
 
     # different crud operations - please complete ...
     print(args)
-    for operation, *args in vars(args).items():
+    for operation, *etc in vars(args).items():
         # print(operation, args)
         if operation == '-a':
             if len(args) == 3:
-                prod, price, craving = args
+                prod, price, craving = etc
                 cart.add(Item(str(prod), int(price), bool(craving)))
             else: raise SystemExit
         elif operation == '-d':
             if len(*args) == 1:
-                cart.delete(*args)
+                cart.delete(*etc)
             else: raise SystemExit
         elif operation == '-l':
-            if list(*args) == None:
-                cart.show()
-            else: raise SystemExit
+            cart.show()
         elif operation == '-s':
-            cart.search(*args)
+            cart.search(*etc)
         else:
             raise SystemExit
