@@ -74,8 +74,8 @@ def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-a','--add', nargs=3, action='extend', help='add item providing name (str), price (int), and craving (bool)')
     parser.add_argument('-d','--delete', nargs=1, type=str, help='delete a product by name (str)')
-    parser.add_argument('-l','--list', help='show items in cart')
-    parser.add_argument('-s','--search', help='search items by name')
+    parser.add_argument('-l','--list', nargs = 0, help='show items in cart')
+    parser.add_argument('-s','--search', nargs = 1, help='search items by name')
     
     return parser
     pass
