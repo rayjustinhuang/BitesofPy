@@ -96,22 +96,24 @@ def handle_args(args=None, cart=None):
         cart = Groceries()
 
     # different crud operations - please complete ...
-    #print(args)
+    #print(vars(args).items())
     for operation, *etc in vars(args).items():
-        print(operation)
         print(etc)
-        if operation == 'add':
-            if len(etc) == 3:
-                prod, price, craving = etc
-                cart.add(Item(str(prod), int(price), bool(craving)))
-            else: raise SystemExit
-        elif operation == 'delete':
-            if len(*etc) == 1:
-                cart.delete(*etc)
-            else: raise SystemExit
-        elif operation == 'list':
-            cart.show()
-        elif operation == 'search':
-            cart.search(*etc)
+        if etc == [None]:
+            continue
         else:
-            raise SystemExit
+            if operation == 'add':
+                if len(etc) == 3:
+                    prod, price, craving = etc
+                    cart.add(Item(str(prod), int(price), bool(craving)))
+                #else: raise SystemExit
+            elif operation == 'delete':
+                if len(*etc) == 1:
+                    cart.delete(*etc)
+                #else: raise SystemExit
+            elif operation == 'list':
+                cart.show()
+            elif operation == 'search':
+                cart.search(*etc)
+            else:
+                raise SystemExit
