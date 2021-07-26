@@ -100,6 +100,10 @@ def handle_args(args=None, cart=None):
     for operation, *etc in vars(args).items():
         try:
             results = crud_functions(operation, etc)
+        except:
+            print(operation)
+            print(etc)
+            continue
 
 def crud_functions(operation, args):
     if operation == 'add':
