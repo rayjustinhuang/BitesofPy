@@ -101,8 +101,6 @@ def handle_args(args=None, cart=None):
         try:
             results = crud_functions(operation, etc)
         except:
-            print(operation)
-            print(etc)
             continue
 
 def crud_functions(operation, args):
