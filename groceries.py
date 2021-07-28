@@ -102,15 +102,21 @@ def handle_args(args=None, cart=None):
             results = crud_functions(operation, etc)
         except:
             continue
+        
+        print(results)
 
 def crud_functions(operation, args):
-    if operation == 'add':
+    print(operation)
+    print(args)
+    if args == [None]:
+        raise SystemExit
+    elif operation == 'add':
         if len(args) == 3:
             prod, price, craving = args
             cart.add(Item(str(prod), int(price), bool(craving)))
     elif operation == 'delete':
         if len(args) == 1:
-            cart.delete(*etc)
+            cart.delete(args)
     elif operation == 'list':
         cart.show()
     elif operation == 'search':
