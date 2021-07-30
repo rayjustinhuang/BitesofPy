@@ -117,6 +117,7 @@ def crud_functions(operation, args):
     elif operation == 'delete':
         if len(args) == 1:
             cart.delete(args)
+        else: raise SystemExit
     elif operation == 'list':
         cart.show()
     elif operation == 'search':
