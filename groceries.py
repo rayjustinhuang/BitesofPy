@@ -97,14 +97,27 @@ def handle_args(args=None, cart=None):
 
     # different crud operations - please complete ...
     #print(vars(args).items())
-    for operation, *etc in vars(args).items():
-        try:
-            results = crud_functions(operation, etc)
-        except:
+    #print(args)
+    for operation, etc in vars(args).items():
+        if etc == None:
             continue
-        
-        print(results)
-
+        elif operation == 'add':
+            if len(etc) == 3:
+                prod, price, craving = etc
+                cart.add(Item(str(prod), int(price), bool(craving)))
+        elif operation == 'delete':
+            if len(etc) == 1:
+                cart.delete(etc)
+            else: raise SystemExit
+        elif operation == 'list':
+            cart.show()
+        elif operation == 'search':
+            cart.search(etc)
+        else:
+            raise SystemExit
+            
+            
+"""
 def crud_functions(operation, args):
     print(operation)
     print(args)
@@ -124,3 +137,4 @@ def crud_functions(operation, args):
         cart.search(args)
     else:
         raise SystemExit
+"""
