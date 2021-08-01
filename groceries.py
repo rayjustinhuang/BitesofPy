@@ -104,7 +104,7 @@ def handle_args(args=None, cart=None):
         elif operation == 'add':
             if len(etc) == 3:
                 prod, price, craving = etc
-                cart.add(Item(str(prod), int(price), bool(craving)))
+                cart.add(Item(str(prod), int(price), craving == 'True'))
         elif operation == 'delete':
             if len(etc) == 1:
                 cart.delete(etc)
