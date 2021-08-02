@@ -107,12 +107,12 @@ def handle_args(args=None, cart=None):
                 cart.add(Item(str(prod), int(price), craving == 'True'))
         elif operation == 'delete':
             if len(etc) == 1:
-                cart.delete(etc)
+                cart.delete(*etc)
             else: raise SystemExit
         elif operation == 'list':
             cart.show()
         elif operation == 'search':
-            cart.search(etc)
+            cart.search(*etc)
         else:
             raise SystemExit
             
