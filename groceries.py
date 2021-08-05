@@ -72,6 +72,7 @@ def create_parser():
        Returns a argparse.ArgumentParser object"""
        
     parser = argparse.ArgumentParser()
+
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-a','--add', nargs=3, action='extend', help='add item providing name (str), price (int), and craving (bool)')
     group.add_argument('-d','--delete', nargs=1, type=str, help='delete a product by name (str)')
