@@ -72,10 +72,11 @@ def create_parser():
        Returns a argparse.ArgumentParser object"""
        
     parser = argparse.ArgumentParser()
-    parser.add_argument('-a','--add', nargs=3, action='extend', help='add item providing name (str), price (int), and craving (bool)')
-    parser.add_argument('-d','--delete', nargs=1, type=str, help='delete a product by name (str)')
-    parser.add_argument('-l','--list', help='show items in cart', action = 'store_true')
-    parser.add_argument('-s','--search', nargs = 1, help='search items by name')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-a','--add', nargs=3, action='extend', help='add item providing name (str), price (int), and craving (bool)')
+    group.add_argument('-d','--delete', nargs=1, type=str, help='delete a product by name (str)')
+    group.add_argument('-l','--list', help='show items in cart', action = 'store_true')
+    group.add_argument('-s','--search', nargs = 1, help='search items by name')
     
     return parser
     pass
@@ -118,26 +119,3 @@ def handle_args(args=None, cart=None):
             cart.search(*etc)
         else:
             raise SystemExit
-            
-            
-"""
-def crud_functions(operation, args):
-    print(operation)
-    print(args)
-    if args == [None]:
-        raise SystemExit
-    elif operation == 'add':
-        if len(args) == 3:
-            prod, price, craving = args
-            cart.add(Item(str(prod), int(price), bool(craving)))
-    elif operation == 'delete':
-        if len(args) == 1:
-            cart.delete(args)
-        else: raise SystemExit
-    elif operation == 'list':
-        cart.show()
-    elif operation == 'search':
-        cart.search(args)
-    else:
-        raise SystemExit
-"""
