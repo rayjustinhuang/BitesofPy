@@ -34,8 +34,3 @@ def num_ops(n):
         ops_num = len(queue)-1
             
     return ops_num
-    
-
-#print(num_ops(8))    
-#print(num_ops(10))
-print(num_ops(12))
