@@ -22,6 +22,39 @@ def num_ops(n):
         return int(math.log2(n))
     
     else:
+        visited = set()
+        
+        queue = deque([1]) # 1 is the starting number
+
+        while len(queue) > 0:
+            print(queue[-1])
+            
+            current = queue.pop()
+            
+            if current == n:
+                return len(queue)
+                
+            visited.add(current)
+            
+            if (current * 2) == n or current // 3 == n:
+                return len(queue)+1
+            
+            if (current * 2) not in visited:
+                queue.append(current * 2)
+            
+            if (current // 3) > 1 and (current // 3) not in visited:
+                queue.append(current // 3)
+                
+        ops_num = len(queue)
+            
+    return ops_num
+    
+
+#print(num_ops(8))    
+#print(num_ops(10))
+print(num_ops(12))
+
+"""
         queue = deque([1])
 
         while queue[-1] != n:
@@ -34,3 +67,4 @@ def num_ops(n):
         ops_num = len(queue)-1
             
     return ops_num
+"""
