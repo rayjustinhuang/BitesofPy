@@ -27,7 +27,7 @@ def num_ops(n):
         queue = deque([1]) # 1 is the starting number
 
         while len(queue) > 0:
-            print(queue[-1])
+            # print(queue[-1])
             
             current = queue.pop()
             
@@ -45,7 +45,7 @@ def num_ops(n):
             if (current // 3) > 1 and (current // 3) not in visited:
                 queue.append(current // 3)
                 
-        ops_num = len(queue)
+        ops_num = len(queue)-1
             
     return ops_num
     
