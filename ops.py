@@ -45,13 +45,16 @@ def num_ops(n):
             if (current // 3) > 1 and (current // 3) not in visited:
                 queue.append(current // 3)
                 
-        ops_num = len(visited)
+            print(visited)
+            print(len(visited))
+                
+    ops_num = len(visited)+1
             
     return ops_num
     
 
-print(num_ops(8))    
-print(num_ops(10))
+#print(num_ops(8))    
+#print(num_ops(10))
 print(num_ops(12))
 
 """
