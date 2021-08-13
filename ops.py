@@ -17,12 +17,12 @@ def num_ops(n):
     """
     # you code
     start = 1
+    visited = set()
     
     if math.log2(n).is_integer():
         return int(math.log2(n))
     
     else:
-        visited = set()
         
         queue = deque([1]) # 1 is the starting number
 
@@ -45,12 +45,12 @@ def num_ops(n):
             if (current // 3) > 1 and (current // 3) not in visited:
                 queue.append(current // 3)
                 
-            print(visited)
-            print(len(visited))
-                
-    ops_num = len(visited)+1
+            #print(visited)
+            #print(len(visited))
+        
+        print(queue)
             
-    return ops_num
+        return len(visited)+1
     
 
 #print(num_ops(8))    
