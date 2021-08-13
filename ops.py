@@ -37,7 +37,7 @@ def num_ops(n):
             visited.add(current)
             
             if (current * 2) == n or current // 3 == n:
-                return len(queue)+1
+                return len(visited)
             
             if (current * 2) not in visited:
                 queue.append(current * 2)
@@ -48,9 +48,9 @@ def num_ops(n):
             #print(visited)
             #print(len(visited))
         
-        print(queue)
+        #print(queue)
             
-        return len(visited)+1
+        #return len(visited)
     
 
 #print(num_ops(8))    
