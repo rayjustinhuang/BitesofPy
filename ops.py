@@ -32,12 +32,12 @@ def num_ops(n):
             current = queue.pop()
             
             if current == n:
-                return len(queue)
+                return len(visited)
                 
             visited.add(current)
             
             if (current * 2) == n or current // 3 == n:
-                return len(visited)
+                return len(queue)
             
             if (current * 2) not in visited:
                 queue.append(current * 2)
