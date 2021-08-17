@@ -17,33 +17,42 @@ def num_ops(n):
     """
     # you code
     start = 1
-    visited = set()
+    visited1 = set()
+    visited2 = set()
     
     if math.log2(n).is_integer():
         return int(math.log2(n))
     
     else:
         
-        queue = deque([1]) # 1 is the starting number
+        queue1 = deque([1]) # 1 is the starting number
+        queue2 = deque([1])
 
-        while len(queue) > 0:
+        while len(queue1) > 0:
             # print(queue[-1])
             
-            current = queue.pop()
+            current1 = queue1.pop()
+            current2 = queue2.pop()
             
-            if current == n:
-                return len(queue)
+            if current1 == n:
+                return len(queue1)
+            if current2 == n:
+                return len(queue2)
                 
-            visited.add(current)
+            visited1.add(current1)
+            visited2.add(current2)
             
-            if (current * 2) == n or current // 3 == n:
-                return len(queue)+1
+            if (current1 * 2) == n or current1 // 3 == n:
+                return len(queue1)+1
             
-            if (current * 2) not in visited:
-                queue.append(current * 2)
+            if (current2 * 2) == n or current2 // 3 == n:
+                return len(queue2)+1
             
-            if (current // 3) > 1 and (current // 3) not in visited:
-                queue.append(current // 3)
+            if (current1 * 2) not in visited1:
+                queue1.append(current1 * 2)
+            
+            if (current2 // 3) > 1 and (current2 // 3) not in visited2:
+                queue2.append(current2 // 3)
     
 
 print(num_ops(15))    
