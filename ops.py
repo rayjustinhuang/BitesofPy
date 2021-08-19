@@ -30,8 +30,8 @@ def num_ops(n):
             # print(queue[-1])
             
             current = queue.pop()
-            print(queue)
-            print(visited)
+            #print(queue)
+            #print(visited)
             
             if current == n:
                 return len(visited)
@@ -39,7 +39,7 @@ def num_ops(n):
             visited.add(current)
             
             if (current * 2) == n or current // 3 == n:
-                return len(visited)+1
+                return len(visited)
             
             if (current * 2) not in visited:
                 queue.append(current * 2)
