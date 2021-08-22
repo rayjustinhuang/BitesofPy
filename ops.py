@@ -16,39 +16,43 @@ def num_ops(n):
     [Hint] the data structure is the key to solve it efficiently.
     """
     # you code
-    start = 1
+    start = set()
     visited = set()
+    count = 1
     
     if math.log2(n).is_integer():
         return int(math.log2(n))
     
     else:
         
-        queue = deque([1]) # 1 is the starting number
+        queue = {1: 1} # 1 is the starting number
 
         while len(queue) > 0:
             # print(queue[-1])
             
-            current = queue.pop()
+            count += 1
+            
+            current = start[-1]
             #print(queue)
             #print(visited)
             
-            if current == n:
-                return len(visited)
-                
-            visited.add(current)
+            if n in queue:
+                return queue[n]
             
-            if (current * 2) == n or current // 3 == n:
-                return len(visited)
+            #if (current * 2) == n or current // 3 == n:
+            #    return queue[n]+1
             
             if (current * 2) not in visited:
-                queue.append(current * 2)
+                visited.add(current * 2)
+                queue[current * 2] = count
             
             if (current // 3) > 1 and (current // 3) not in visited:
-                queue.append(current // 3)
+                visited.add(current // 3)
+                queue[current // 3] = count
+                
     
 
-print(num_ops(10))    
+print(num_ops(15))    
 #print(num_ops(10))
 #print(num_ops(12))
 
