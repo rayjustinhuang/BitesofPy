@@ -32,7 +32,7 @@ def num_ops(n):
             
             count += 1
             
-            current = start[-1]
+            current = list(queue.keys())[-1]
             #print(queue)
             #print(visited)
             
