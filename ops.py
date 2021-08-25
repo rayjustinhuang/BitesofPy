@@ -30,7 +30,6 @@ def num_ops(n):
         while len(queue) > 0:
             # print(queue[-1])
             
-            count += 1
             
             current = list(queue.keys())[-1]
             #print(queue)
@@ -49,6 +48,8 @@ def num_ops(n):
             if (current // 3) > 1 and (current // 3) not in visited:
                 visited.add(current // 3)
                 queue[current // 3] = count
+                
+            count += 1
                 
     
 
