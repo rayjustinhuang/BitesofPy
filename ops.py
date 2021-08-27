@@ -1,5 +1,11 @@
 import math
 from collections import deque
+import queue
+
+class node:
+    def __init__(self, val, level):
+        self.val = val
+        self.level = level
 
 def num_ops(n):
     """
@@ -25,31 +31,33 @@ def num_ops(n):
     
     else:
         
-        queue = {1: 1} # 1 is the starting number
+        q = queue.Queue()
+        target = node(1, 0)
+        q.put(n)
 
-        while len(queue) > 0:
+        while not q.empty():
             # print(queue[-1])
             
             
-            current = list(queue.keys())[-1]
+            current = q.get()
             #print(queue)
             #print(visited)
             
-            if n in queue:
-                return queue[n]
+            if current.val == target:
+                return current.level
             
-            #if (current * 2) == n or current // 3 == n:
-            #    return queue[n]+1
+            visited.add(current.val)
             
-            if (current * 2) not in visited:
-                visited.add(current * 2)
-                queue[current * 2] = count
+            if (current.val * 2) == n or (current.val // 3) == n:
+                return current.level+1
+            
+            if (current.val * 2) not in visited:
+                visited.add(current.val * 2)
             
             if (current // 3) > 1 and (current // 3) not in visited:
                 visited.add(current // 3)
-                queue[current // 3] = count
                 
-            count += 1
+            #count += 1
                 
     
 
