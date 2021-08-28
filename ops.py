@@ -22,7 +22,6 @@ def num_ops(n):
     [Hint] the data structure is the key to solve it efficiently.
     """
     # you code
-    start = set()
     visited = set()
     count = 1
     
@@ -32,14 +31,14 @@ def num_ops(n):
     else:
         
         q = queue.Queue()
-        target = node(1, 0)
-        q.put(n)
+        start = node(1, 0)
+        q.put(start)
 
         while not q.empty():
             # print(queue[-1])
             
             
-            current = q.get()
+            current.val = q.get()
             #print(queue)
             #print(visited)
             
@@ -53,9 +52,10 @@ def num_ops(n):
             
             if (current.val * 2) not in visited:
                 visited.add(current.val * 2)
+                current.level = 
             
-            if (current // 3) > 1 and (current // 3) not in visited:
-                visited.add(current // 3)
+            if (current.val // 3) > 1 and (current.val // 3) not in visited:
+                visited.add(current.val // 3)
                 
             #count += 1
                 
