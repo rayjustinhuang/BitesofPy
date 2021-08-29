@@ -31,18 +31,18 @@ def num_ops(n):
     else:
         
         q = queue.Queue()
-        start = node(1, 0)
-        q.put(start)
+        nod = node(1, 0)
+        q.put(nod)
 
         while not q.empty():
             # print(queue[-1])
             
             
-            current.val = q.get()
+            current = q.get()
             #print(queue)
             #print(visited)
             
-            if current.val == target:
+            if current.val == n:
                 return current.level
             
             visited.add(current.val)
@@ -51,11 +51,14 @@ def num_ops(n):
                 return current.level+1
             
             if (current.val * 2) not in visited:
-                visited.add(current.val * 2)
-                current.level = 
+                nod.val = current.val * 2
+                nod.level = current.level + 1
+                q.put(nod)
             
             if (current.val // 3) > 1 and (current.val // 3) not in visited:
-                visited.add(current.val // 3)
+                nod.val = current.val // 3
+                nod.level = current.level + 1
+                q.put(nod)
                 
             #count += 1
                 
