@@ -23,7 +23,7 @@ def num_ops(n):
     """
     # you code
     visited = set()
-    count = 1
+    #count = 1
     
     if math.log2(n).is_integer():
         return int(math.log2(n))
@@ -43,11 +43,15 @@ def num_ops(n):
             #print(visited)
             
             if current.val == n:
+                print("breaking equal", current.level)
                 return current.level
             
             visited.add(current.val)
             
+            #print(current.level)
+            
             if (current.val * 2) == n or (current.val // 3) == n:
+                print("breaking next step", current.level)
                 return current.level+1
             
             if (current.val * 2) not in visited:
@@ -59,6 +63,8 @@ def num_ops(n):
                 nod.val = current.val // 3
                 nod.level = current.level + 1
                 q.put(nod)
+                
+            print(list(q.queue))
                 
             #count += 1
                 
