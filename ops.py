@@ -42,6 +42,8 @@ def num_ops(n):
             #print(queue)
             #print(visited)
             
+            #print(current.val)
+            
             if int(current.val) == int(n):
                 print("breaking equal", current.level)
                 return current.level
@@ -70,7 +72,7 @@ def num_ops(n):
                 
     
 
-print(num_ops(15))    
+print(num_ops(12))    
 #print(num_ops(10))
 #print(num_ops(12))
 
