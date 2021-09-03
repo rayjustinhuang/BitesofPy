@@ -31,7 +31,7 @@ def num_ops(n):
     else:
         
         q = queue.Queue()
-        nod = node(1, 0)
+        nod = node(1, 1)
         q.put(nod)
 
         while not q.empty():
@@ -44,13 +44,15 @@ def num_ops(n):
             
             #print(current.val)
             
+            next_level = current.level + 1
+            
             if int(current.val) == int(n):
                 print("breaking equal", current.level)
                 return current.level
             
             visited.add(current.val)
             
-            #print(current.level)
+            print(visited)
             
             if (current.val * 2) == n or (current.val // 3) == n:
                 print("breaking next step", current.level)
@@ -58,21 +60,21 @@ def num_ops(n):
             
             if (current.val * 2) not in visited:
                 nod.val = current.val * 2
-                nod.level = current.level + 1
+                nod.level = next_level
                 q.put(nod)
             
             if (current.val // 3) > 1 and (current.val // 3) not in visited:
                 nod.val = current.val // 3
-                nod.level = current.level + 1
+                nod.level = next_level
                 q.put(nod)
                 
-            print(list(q.queue))
+            #print(list(q.queue))
                 
             #count += 1
                 
     
 
-print(num_ops(12))    
+print(num_ops(10))    
 #print(num_ops(10))
 #print(num_ops(12))
 
