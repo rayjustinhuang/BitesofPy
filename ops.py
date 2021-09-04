@@ -44,9 +44,10 @@ def num_ops(n):
             
             #print(current.val)
             
+            current_val = current.val
             next_level = current.level + 1
             
-            if int(current.val) == int(n):
+            if int(current_val) == int(n):
                 print("breaking equal", current.level)
                 return current.level
             
@@ -54,17 +55,17 @@ def num_ops(n):
             
             print(visited)
             
-            if (current.val * 2) == n or (current.val // 3) == n:
+            if (current_val * 2) == n or (current_val // 3) == n:
                 print("breaking next step", current.level)
-                return current.level+1
+                return next_level
             
-            if (current.val * 2) not in visited:
-                nod.val = current.val * 2
+            if (current_val * 2) not in visited:
+                nod.val = current_val * 2
                 nod.level = next_level
                 q.put(nod)
             
-            if (current.val // 3) > 1 and (current.val // 3) not in visited:
-                nod.val = current.val // 3
+            if (current_val // 3) > 1 and (current_val // 3) not in visited:
+                nod.val = current_val // 3
                 nod.level = next_level
                 q.put(nod)
                 
