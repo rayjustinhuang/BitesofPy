@@ -51,8 +51,6 @@ def num_ops(n):
                 print("breaking equal", current.level)
                 return current.level
             
-            visited.add(current.val)
-            
             print(visited)
             
             if (current_val * 2) == n or (current_val // 3) == n:
@@ -69,13 +67,15 @@ def num_ops(n):
                 nod.level = next_level
                 q.put(nod)
                 
+            visited.add(current.val)
+                
             #print(list(q.queue))
                 
             #count += 1
                 
     
 
-print(num_ops(10))    
+print(num_ops(102))    
 #print(num_ops(10))
 #print(num_ops(12))
 
