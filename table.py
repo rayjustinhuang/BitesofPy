@@ -11,8 +11,7 @@ def generate_table(*args):
     rows = zip(*args)
     output = []
     for row in rows:
-        output.append(SEPARATOR.join(x for x in row))
+        delimiter = SEPARATOR
+        output.append(delimiter.join(str(x) for x in row))
     return output
     pass
-
-print(generate_table(names, aliases))
