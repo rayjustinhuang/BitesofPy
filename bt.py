@@ -47,7 +47,10 @@ def check_bt(donor, recipient):
     """
     if not isinstance(donor, (int, str, Bloodtype)) or not isinstance(recipient, (int, str, Bloodtype)):
         raise TypeError
-    else:
+        
+    if isinstance(donor, int) and isinstance(recipient, int):
+        if any((donor < 0, donor > 7)) or any((recipient < 0, recipient > 7)):
+            raise ValueError
         check = _particular_antigen_comp(donor, recipient)
         return all(x > 0 for x in check)
     pass
