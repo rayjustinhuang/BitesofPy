@@ -52,7 +52,11 @@ def check_bt(donor, recipient):
         if any((donor < 0, donor > 7)) or any((recipient < 0, recipient > 7)):
             raise ValueError
         check = _particular_antigen_comp(donor, recipient)
-        return all(x > 0 for x in check)
+        return all(x >= 0 for x in check)
+        
+    if isinstance(donor, Bloodtype) and isinstance(recipient, Bloodtype):
+        check = _particular_antigen_comp(donor.value, recipient.value)
+        return all(x >= 0 for x in check)
     pass
 
 
@@ -75,3 +79,9 @@ def _particular_antigen_comp(donor: int, recipient: int) -> tuple:
         ((recipient // 2) % 2) - ((donor // 2) % 2),
         (recipient % 2) - (donor % 2),
     )
+    
+    
+donor = Bloodtype.ZERO_NEG
+for i in range(8):
+        recipient = Bloodtype(i)
+        print(check_bt(donor, recipient))
