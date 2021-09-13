@@ -57,6 +57,13 @@ def check_bt(donor, recipient):
     if isinstance(donor, Bloodtype) and isinstance(recipient, Bloodtype):
         check = _particular_antigen_comp(donor.value, recipient.value)
         return all(x >= 0 for x in check)
+        
+    if isinstance(donor, str) and isinstance(recipient, str):
+        try:
+            check = _particular_antigen_comp(blood_type_text[donor].value, blood_type_text[recipient].value)
+            return all(x >= 0 for x in check)
+        except:
+            raise ValueError
     pass
 
 
