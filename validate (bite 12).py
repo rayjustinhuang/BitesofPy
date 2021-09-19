@@ -22,16 +22,14 @@ class UserNoPermission(Exception):
 def get_secret_token(username):
     names = [x.name for x in USERS]
     tokens = {x.name:x.role for x in USERS}
-    expirations = {x.name:x.role for x in USERS}
+    expirations = {x.name:x.expired for x in USERS}
     
     if username not in names:
         raise UserDoesNotExist
-    if not expirations[username]:
-        raise UserAccessExpired
     if tokens[username] != ADMIN:
         raise UserNoPermission
-    
+    if not expirations[username]:
+        raise UserAccessExpired
+        
     return SECRET
     pass
-
-get_secret_token('Bob')
