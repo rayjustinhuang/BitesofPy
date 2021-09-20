@@ -26,10 +26,10 @@ def get_secret_token(username):
     
     if username not in names:
         raise UserDoesNotExist
+    if expirations[username]:
+        raise UserAccessExpired
     if tokens[username] != ADMIN:
         raise UserNoPermission
-    if not expirations[username]:
-        raise UserAccessExpired
-        
+
     return SECRET
     pass
