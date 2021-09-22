@@ -35,10 +35,12 @@ def get_largest_number(numbers, n=3):
 
 
 def get_latest_dates(dates, n=3):
+    heapq.heapify(dates)
+    return heapq.nlargest(n, dates)
     pass
 
 
 def get_highest_earnings(earnings_mln, n=3):
     pass
 
-print(get_largest_number(numbers))
+print(get_latest_dates(dates))
