@@ -41,8 +41,11 @@ def get_latest_dates(dates, n=3):
 
 
 def get_highest_earnings(earnings_mln, n=3):
-    heapq.heapify(earnings_mln)
-    return heapq.nlargest(n, earnings_mln, key= lambda x: (y['earnings'] for y in x))
+    heap_dict = [(v, k) for x in earnings_mln for k,v in x.items()]
+    print(heap_dict)
+    heapq.heapify(heap_dict)
+    print(earnings_mln)
+    #return heapq.nlargest(n, earnings_mln, key = lambda x: x[1])
     pass
 
 print(get_highest_earnings(earnings_mln))
