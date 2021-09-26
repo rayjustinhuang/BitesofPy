@@ -41,6 +41,7 @@ def get_latest_dates(dates, n=3):
 
 
 def get_highest_earnings(earnings_mln, n=3):
+    print([x.items() for x in earnings_mln])
     heap_dict = [(v, k) for x in earnings_mln for k,v in x.items()]
     print(heap_dict)
     heapq.heapify(heap_dict)
