@@ -51,7 +51,14 @@ def get_highest_earnings(earnings_mln, n=3):
     #print(heap_dict)
     heapq.heapify(heap_master)
     #print(heap_master)
-    return heapq.nlargest(n, heap_master)
+    final_heap = heapq.nlargest(n, heap_master)
+    
+    final_dict = {}
+    for x in final_heap:
+        final_dict['name'] = x[1]
+        final_dict['earnings'] = x[0]
+    
+    return final_dict
     pass
 
 print(get_highest_earnings(earnings_mln))
