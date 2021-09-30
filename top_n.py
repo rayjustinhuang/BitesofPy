@@ -46,19 +46,18 @@ def get_highest_earnings(earnings_mln, n=3):
         heap_list = list(x.items())
         heap_entries = (heap_list[1][1], heap_list[0][1])
         heap_master.append(heap_entries)
-    # print([(x.items()) for x in earnings_mln])
-    #heap_dict = [k for x in earnings_mln for k in list(x.items())]
-    #print(heap_dict)
-    heapq.heapify(heap_master)
-    #print(heap_master)
-    final_heap = heapq.nlargest(n, heap_master)
-    
-    final_dict = {}
-    for x in final_heap:
-        final_dict['name'] = x[1]
-        final_dict['earnings'] = x[0]
-    
-    return final_dict
-    pass
 
-print(get_highest_earnings(earnings_mln))
+    heapq.heapify(heap_master)
+
+    final_heap = heapq.nlargest(n, heap_master)
+    print(final_heap)
+    
+    final_list = []
+    
+    for x in final_heap:
+        final_dict = {}
+        final_dict['name'], final_dict['earnings'] = x[1], x[0]
+        final_list.append(final_dict)
+        
+    return final_list
+    pass
