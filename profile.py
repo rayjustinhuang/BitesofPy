@@ -5,7 +5,7 @@ def get_profile(name, age: int, *sports, **awards):
         raise ValueError
         
     if sports and not awards:
-        sports = list(sports)
+        sports = sorted(list(sports))
         return {'name': name, 'age': age, 'sports': sports}
     
     if not sports and awards:
