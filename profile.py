@@ -13,6 +13,7 @@ def get_profile(name, age: int, *sports, **awards):
         
     if not sports and not awards:
         return {'name': name, 'age': age}
-        
+    
+    sports = sorted(list(sports))
     return {'name': name, 'age': age, 'sports': sports, 'awards': awards}
     pass
