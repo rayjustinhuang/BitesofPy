@@ -12,5 +12,9 @@ def validate_password(password):
     if sum(x.isdigit() for x in password) < 1:
         return False
         
-    
+    if sum(x.islower() for x in password) < 2:
+        return False
+        
+    if sum(x.isupper() for x in password) < 1:
+        return False
     pass
