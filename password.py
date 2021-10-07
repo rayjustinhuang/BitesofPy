@@ -17,4 +17,12 @@ def validate_password(password):
         
     if sum(x.isupper() for x in password) < 1:
         return False
+        
+    if sum(1 for x in password if x in PUNCTUATION_CHARS) < 1:
+        return False
+        
+    if password in used_passwords:
+        return False
+        
+    return True
     pass
