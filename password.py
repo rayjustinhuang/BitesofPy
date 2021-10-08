@@ -24,5 +24,6 @@ def validate_password(password):
     if password in used_passwords:
         return False
         
+    used_passwords.add(password)
     return True
     pass
