@@ -19,4 +19,11 @@ class MultiplicationTable:
 
     def calc_cell(self, x, y):
         """Takes x and y coords and returns the re-calculated result"""
+        if x > length or y > length:
+            raise IndexError
+            
+        rows = []
+        for i in x:
+            new_row = [i*j for j in y]
+            rows.append(new_row)
         pass
