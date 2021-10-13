@@ -15,6 +15,8 @@ class MultiplicationTable:
 
     def __str__(self):
         """Returns a string representation of the table"""
+        for row in self._table:
+            print(' | '.join(x for x in row))
         pass
 
     def calc_cell(self, x, y):
@@ -26,4 +28,6 @@ class MultiplicationTable:
         for i in x:
             new_row = [i*j for j in y]
             rows.append(new_row)
+            
+        self._table = rows
         pass
