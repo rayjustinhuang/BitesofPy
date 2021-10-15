@@ -5,7 +5,7 @@ class MultiplicationTable:
            their calculations (form of caching)"""
         self.x = length
         self.y = length
-        self._table = ''
+        self._table = self.calc_cell(self.x, self.y)
         pass
 
     def __len__(self):
@@ -15,13 +15,16 @@ class MultiplicationTable:
 
     def __str__(self):
         """Returns a string representation of the table"""
+        output = ''
         for row in self._table:
-            print(' | '.join(x for x in row))
+            output += ' | '.join(x for x in row)
+        
+        return output
         pass
 
     def calc_cell(self, x, y):
         """Takes x and y coords and returns the re-calculated result"""
-        if x > length or y > length:
+        if x > self.x or y > self.y:
             raise IndexError
             
         rows = []
@@ -29,5 +32,9 @@ class MultiplicationTable:
             new_row = [i*j for j in y]
             rows.append(new_row)
             
-        self._table = rows
+        return rows
         pass
+    
+test = MultiplicationTable(10)
+print(test.__len__())
+print(test.__str__())
