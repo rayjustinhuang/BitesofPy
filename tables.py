@@ -17,7 +17,8 @@ class MultiplicationTable:
         """Returns a string representation of the table"""
         output = ''
         for row in self._table:
-            output += ' | '.join(x for x in row)
+            output += ' | '.join(str(x) for x in row)
+            output += "\n"
         
         return output
         pass
@@ -28,8 +29,8 @@ class MultiplicationTable:
             raise IndexError
             
         rows = []
-        for i in x:
-            new_row = [i*j for j in y]
+        for i in range(1, x+1):
+            new_row = [i*j for j in range(1, y+1)]
             rows.append(new_row)
             
         return rows
