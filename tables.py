@@ -16,7 +16,13 @@ class MultiplicationTable:
     def __str__(self):
         """Returns a string representation of the table"""
         output = ''
-        for row in self._table:
+        
+        rows = []
+        for i in range(1, self.x+1):
+            new_row = [i*j for j in range(1, self.y+1)]
+            rows.append(new_row)
+            
+        for row in rows:
             output += ' | '.join(str(x) for x in row)
             output += "\n"
         
@@ -27,15 +33,6 @@ class MultiplicationTable:
         """Takes x and y coords and returns the re-calculated result"""
         if x > self.x or y > self.y:
             raise IndexError
-            
-        rows = []
-        for i in range(1, x+1):
-            new_row = [i*j for j in range(1, y+1)]
-            rows.append(new_row)
-            
-        return rows
+        
+        return x * y
         pass
-    
-test = MultiplicationTable(10)
-print(test.__len__())
-print(test.__str__())
