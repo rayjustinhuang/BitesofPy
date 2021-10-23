@@ -14,18 +14,22 @@ def create_uno_deck():
     
     for suit in SUITS:
         zeroes = UnoCard(suit, 0)
-        numbers = [2*UnoCard(suit, x) for x in range(1, 10)]
+        numbers = [UnoCard(suit, x) for x in range(1, 10)]
         deck.append(zeroes)
         deck += numbers
+        deck += numbers
         
-    draw_two = 2*UnoCard(suit, 'Draw Two')
-    skip = 2*UnoCard(suit, 'Skip')
-    reverse = 2*UnoCard(suit, 'Reverse')
+    draw_two = UnoCard(suit, 'Draw Two')
+    skip = UnoCard(suit, 'Skip')
+    reverse = UnoCard(suit, 'Reverse')
         
     deck.append(draw_two)
     deck.append(skip)
     deck.append(reverse)
-        
+    deck.append(draw_two)
+    deck.append(skip)
+    deck.append(reverse)
+    
     deck += [4*UnoCard(None, 'Wild'), 4*UnoCard(None, 'Wild Draw')]
     
     return deck
