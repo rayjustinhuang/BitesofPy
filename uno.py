@@ -30,7 +30,10 @@ def create_uno_deck():
     deck.append(skip)
     deck.append(reverse)
     
-    deck += [4*UnoCard(None, 'Wild'), 4*UnoCard(None, 'Wild Draw')]
+    deck += 4*[UnoCard(None, 'Wild'), UnoCard(None, 'Wild Draw')]
     
     return deck
     pass
+
+deck = create_uno_deck()
+print(deck)
