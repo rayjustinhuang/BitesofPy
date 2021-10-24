@@ -19,21 +19,18 @@ def create_uno_deck():
         deck += numbers
         deck += numbers
         
-    draw_two = UnoCard(suit, 'Draw Two')
-    skip = UnoCard(suit, 'Skip')
-    reverse = UnoCard(suit, 'Reverse')
-        
-    deck.append(draw_two)
-    deck.append(skip)
-    deck.append(reverse)
-    deck.append(draw_two)
-    deck.append(skip)
-    deck.append(reverse)
+        draw_two = UnoCard(suit, 'Draw Two')
+        skip = UnoCard(suit, 'Skip')
+        reverse = UnoCard(suit, 'Reverse')
+            
+        deck.append(draw_two)
+        deck.append(skip)
+        deck.append(reverse)
+        deck.append(draw_two)
+        deck.append(skip)
+        deck.append(reverse)
     
     deck += 4*[UnoCard(None, 'Wild'), UnoCard(None, 'Wild Draw')]
     
     return deck
     pass
-
-deck = create_uno_deck()
-print(deck)
