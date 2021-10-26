@@ -28,6 +28,9 @@ def contains(sequence: List[int], num: int) -> bool:
 
 @timing
 def contains_fast(sequence: Set[int], num: int) -> bool:
+    if num in sequence:
+        return True
+    return False
     pass
 
 
