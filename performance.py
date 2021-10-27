@@ -1,6 +1,7 @@
 from functools import wraps
 from time import time
 from typing import Deque, List, Set, Generator
+import heapq
 
 
 def timing(f):
@@ -41,6 +42,8 @@ def ordered_list_max(sequence: List[int]) -> int:
 
 @timing
 def ordered_list_max_fast(sequence: List[int]) -> int:
+    heap_largest = heapq.nlargest(1, sequence)
+    return heap_largest
     pass
 
 
