@@ -57,6 +57,10 @@ def list_concat(sequence: List[str]) -> str:
 
 @timing
 def list_concat_fast(sequence: List[str]) -> str:
+    bigstr = ""
+    bigstr += [str(i) for i in sequence]
+    
+    return bigstr
     pass
 
 
