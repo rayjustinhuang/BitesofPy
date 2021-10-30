@@ -58,7 +58,7 @@ def list_concat(sequence: List[str]) -> str:
 @timing
 def list_concat_fast(sequence: List[str]) -> str:
     bigstr = ""
-    bigstr += [str(i) for i in sequence]
+    bigstr += "".join(i for i in sequence)
     
     return bigstr
     pass
@@ -90,4 +90,5 @@ def list_creation(n: int) -> List[int]:
 
 @timing
 def list_creation_fast(n: int) -> Generator[int, None, None]:
+    return [range(n)]
     pass
