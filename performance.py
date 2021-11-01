@@ -75,8 +75,8 @@ def list_inserts(n: int) -> List[int]:
 @timing
 def list_inserts_fast(n: int) -> Deque[int]:
     queue = Deque()
-    queue.append(range(n))
-    return queue
+    queue.appendleft(range(n))
+    return list(queue)
     pass
 
 
