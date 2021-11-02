@@ -42,8 +42,9 @@ def ordered_list_max(sequence: List[int]) -> int:
 
 @timing
 def ordered_list_max_fast(sequence: List[int]) -> int:
-    heap_largest = heapq.nlargest(1, sequence)
-    return heap_largest[0]
+    # heap_largest = heapq.nlargest(1, sequence)
+    #return heap_largest[0]
+    return sorted(sequence)[-1]    
     pass
 
 
@@ -75,8 +76,8 @@ def list_inserts(n: int) -> List[int]:
 @timing
 def list_inserts_fast(n: int) -> Deque[int]:
     queue = Deque()
-    queue.appendleft(range(n))
-    return list(queue)
+    queue.appendleft(i for i in range(n))
+    return queue
     pass
 
 
@@ -90,5 +91,5 @@ def list_creation(n: int) -> List[int]:
 
 @timing
 def list_creation_fast(n: int) -> Generator[int, None, None]:
-    return [range(n)]
+    return list(range(n))
     pass
