@@ -6,14 +6,15 @@ COLORS = 'red blue green yellow brown purple'.split()
 class EggCreator:
     def __init__(self, limit):
         self.limit = limit
+        self.count = 0
         
     def __iter__(self):
-        self.count = 0
         return self
         
     def __next__(self):
+        self.count += 1
         if self.count <= self.limit:
-            return choice(colors) + 'egg'
+            return str(choice(COLORS)) + ' egg'
         else:
             raise StopIteration
     pass
