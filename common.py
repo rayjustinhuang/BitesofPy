@@ -4,8 +4,11 @@ def common_languages(programmers):
        
     names = programmers.keys()
     
-    common = []
+    common = set()
     
     for name in names:
-        programmers[name]
+        check = common.intersection(set(programmers[name]))
+        common.update(check)
+        
+    return common
     pass
