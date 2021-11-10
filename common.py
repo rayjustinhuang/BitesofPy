@@ -10,7 +10,7 @@ def common_languages(programmers):
         check = common.intersection(set(programmers[name]))
         common.update(check)
         
-    return common
+    return list(common)
     pass
 
 programmers = dict(bob=['JS', 'PHP', 'Python', 'Perl', 'Java'],
