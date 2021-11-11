@@ -4,6 +4,8 @@ def common_languages(programmers):
        
     names = list(programmers.keys())
     
+    languages = sorted(list(programmers.values()), key = lambda x: len(x))
+    
     common = set(programmers[names[0]]).intersection(set(programmers[names[1]]))
     
     for name in names:
@@ -16,6 +18,6 @@ def common_languages(programmers):
 programmers = dict(bob=['JS', 'PHP', 'Python', 'Perl', 'Java'],
                 tim=['Python', 'Haskell', 'C++', 'JS'],
                 sara=['Perl', 'C', 'Java', 'Python', 'JS'],
-                paul=['C++', 'JS', 'Python'])
+                paul=['C++', 'JS', 'Python'], sue=['Scala','Python'])
                 
 print(common_languages(programmers))
