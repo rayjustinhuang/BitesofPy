@@ -6,7 +6,7 @@ def common_languages(programmers):
     
     languages = sorted(list(programmers.values()), key = lambda x: len(x))
     
-    common = set(programmers[names[0]]).intersection(set(programmers[names[1]]))
+    common = set(languages[0]).intersection(set(languages[1]))
     
     for name in names:
         check = common.intersection(set(programmers[name]))
