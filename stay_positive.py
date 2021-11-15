@@ -40,4 +40,8 @@ def filter_tweets_on_polarity(tweets, keep_positive=True):
 def order_tweets_by_polarity(tweets, positive_highest=True):
     """Sort the tweets by polarity, receives positive_highest which determines
        the order. Returns a list of ordered tweets."""
+    if positive_highest:
+        return sorted(tweets, key= lambda tweet: tweet.polarity, reverse = True)
+    else:
+        return sorted(tweets, key= lambda tweet: tweet.polarity, reverse= False)
     pass
