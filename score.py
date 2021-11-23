@@ -18,7 +18,7 @@ class Score(Enum):
     #     self.level = level
         
     def __str__(self):
-        return f'{self.name} ==> {self.value * THUMBS_UP}'
+        return f'{self.name} => {self.value * THUMBS_UP}'
         
     @classmethod
     def average(cls):
