@@ -9,6 +9,14 @@ def find_all_solutions(
     # TODO: blank canvas to fill
     if type(expected_result) != int:
         raise ValueError
+    for o in operator_path:
+        if o not in ['+','-','*']:
+            raise ValueError
+            
+    if len(operator_path) == 1:
+        return operation(operator_path, expected_result)
+    else:
+        pass
     pass
 
 def operation(op: str, expected_result: int):
