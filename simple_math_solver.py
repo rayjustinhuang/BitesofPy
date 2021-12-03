@@ -16,7 +16,8 @@ def find_all_solutions(
     if len(operator_path) == 1:
         return operation(operator_path, expected_result)
     else:
-        pass
+        possible = permutations(range(1, 9), len(operator_path))
+        
     pass
 
 def operation(op: str, expected_result: int):
