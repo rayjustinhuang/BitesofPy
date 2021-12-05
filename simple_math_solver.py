@@ -51,6 +51,14 @@ def long_operation(op: list, expected_result: int):
             
         for operator in op:
             
+        if operator == '+':
+            add_index = op.index('+')
+            element = add(working_answer[add_index], working_answer[add_index+1])
+            working_answer.pop(add_index)
+            working_answer.pop(add_index)
+            working_answer.insert(add_index, element)
+            op.pop(add_index)
+            
             
     
     
