@@ -40,24 +40,33 @@ def long_operation(op: list, expected_result: int):
         working_answer = list(answer)
         for operator in op:
         
-        # Multiplication first
-        if operator == '*':
-            mul_index = op.index('*')
-            element = mul(working_answer[mul_index], working_answer[mul_index+1])
-            working_answer.pop(mul_index)
-            working_answer.pop(mul_index)
-            working_answer.insert(mul_index, element)
-            op.pop(mul_index)
+            # Multiplication first
+            if operator == '*':
+                mul_index = op.index('*')
+                element = mul(working_answer[mul_index], working_answer[mul_index+1])
+                working_answer.pop(mul_index)
+                working_answer.pop(mul_index)
+                working_answer.insert(mul_index, element)
+                op.pop(mul_index)
             
         for operator in op:
             
-        if operator == '+':
-            add_index = op.index('+')
-            element = add(working_answer[add_index], working_answer[add_index+1])
-            working_answer.pop(add_index)
-            working_answer.pop(add_index)
-            working_answer.insert(add_index, element)
-            op.pop(add_index)
+            if operator == '+':
+                add_index = op.index('+')
+                element = add(working_answer[add_index], working_answer[add_index+1])
+                working_answer.pop(add_index)
+                working_answer.pop(add_index)
+                working_answer.insert(add_index, element)
+                op.pop(add_index)
+            elif operator == '-':
+                sub_index = op.index('-')
+                element = sub(working_answer[sub_index], working_answer[sub_index+1])
+                working_answer.pop(sub_index)
+                working_answer.pop(sub_index)
+                working_answer.insert(sub_index, element)
+                op.pop(sub_index)
+            else:
+                continue
             
             
     
