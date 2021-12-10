@@ -35,6 +35,7 @@ def basic_operation(op: str, expected_result: int):
         
 def long_operation(op: list, expected_result: int):
     possible = permutations(range(1, 9), len(op)+1)
+    allowed_answers = []
     
     for answer in possible:
         working_answer = list(answer)
@@ -67,8 +68,13 @@ def long_operation(op: list, expected_result: int):
                 op.pop(sub_index)
             else:
                 continue
+        
+        if working_answer == expected_result:
+            allowed_answers.append(answer)
             
+    return allowed_answers
             
     
     
-print(operation('-', 5))
+print(basic_operation('-', 5))
+print(long_operation(['-','+','-'],5))
