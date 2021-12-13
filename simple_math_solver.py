@@ -47,6 +47,7 @@ def long_operation(op: list, expected_result: int):
                 print(working_answer)
                 print(op)
                 mul_index = op.index('*')
+                print(mul_index)
                 element = mul(working_answer[mul_index], working_answer[mul_index+1])
                 working_answer.pop(mul_index)
                 working_answer.pop(mul_index)
