@@ -35,49 +35,51 @@ def basic_operation(op: str, expected_result: int):
         
 def long_operation(op: list, expected_result: int):
     possible = [(4, 5, 9, 1), (4, 9, 5, 1)]# permutations(range(1, 9), len(op)+1)
+    list_of_ops = op.copy()
     allowed_answers = []
     
     for answer in possible:
         working_answer = list(answer)
         print(op)
-        for operator in op:
+        for operator in list_of_ops:
         
             # Multiplication first
             if operator == '*':
-                print(working_answer)
-                print(op)
-                mul_index = op.index('*')
-                print(mul_index)
+                #print(working_answer)
+                #print(op)
+                mul_index = list_of_ops.index('*')
+                #print(mul_index)
                 element = mul(working_answer[mul_index], working_answer[mul_index+1])
                 working_answer.pop(mul_index)
                 working_answer.pop(mul_index)
                 working_answer.insert(mul_index, element)
-                op.pop(mul_index)
-                print(working_answer)
-                print(op)
+                #print(working_answer)
+                #print(op)
+                
+        list_of_ops = [x for x in list_of_ops if x != '*']
             
-        for operator in op:
-            
+        for operator in list_of_ops:
             if operator == '+':
-                add_index = op.index('+')
+                add_index = list_of_ops.index('+')
+                #print(add_index)
                 element = add(working_answer[add_index], working_answer[add_index+1])
                 working_answer.pop(add_index)
                 working_answer.pop(add_index)
                 working_answer.insert(add_index, element)
-                op.pop(add_index)
+
             elif operator == '-':
-                sub_index = op.index('-')
+                sub_index = list_of_ops.index('-')
                 element = sub(working_answer[sub_index], working_answer[sub_index+1])
                 working_answer.pop(sub_index)
                 working_answer.pop(sub_index)
                 working_answer.insert(sub_index, element)
-                op.pop(sub_index)
+
             else:
                 continue
-            
-        # print(working_answer)
         
-        if working_answer == expected_result:
+        print(working_answer)
+        
+        if working_answer[0] == expected_result:
             allowed_answers.append(answer)
             
     return allowed_answers
