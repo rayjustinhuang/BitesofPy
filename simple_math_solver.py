@@ -34,7 +34,7 @@ def basic_operation(op: str, expected_result: int):
         return [x for x in possible if (x[0] * x[1]) == expected_result]
         
 def long_operation(op: list, expected_result: int):
-    possible = [(4, 5, 9, 1), (4, 9, 5, 1)]# permutations(range(1, 9), len(op)+1)
+    possible = permutations(range(1, 9), len(op)+1)
     
     allowed_answers = []
     
@@ -87,5 +87,5 @@ def long_operation(op: list, expected_result: int):
             
     
     
-print(basic_operation('-', 5))
-print(long_operation(['*','*','+'],181))
+#print(basic_operation('-', 5))
+#print(long_operation(['*','*','+'],181))
