@@ -16,7 +16,7 @@ def find_all_solutions(
     if len(operator_path) == 1:
         return basic_operation(operator_path, expected_result)
     else:
-        possible = permutations(range(1, 9), len(operator_path)+1)
+        return long_operation(operator_path, expected_result)
         
 
             
@@ -78,7 +78,7 @@ def long_operation(op: list, expected_result: int):
             else:
                 continue
         
-        print(working_answer)
+        #vprint(working_answer)
         
         if working_answer[0] == expected_result:
             allowed_answers.append(answer)
