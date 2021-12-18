@@ -25,13 +25,13 @@ def find_all_solutions(
 
 def basic_operation(op: str, expected_result: int):
     if op == '+':
-        possible = permutations(range(1,expected_result), 2)
-        return [x for x in possible if sum(x) == expected_result]
+        possible = permutations(range(1,9), 2)
+        return [list(x) for x in possible if sum(x) == expected_result]
     possible = permutations(range(1,10),2)
     if op == '-':
-        return [x for x in possible if (x[0] - x[1]) == expected_result]
+        return [list(x) for x in possible if (x[0] - x[1]) == expected_result]
     if op == '*':
-        return [x for x in possible if (x[0] * x[1]) == expected_result]
+        return [list(x) for x in possible if (x[0] * x[1]) == expected_result]
         
 def long_operation(op: list, expected_result: int):
     possible = permutations(range(1, 9), len(op)+1)
@@ -87,5 +87,5 @@ def long_operation(op: list, expected_result: int):
             
     
     
-#print(basic_operation('-', 5))
+print(basic_operation('+', 6))
 #print(long_operation(['*','*','+'],181))
