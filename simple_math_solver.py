@@ -81,11 +81,12 @@ def long_operation(op: list, expected_result: int):
         #vprint(working_answer)
         
         if working_answer[0] == expected_result:
-            allowed_answers.append(answer)
+            allowed_answers.append(list(answer))
             
     return allowed_answers
             
     
     
-print(basic_operation('+', 6))
+#print(basic_operation('-', 6))
 #print(long_operation(['*','*','+'],181))
+#print(find_all_solutions(['*','-'], 16))
