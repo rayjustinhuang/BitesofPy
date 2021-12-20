@@ -14,7 +14,7 @@ def find_all_solutions(
             raise ValueError
             
     if len(operator_path) == 1:
-        return basic_operation(operator_path, expected_result)
+        return basic_operation(operator_path[0], expected_result)
     else:
         return long_operation(operator_path, expected_result)
         
@@ -90,3 +90,4 @@ def long_operation(op: list, expected_result: int):
 #print(basic_operation('-', 6))
 #print(long_operation(['*','*','+'],181))
 #print(find_all_solutions(['*','-'], 16))
+print(find_all_solutions(['+'], 6))
