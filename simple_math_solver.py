@@ -46,10 +46,10 @@ def long_operation(op: list, expected_result: int):
         
             # Multiplication first
             if operator == '*':
-                #print(working_answer)
-                #print(op)
+                print(working_answer)
+                print(op)
                 mul_index = list_of_ops.index('*')
-                #print(mul_index)
+                print(mul_index)
                 element = mul(working_answer[mul_index], working_answer[mul_index+1])
                 working_answer.pop(mul_index)
                 working_answer.pop(mul_index)
@@ -70,6 +70,9 @@ def long_operation(op: list, expected_result: int):
 
             elif operator == '-':
                 sub_index = list_of_ops.index('-')
+                print(sub_index)
+                print(list_of_ops)
+                print(working_answer)
                 element = sub(working_answer[sub_index], working_answer[sub_index+1])
                 working_answer.pop(sub_index)
                 working_answer.pop(sub_index)
@@ -90,4 +93,5 @@ def long_operation(op: list, expected_result: int):
 #print(basic_operation('-', 6))
 #print(long_operation(['*','*','+'],181))
 #print(find_all_solutions(['*','-'], 16))
-print(find_all_solutions(['+'], 6))
+#print(find_all_solutions(['+'], 6))
+print(find_all_solutions(['+', '*', '*', '+', '*', '-'], 528))
