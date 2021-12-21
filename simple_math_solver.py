@@ -62,7 +62,7 @@ def long_operation(op: list, expected_result: int):
                 working_answer.pop(add_index)
                 working_answer.pop(add_index)
                 working_answer.insert(add_index, element)
-                list_of_ops.pop(add_index)
+                list_of_ops.remove('+')
 
             elif operator == '-':
                 sub_index = list_of_ops.index('-')
@@ -70,7 +70,7 @@ def long_operation(op: list, expected_result: int):
                 working_answer.pop(sub_index)
                 working_answer.pop(sub_index)
                 working_answer.insert(sub_index, element)
-                list_of_ops.pop(sub_index)
+                list_of_ops.remove('-')
 
             else:
                 continue
