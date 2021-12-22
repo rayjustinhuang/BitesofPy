@@ -51,8 +51,12 @@ def long_operation(op: list, expected_result: int):
                 working_answer.pop(mul_index)
                 working_answer.pop(mul_index)
                 working_answer.insert(mul_index, element)
+                list_of_ops.remove('*')
+            else:
+                continue
 
-        list_of_ops = [x for x in list_of_ops if x != '*']
+        # list_of_ops = [x for x in list_of_ops if x != '*']
+        #print(list_of_ops)
             
         for operator in list_of_ops:
             if operator == '+':
@@ -75,7 +79,7 @@ def long_operation(op: list, expected_result: int):
             else:
                 continue
         
-        #vprint(working_answer)
+        #print(working_answer)
         
         if working_answer[0] == expected_result:
             allowed_answers.append(list(answer))
