@@ -56,9 +56,9 @@ def long_operation(op: list, expected_result: int):
                 continue
 
         # list_of_ops = [x for x in list_of_ops if x != '*']
-        #print(list_of_ops)
             
         for operator in list_of_ops:
+            
             if operator == '+':
                 add_index = list_of_ops.index('+')
                 #print(add_index)
@@ -80,6 +80,7 @@ def long_operation(op: list, expected_result: int):
                 continue
         
         #print(working_answer)
+        print(list_of_ops)
         
         if working_answer[0] == expected_result:
             allowed_answers.append(list(answer))
