@@ -38,9 +38,13 @@ def long_operation(op: list, expected_result: int):
     
     allowed_answers = []
     
+    print(op)
+    
     for answer in possible:
         working_answer = list(answer)
-        list_of_ops = op.copy()
+        list_of_ops = list(op)
+        
+        print(list_of_ops)
 
         for operator in list_of_ops:
         
@@ -80,7 +84,7 @@ def long_operation(op: list, expected_result: int):
                 continue
         
         #print(working_answer)
-        print(list_of_ops)
+        #print(list_of_ops)
         
         if working_answer[0] == expected_result:
             allowed_answers.append(list(answer))
