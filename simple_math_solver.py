@@ -34,19 +34,18 @@ def basic_operation(op: str, expected_result: int):
         return [list(x) for x in possible if (x[0] * x[1]) == expected_result]
         
 def long_operation(op: list, expected_result: int):
-    possible = permutations(range(1, 9), len(op)+1)
+    possible = [[6, 7, 8, 9, 4, 5, 2]] # permutations(range(1, 9), len(op)+1)
     
     allowed_answers = []
-    
-    print(op)
     
     for answer in possible:
         working_answer = list(answer)
         list_of_ops = list(op)
-        
-        print(list_of_ops)
 
         for operator in list_of_ops:
+            
+            print(operator)
+            print('looping')
         
             # Multiplication first
             if operator == '*':
@@ -55,11 +54,11 @@ def long_operation(op: list, expected_result: int):
                 working_answer.pop(mul_index)
                 working_answer.pop(mul_index)
                 working_answer.insert(mul_index, element)
-                list_of_ops.remove('*')
+                #list_of_ops.remove('*')
             else:
                 continue
 
-        # list_of_ops = [x for x in list_of_ops if x != '*']
+        list_of_ops = [x for x in list_of_ops if x != '*']
             
         for operator in list_of_ops:
             
@@ -70,7 +69,7 @@ def long_operation(op: list, expected_result: int):
                 working_answer.pop(add_index)
                 working_answer.pop(add_index)
                 working_answer.insert(add_index, element)
-                list_of_ops.remove('+')
+                #list_of_ops.remove('+')
 
             elif operator == '-':
                 sub_index = list_of_ops.index('-')
@@ -78,7 +77,7 @@ def long_operation(op: list, expected_result: int):
                 working_answer.pop(sub_index)
                 working_answer.pop(sub_index)
                 working_answer.insert(sub_index, element)
-                list_of_ops.remove('-')
+                #list_of_ops.remove('-')
 
             else:
                 continue
