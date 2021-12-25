@@ -44,8 +44,8 @@ def long_operation(op: list, expected_result: int):
 
         for operator in list_of_ops:
             
-            print(operator)
-            print('looping')
+            #print(operator)
+            #print('looping')
         
             # Multiplication first
             if operator == '*':
@@ -58,12 +58,15 @@ def long_operation(op: list, expected_result: int):
             else:
                 continue
 
-        list_of_ops = [x for x in list_of_ops if x != '*']
+        new_list_of_ops = [x for x in list_of_ops if x != '*']
             
-        for operator in list_of_ops:
+        for operator in new_list_of_ops:
+            
+            print(operator)
+            print('looping')
             
             if operator == '+':
-                add_index = list_of_ops.index('+')
+                add_index = new_list_of_ops.index('+')
                 #print(add_index)
                 element = add(working_answer[add_index], working_answer[add_index+1])
                 working_answer.pop(add_index)
@@ -72,7 +75,7 @@ def long_operation(op: list, expected_result: int):
                 #list_of_ops.remove('+')
 
             elif operator == '-':
-                sub_index = list_of_ops.index('-')
+                sub_index = new_list_of_ops.index('-')
                 element = sub(working_answer[sub_index], working_answer[sub_index+1])
                 working_answer.pop(sub_index)
                 working_answer.pop(sub_index)
