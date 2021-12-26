@@ -42,7 +42,7 @@ def long_operation(op: list, expected_result: int):
         working_answer = list(answer)
         list_of_ops = list(op)
 
-        for operator in list_of_ops:
+        for operator in list(list_of_ops):
             
             #print(operator)
             #print('looping')
@@ -57,10 +57,12 @@ def long_operation(op: list, expected_result: int):
                 #list_of_ops.remove('*')
             else:
                 continue
+            
+            print(working_answer)
 
         new_list_of_ops = [x for x in list_of_ops if x != '*']
             
-        for operator in new_list_of_ops:
+        for operator in list(new_list_of_ops):
             
             print(operator)
             print('looping')
@@ -85,7 +87,7 @@ def long_operation(op: list, expected_result: int):
             else:
                 continue
         
-        #print(working_answer)
+            print(working_answer)
         #print(list_of_ops)
         
         if working_answer[0] == expected_result:
