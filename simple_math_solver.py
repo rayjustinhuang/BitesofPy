@@ -41,8 +41,9 @@ def long_operation(op: list, expected_result: int):
     for answer in possible:
         working_answer = list(answer)
         list_of_ops = list(op)
+        final_answer = 1
 
-        for operator in list(list_of_ops):
+        for operator in list_of_ops:
             
             #print(operator)
             #print('looping')
@@ -51,18 +52,17 @@ def long_operation(op: list, expected_result: int):
             if operator == '*':
                 mul_index = list_of_ops.index('*')
                 element = mul(working_answer[mul_index], working_answer[mul_index+1])
-                working_answer.pop(mul_index)
-                working_answer.pop(mul_index)
-                working_answer.insert(mul_index, element)
+                final_answer = element
+                #working_answer.pop(mul_index)
+                #working_answer.pop(mul_index)
+                #working_answer.insert(mul_index, element)
                 #list_of_ops.remove('*')
             else:
                 continue
-            
-            print(working_answer)
 
         new_list_of_ops = [x for x in list_of_ops if x != '*']
             
-        for operator in list(new_list_of_ops):
+        for operator in new_list_of_ops:
             
             print(operator)
             print('looping')
@@ -71,23 +71,25 @@ def long_operation(op: list, expected_result: int):
                 add_index = new_list_of_ops.index('+')
                 #print(add_index)
                 element = add(working_answer[add_index], working_answer[add_index+1])
-                working_answer.pop(add_index)
-                working_answer.pop(add_index)
-                working_answer.insert(add_index, element)
+                final_answer = element
+                #working_answer.pop(add_index)
+                #working_answer.pop(add_index)
+                #working_answer.insert(add_index, element)
                 #list_of_ops.remove('+')
 
             elif operator == '-':
                 sub_index = new_list_of_ops.index('-')
                 element = sub(working_answer[sub_index], working_answer[sub_index+1])
-                working_answer.pop(sub_index)
-                working_answer.pop(sub_index)
-                working_answer.insert(sub_index, element)
+                final_answer = element
+                #working_answer.pop(sub_index)
+                #working_answer.pop(sub_index)
+                #working_answer.insert(sub_index, element)
                 #list_of_ops.remove('-')
 
             else:
                 continue
         
-            print(working_answer)
+        #print(working_answer)
         #print(list_of_ops)
         
         if working_answer[0] == expected_result:
