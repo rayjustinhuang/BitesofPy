@@ -38,10 +38,11 @@ def long_operation(op: list, expected_result: int):
     
     allowed_answers = []
     
+    final_answer = 1 if '*' in ops else 0
+    
     for answer in possible:
         working_answer = list(answer)
         list_of_ops = list(op)
-        final_answer = 1
 
         for operator in list_of_ops:
             
@@ -51,7 +52,7 @@ def long_operation(op: list, expected_result: int):
             # Multiplication first
             if operator == '*':
                 mul_index = list_of_ops.index('*')
-                element = mul(working_answer[mul_index], working_answer[mul_index+1])
+                element = mul(final_answer, working_answer[mul_index+1])
                 final_answer = element
                 #working_answer.pop(mul_index)
                 #working_answer.pop(mul_index)
@@ -70,7 +71,7 @@ def long_operation(op: list, expected_result: int):
             if operator == '+':
                 add_index = new_list_of_ops.index('+')
                 #print(add_index)
-                element = add(working_answer[add_index], working_answer[add_index+1])
+                element = add(final_answer, working_answer[add_index+1])
                 final_answer = element
                 #working_answer.pop(add_index)
                 #working_answer.pop(add_index)
@@ -79,7 +80,7 @@ def long_operation(op: list, expected_result: int):
 
             elif operator == '-':
                 sub_index = new_list_of_ops.index('-')
-                element = sub(working_answer[sub_index], working_answer[sub_index+1])
+                element = sub(final_answer, working_answer[sub_index+1])
                 final_answer = element
                 #working_answer.pop(sub_index)
                 #working_answer.pop(sub_index)
