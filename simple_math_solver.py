@@ -38,11 +38,15 @@ def long_operation(op: list, expected_result: int):
     
     allowed_answers = []
     
-    final_answer = 1 if '*' in ops else 0
-    
     for answer in possible:
         working_answer = list(answer)
         list_of_ops = list(op)
+        
+        if '*' in list_of_ops:
+            final_answer = working_answer[list_of_ops.index('*')]*len(working_answer)
+        else:
+            final_answer = working_answer[0]*len(working_answer)
+            
 
         for operator in list_of_ops:
             
