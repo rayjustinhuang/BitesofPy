@@ -43,9 +43,11 @@ def long_operation(op: list, expected_result: int):
         list_of_ops = list(op)
         
         if '*' in list_of_ops:
-            final_answer = working_answer[list_of_ops.index('*')]*len(working_answer)
+            final_answer = [ working_answer[list_of_ops.index('*')] ] * len(working_answer)
         else:
-            final_answer = working_answer[0]*len(working_answer)
+            final_answer = [ working_answer[0] ] * len(working_answer)
+            
+        print(final_answer)
             
 
         for operator in list_of_ops:
@@ -56,8 +58,8 @@ def long_operation(op: list, expected_result: int):
             # Multiplication first
             if operator == '*':
                 mul_index = list_of_ops.index('*')
-                element = mul(final_answer, working_answer[mul_index+1])
-                final_answer = element
+                element = mul(final_answer[mul_index], working_answer[mul_index+1])
+                final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(mul_index)
                 #working_answer.pop(mul_index)
                 #working_answer.insert(mul_index, element)
@@ -75,8 +77,8 @@ def long_operation(op: list, expected_result: int):
             if operator == '+':
                 add_index = new_list_of_ops.index('+')
                 #print(add_index)
-                element = add(final_answer, working_answer[add_index+1])
-                final_answer = element
+                element = add(final_answer[add_index], working_answer[add_index+1])
+                final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(add_index)
                 #working_answer.pop(add_index)
                 #working_answer.insert(add_index, element)
@@ -84,8 +86,8 @@ def long_operation(op: list, expected_result: int):
 
             elif operator == '-':
                 sub_index = new_list_of_ops.index('-')
-                element = sub(final_answer, working_answer[sub_index+1])
-                final_answer = element
+                element = sub(final_answer[sub_index], working_answer[sub_index+1])
+                final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(sub_index)
                 #working_answer.pop(sub_index)
                 #working_answer.insert(sub_index, element)
