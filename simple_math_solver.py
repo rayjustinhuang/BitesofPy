@@ -61,18 +61,17 @@ def long_operation(op: list, expected_result: int):
                 element = mul(final_answer[mul_index], working_answer[mul_index+1])
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(mul_index)
-                #working_answer.pop(mul_index)
-                #working_answer.insert(mul_index, element)
+                working_answer.pop(mul_index)
+                working_answer.insert(mul_index, element)
                 #list_of_ops.remove('*')
             else:
                 continue
+            
+            print(working_answer)
 
         new_list_of_ops = [x for x in list_of_ops if x != '*']
             
         for operator in new_list_of_ops:
-            
-            print(operator)
-            print('looping')
             
             if operator == '+':
                 add_index = new_list_of_ops.index('+')
@@ -80,8 +79,8 @@ def long_operation(op: list, expected_result: int):
                 element = add(final_answer[add_index], working_answer[add_index+1])
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(add_index)
-                #working_answer.pop(add_index)
-                #working_answer.insert(add_index, element)
+                working_answer.pop(add_index)
+                working_answer.insert(add_index, element)
                 #list_of_ops.remove('+')
 
             elif operator == '-':
@@ -89,12 +88,14 @@ def long_operation(op: list, expected_result: int):
                 element = sub(final_answer[sub_index], working_answer[sub_index+1])
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(sub_index)
-                #working_answer.pop(sub_index)
-                #working_answer.insert(sub_index, element)
+                working_answer.pop(sub_index)
+                working_answer.insert(sub_index, element)
                 #list_of_ops.remove('-')
 
             else:
                 continue
+            
+            print(working_answer)
         
         #print(working_answer)
         #print(list_of_ops)
