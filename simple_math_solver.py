@@ -34,7 +34,7 @@ def basic_operation(op: str, expected_result: int):
         return [list(x) for x in possible if (x[0] * x[1]) == expected_result]
         
 def long_operation(op: list, expected_result: int):
-    possible = [[6, 7, 8, 9, 4, 5, 2]] # permutations(range(1, 9), len(op)+1)
+    possible = permutations(range(1, 9), len(op)+1) # [[6, 7, 8, 9, 4, 5, 2]] 
     
     allowed_answers = []
     
@@ -47,7 +47,7 @@ def long_operation(op: list, expected_result: int):
         else:
             final_answer = [ working_answer[0] ] * len(working_answer)
             
-        print(final_answer)
+        #print(final_answer)
             
 
         for operator in list_of_ops:
@@ -67,7 +67,7 @@ def long_operation(op: list, expected_result: int):
             else:
                 continue
             
-            print(working_answer)
+            #print(working_answer)
 
         new_list_of_ops = [x for x in list_of_ops if x != '*']
             
@@ -95,7 +95,7 @@ def long_operation(op: list, expected_result: int):
             else:
                 continue
             
-            print(working_answer)
+            #print(working_answer)
         
         #print(working_answer)
         #print(list_of_ops)
@@ -111,4 +111,4 @@ def long_operation(op: list, expected_result: int):
 #print(long_operation(['*','*','+'],181))
 #print(find_all_solutions(['*','-'], 16))
 #print(find_all_solutions(['+'], 6))
-print(find_all_solutions(['+', '*', '*', '+', '*', '-'], 528))
+#print(find_all_solutions(['+', '*', '*', '+', '*', '-'], 528))
