@@ -61,8 +61,7 @@ def long_operation(op: list, expected_result: int):
                 element = mul(final_answer[mul_index], working_answer[mul_index+1])
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(mul_index)
-                working_answer.pop(mul_index)
-                working_answer.insert(mul_index, element)
+                #working_answer.insert(mul_index, element)
                 list_of_ops.pop(mul_index)
             else:
                 continue
@@ -79,8 +78,7 @@ def long_operation(op: list, expected_result: int):
                 element = add(final_answer[add_index], working_answer[add_index+1])
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(add_index)
-                working_answer.pop(add_index)
-                working_answer.insert(add_index, element)
+                #working_answer.insert(add_index, element)
                 list_of_ops.pop(add_index)
 
             elif operator == '-':
@@ -88,8 +86,7 @@ def long_operation(op: list, expected_result: int):
                 element = sub(final_answer[sub_index], working_answer[sub_index+1])
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(sub_index)
-                working_answer.pop(sub_index)
-                working_answer.insert(sub_index, element)
+                #working_answer.insert(sub_index, element)
                 list_of_ops.pop(sub_index)
 
             else:
@@ -100,7 +97,7 @@ def long_operation(op: list, expected_result: int):
         #print(working_answer)
         #print(list_of_ops)
         
-        if working_answer[0] == expected_result:
+        if final_answer[0] == expected_result:
             allowed_answers.append(list(answer))
             
     return allowed_answers
