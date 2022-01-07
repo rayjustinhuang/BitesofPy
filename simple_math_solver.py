@@ -62,13 +62,13 @@ def long_operation(op: list, expected_result: int):
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(mul_index)
                 #working_answer.insert(mul_index, element)
-                list_of_ops.pop(mul_index)
+                #list_of_ops.pop(mul_index)
             else:
                 continue
             
             #print(working_answer)
 
-        new_list_of_ops = [x for x in list_of_ops if x != '*']
+        new_list_of_ops = [x for x in list_of_ops] #if x != '*']
             
         for operator in new_list_of_ops:
             
@@ -79,7 +79,7 @@ def long_operation(op: list, expected_result: int):
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(add_index)
                 #working_answer.insert(add_index, element)
-                list_of_ops.pop(add_index)
+                #list_of_ops.pop(add_index)
 
             elif operator == '-':
                 sub_index = new_list_of_ops.index('-')
@@ -87,7 +87,7 @@ def long_operation(op: list, expected_result: int):
                 final_answer = [ element ] * len(working_answer)
                 #working_answer.pop(sub_index)
                 #working_answer.insert(sub_index, element)
-                list_of_ops.pop(sub_index)
+                #list_of_ops.pop(sub_index)
 
             else:
                 continue
