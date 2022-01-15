@@ -1,10 +1,31 @@
 def romanize(decimal_number):
     """Takes a decimal number int and converts its Roman Numeral str"""
     answer = None
+    running_figure = decimal_number.copy()
     
     if decimal_number <= 0 or decimal_number >= 4000:
         raise ValueError
+        
+    roman = OrderedDict()
+    roman[1000] = "M"
+    roman[900] = "CM"
+    roman[500] = "D"
+    roman[400] = "CD"
+    roman[100] = "C"
+    roman[90] = "XC"
+    roman[50] = "L"
+    roman[40] = "XL"
+    roman[10] = "X"
+    roman[9] = "IX"
+    roman[5] = "V"
+    roman[4] = "IV"
+    roman[1] = "I"
     
-    if (decimal_number // 1000) > 0:
-        answer += 'M'*(decimal_number // 1000)
+    for key in roman.keys():
+        count = decimal_number // key
+        answer =+ roman[key] * count
+        running_figure =- key * count
+        
+    return answer
+    
     pass
