@@ -1,7 +1,9 @@
+from collections import OrderedDict
+
 def romanize(decimal_number):
     """Takes a decimal number int and converts its Roman Numeral str"""
-    answer = None
-    running_figure = decimal_number.copy()
+    answer = ''
+    running_figure = decimal_number
     
     if decimal_number <= 0 or decimal_number >= 4000:
         raise ValueError
@@ -23,9 +25,11 @@ def romanize(decimal_number):
     
     for key in roman.keys():
         count = decimal_number // key
-        answer =+ roman[key] * count
-        running_figure =- key * count
+        answer += roman[key] * count
+        running_figure -= key * count
         
     return answer
     
     pass
+
+print(romanize(1000))
