@@ -5,6 +5,9 @@ def romanize(decimal_number):
     answer = ''
     running_figure = decimal_number
     
+    if type(decimal_number) != int:
+        raise ValueError
+    
     if decimal_number <= 0 or decimal_number >= 4000:
         raise ValueError
         
@@ -24,12 +27,10 @@ def romanize(decimal_number):
     roman[1] = "I"
     
     for key in roman.keys():
-        count = decimal_number // key
+        count = running_figure // key
         answer += roman[key] * count
         running_figure -= key * count
         
     return answer
     
     pass
-
-print(romanize(1000))
