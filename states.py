@@ -49,6 +49,11 @@ def get_state_abbrev(state_name, us_state_abbrev=us_state_abbrev):
        'Illinois' returns 'IL'.
        If the state is not in the dict, return 'N/A' which we stored
        in the NOT_FOUND constant (takeaway: dicts are great for lookups)"""
+       
+    try:
+        return us_state_abbrev[state_name]
+    else:
+        return NOT_FOUND
     pass
 
 
