@@ -52,7 +52,7 @@ def get_state_abbrev(state_name, us_state_abbrev=us_state_abbrev):
        
     try:
         return us_state_abbrev[state_name]
-    else:
+    except:
         return NOT_FOUND
     pass
 
@@ -73,4 +73,5 @@ def combine_state_names_and_abbreviations(us_state_abbrev=us_state_abbrev,
        has both sorted, so:
        ['AK', 'AL', 'AZ', ..., 'South Dakota', 'Tennessee', 'Texas', ...]
        (see also test_combine_state_names_and_abbreviations)"""
+    return us_state_abbrev[:10] + states[-10:]
     pass
