@@ -36,7 +36,7 @@ def get_every_nth_state(states=states, n=10):
     """Return a list with every nth item (default argument n=10, so every
        10th item) of the states list above (remember: lists keep order)"""
     final_list = []
-    for i in range(0, len(states), n):
+    for i in range(n-1, len(states), n):
         final_list.append(states[i])
         
     return final_list
