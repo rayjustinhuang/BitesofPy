@@ -61,7 +61,7 @@ def get_longest_state(data):
     """Receives data, which can be the us_state_abbrev dict or the states
        list (see above). It returns the longest state measured by the length
        of the string"""
-    return sorted(data, key=lambda x: len(x))[0]
+    return sorted(data, key=lambda x: len(x), reverse=True)[0]
     pass
 
 
