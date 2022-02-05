@@ -9,6 +9,6 @@ def get_files(dirname, size_in_kb):
     
     for file in filelist:
         filesize = os.stat(os.path.join(dirname, file))
-        if filesize >= size_in_kb:
+        if filesize.st_size >= size_in_kb:
             yield file
     pass
