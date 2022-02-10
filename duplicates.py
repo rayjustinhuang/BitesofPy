@@ -15,5 +15,5 @@ def get_duplicate_indices(words):
         if words.count(word) > 1:
             indices.append(words.index(word))
             
-    return indices
+    return sorted(indices)
     pass
