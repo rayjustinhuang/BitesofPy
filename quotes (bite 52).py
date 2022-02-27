@@ -30,6 +30,9 @@ def _get_quote(qid):
 
 def _quote_exists(existing_quote):
     """Recommended helper"""
+    quote_list = [quote['id'] for quote in quotes]
+    if existing_quote in quote_list:
+        return True
 
 
 @app.route('/api/quotes', methods=['GET'])
