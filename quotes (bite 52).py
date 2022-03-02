@@ -25,7 +25,7 @@ def _get_quote(qid):
     """Recommended helper"""
     for dic in quotes:
         if dic['id'] == qid:
-            return dic['quote']
+            return dic
 
 
 def _quote_exists(existing_quote):
@@ -37,11 +37,13 @@ def _quote_exists(existing_quote):
 
 @app.route('/api/quotes', methods=['GET'])
 def get_quotes():
+    return quotes
     pass
 
 
 @app.route('/api/quotes/<int:qid>', methods=['GET'])
 def get_quote(qid):
+    return _get_quote(qid)
     pass
 
 
