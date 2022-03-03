@@ -49,6 +49,15 @@ def get_quote(qid):
 
 @app.route('/api/quotes', methods=['POST'])
 def create_quote():
+    if not request.json or not 'quote' in request.json:
+        abort(400)
+    quote = {
+        'id': quotes[-1]['id'] + 1,
+        'quote': request.json['quote'],
+        'movie': request.json['movie'],
+    }
+    quotes.append(quote)
+    return jsonify({'quote': quote}), 201
     pass
 
 
