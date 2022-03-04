@@ -63,6 +63,16 @@ def create_quote():
 
 @app.route('/api/quotes/<int:qid>', methods=['PUT'])
 def update_quote(qid):
+    quote = [quote for quote in quotes if quote['id'] == qid]
+    if len(quote) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+        
+    quote[0]['quote'] = request.json.get('quote', task[0]['quote'])
+    quote[0]['movie'] = request.json.get('movie', task[0]['movie'])
+
+    return jsonify({'quote': quote[0]})
     pass
 
 
