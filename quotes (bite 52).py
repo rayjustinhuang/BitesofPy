@@ -78,4 +78,9 @@ def update_quote(qid):
 
 @app.route('/api/quotes/<int:qid>', methods=['DELETE'])
 def delete_quote(qid):
+    quote = [quote for quote in quotes if quote['id'] == qid]
+    if len(quote) == 0:
+        abort(404)
+    quotes.remove(quote[0])
+    return jsonify({'result': True})
     pass
