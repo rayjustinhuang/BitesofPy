@@ -23,10 +23,8 @@ quotes = [
 
 def _get_quote(qid):
     """Recommended helper"""
-    for dic in quotes:
-        if dic['id'] == qid:
-            return dic
-
+    quote = [quote for quote in quotes if quote['id'] == qid]
+    return quote
 
 def _quote_exists(existing_quote):
     """Recommended helper"""
