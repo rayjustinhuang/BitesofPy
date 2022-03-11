@@ -24,7 +24,7 @@ quotes = [
 def _get_quote(qid):
     """Recommended helper"""
     quote = [quote for quote in quotes if quote['id'] == qid]
-    return quote
+    return quote[0]
 
 def _quote_exists(existing_quote):
     """Recommended helper"""
@@ -35,7 +35,7 @@ def _quote_exists(existing_quote):
 
 @app.route('/api/quotes', methods=['GET'])
 def get_quotes():
-    return quotes
+    return jsonify({'quotes':quotes})
     pass
 
 
