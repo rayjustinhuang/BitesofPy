@@ -41,7 +41,9 @@ def get_quotes():
 
 @app.route('/api/quotes/<int:qid>', methods=['GET'])
 def get_quote(qid):
-    return _get_quote(qid)
+    assert _quote_exists(qid)
+    quote = [quote for quote in quotes if quote['id'] == qid]
+    return jsonify({'quotes': quote[0]})
     pass
 
 
@@ -67,8 +69,8 @@ def update_quote(qid):
     if not request.json:
         abort(400)
         
-    quote[0]['quote'] = request.json.get('quote', task[0]['quote'])
-    quote[0]['movie'] = request.json.get('movie', task[0]['movie'])
+    quote[0]['quote'] = request.json.get('quote', quote[0]['quote'])
+    quote[0]['movie'] = request.json.get('movie', quote[0]['movie'])
 
     return jsonify({'quote': quote[0]})
     pass
