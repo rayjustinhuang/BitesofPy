@@ -43,7 +43,12 @@ def get_quotes():
 def get_quote(qid):
     assert _quote_exists(qid)
     quote = [quote for quote in quotes if quote['id'] == qid]
-    return jsonify({'quotes': quote[0]})
+    if len(quote) == 0:
+        abort(404)
+    if not request.json:
+        abort(400)
+    
+    return jsonify({'quote': quote[0]})
     pass
 
 
