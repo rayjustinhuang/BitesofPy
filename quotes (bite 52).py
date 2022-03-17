@@ -84,5 +84,5 @@ def delete_quote(qid):
     if len(quote) == 0:
         abort(404)
     quotes.remove(quote[0])
-    return jsonify({'result': True})
+    return jsonify({'result': True}), 204
     pass
