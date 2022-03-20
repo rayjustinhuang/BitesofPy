@@ -83,6 +83,9 @@ def delete_quote(qid):
     quote = [quote for quote in quotes if quote['id'] == qid]
     if len(quote) == 0:
         abort(404)
+    if not request.json:
+        abort(400)
+        
     quotes.remove(quote[0])
     return jsonify({'result': True}), 204
     pass
