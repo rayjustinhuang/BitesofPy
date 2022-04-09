@@ -45,7 +45,7 @@ def get_quote(qid):
     if len(quote) == 0:
         abort(404)
     
-    return jsonify({'quote': quote[0]})
+    return jsonify({'quotes': quote})
     pass
 
 
