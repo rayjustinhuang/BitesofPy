@@ -32,4 +32,6 @@ def game():
        send method and get a random move from computer (_get_computer_move).
        Raise a StopIteration exception if user value received = 'q'.
        Check who wins with _get_winner and print its return output."""
+    player_choice = yield
+    computer_choice = _get_computer_move()
     pass
