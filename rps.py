@@ -34,4 +34,10 @@ def game():
        Check who wins with _get_winner and print its return output."""
     player_choice = yield
     computer_choice = _get_computer_move()
+    
+    while True:
+        if player_choice != 'q':
+            print(_get_winner(computer_choice, player_choice))
+        else:
+            raise StopIteration
     pass
