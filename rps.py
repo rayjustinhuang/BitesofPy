@@ -19,11 +19,11 @@ def _get_winner(computer_choice, player_choice):
     """Return above lose/win/tie strings populated with the
        appropriate values (computer vs player)"""
     if player_choice == defeated_by[computer_choice]:
-        return lose.format(computer_choice, player_choice)
+        return win.format(player_choice, computer_choice)
     elif player_choice == computer_choice:
         return tie
     else:
-        return win.format(computer_choice, player_choice)
+        return lose.format(player_choice, computer_choice)
     pass
 
 
@@ -40,3 +40,5 @@ def game():
         
     raise StopIteration
     pass
+
+#print(_get_winner('rock', 'paper'))
