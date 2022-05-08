@@ -32,13 +32,18 @@ def game():
        send method and get a random move from computer (_get_computer_move).
        Raise a StopIteration exception if user value received = 'q'.
        Check who wins with _get_winner and print its return output."""
-    player_choice = yield
+    player_choice = (yield)
     computer_choice = _get_computer_move()
     
-    while player_choice != 'q':
-        print(_get_winner(computer_choice, player_choice))
+    while True:
+        if player_choice == 'q':
+            raise StopIteration
+        else:
+            print(_get_winner(computer_choice, player_choice))
         
-    raise StopIteration
+    game.send(None)
+    return game
+    #raise StopIteration
     pass
 
 #print(_get_winner('rock', 'paper'))
