@@ -36,6 +36,8 @@ def game():
     computer_choice = _get_computer_move()
     
     while player_choice != 'q':
+        if player_choice != 'paper' or player_choice != 'scissors' or player_choice != 'rock':
+            print('Invalid') 
         print(_get_winner(computer_choice, player_choice))
         
     if player_choice == 'q':
