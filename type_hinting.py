@@ -17,21 +17,19 @@ class Employee:
     hours_per_day: float
     wage: float
     
-    def _rounder(self, number, places) -> str:
+    def _rounder(self, number: float, places: int) -> str:
         """Rounds a number the specified number of places
 
         :param number: Float of number of round
         :param places: Integer of places to round to
         :return: String representation of the rounded number in US $
         """
-        number: float
-        places: int
         
         amount = round(number, places)
         return f"${amount:0.2f}"
 
     @property
-    def weekly_pay(self) -> float:
+    def weekly_pay(self) -> str:
         """Returns amount of weekly pay in US currency
 
         For instance: $250.75
