@@ -20,13 +20,22 @@ def search_apartment(buildings: List[int], direction: str) -> List[int]:
             else:
                 active = desired[-1]
                 if buildings[b] >= active:
-                    despired.append(buildings[b])
+                    desired.append(buildings[b])
                 else:
                     continue
                 continue
         
     else:
-        pass
+        for b range(len(buildings), step=-1):
+            if b == len(buildings):
+                desired.append(buildings[b])
+            else:
+                active = desired[-1]
+                if buildings[b] >= active:
+                    desired.append(buildings[b])
+                else:
+                    continue
+                continue
 
 
 if __name__ == "__main__":
